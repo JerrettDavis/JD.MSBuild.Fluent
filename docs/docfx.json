@@ -11,7 +11,21 @@
   ],
   "build": {
     "content": [
-      { "files": [ "index.md", "toc.yml", "articles/**.md", "articles/**/toc.yml", "api/**.yml", "api/index.md", "api/toc.yml" ] }
+      {
+        "files": [
+          "index.md",
+          "toc.yml",
+          "user-guides/**.md",
+          "user-guides/**/toc.yml",
+          "tutorials/**.md",
+          "tutorials/**/toc.yml",
+          "samples/**.md",
+          "samples/**/toc.yml",
+          "api/**.yml",
+          "api/index.md",
+          "api/toc.yml"
+        ]
+      }
     ],
     "resource": [
       { "files": [ "images/**" ] }

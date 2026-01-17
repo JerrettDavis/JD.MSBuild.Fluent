@@ -1,11 +1,14 @@
 - name: Home
   href: index.md
 - name: User Guides
-  href: user-guides/toc.yml
+  href: user-guides/
+  homepage: user-guides/index.md
 - name: Tutorials
-  href: tutorials/toc.yml
+  href: tutorials/
+  homepage: tutorials/index.md
 - name: Samples
-  href: samples/toc.yml
+  href: samples/
+  homepage: samples/index.md
 - name: API Reference
   href: api/
   homepage: api/index.md

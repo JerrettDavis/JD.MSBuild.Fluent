@@ -4,23 +4,13 @@
   items:
     - name: Simple Props Package
       href: beginner/simple-props.md
-    - name: Basic Targets Package
-      href: beginner/basic-targets.md
-    - name: SDK Package
-      href: beginner/sdk-package.md
 - name: Intermediate Tutorials
   items:
     - name: Build Integration Package
       href: intermediate/build-integration.md
-    - name: Custom Tasks Package
-      href: intermediate/custom-tasks.md
-    - name: Conditional Build Logic
-      href: intermediate/conditional-logic.md
 - name: Advanced Tutorials
   items:
     - name: Recreating JD.Efcpt.Build Patterns
       href: advanced/efcpt-patterns.md
     - name: Recreating JD.MSBuild.Containers Patterns
       href: advanced/containers-patterns.md
-    - name: Complex Build Orchestration
-      href: advanced/build-orchestration.md
