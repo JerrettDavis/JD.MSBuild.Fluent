@@ -1,0 +1,54 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent
+  commentId: N:JD.MSBuild.Fluent
+  id: JD.MSBuild.Fluent
+  children:
+  - JD.MSBuild.Fluent.PackageDefinition
+  langs:
+  - csharp
+  - vb
+  name: JD.MSBuild.Fluent
+  nameWithType: JD.MSBuild.Fluent
+  fullName: JD.MSBuild.Fluent
+  type: Namespace
+  assemblies:
+  - JD.MSBuild.Fluent
+references:
+- uid: JD.MSBuild.Fluent.PackageDefinition
+  commentId: T:JD.MSBuild.Fluent.PackageDefinition
+  parent: JD.MSBuild.Fluent
+  href: JD.MSBuild.Fluent.PackageDefinition.html
+  name: PackageDefinition
+  nameWithType: PackageDefinition
+  fullName: JD.MSBuild.Fluent.PackageDefinition
+- uid: JD.MSBuild.Fluent
+  commentId: N:JD.MSBuild.Fluent
+  href: JD.html
+  name: JD.MSBuild.Fluent
+  nameWithType: JD.MSBuild.Fluent
+  fullName: JD.MSBuild.Fluent
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html

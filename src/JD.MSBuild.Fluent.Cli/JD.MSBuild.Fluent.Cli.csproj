@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>jdmsbuild</ToolCommandName>
+    <PackageId>JD.MSBuild.Fluent.Cli</PackageId>
+    <Description>CLI for generating MSBuild assets from JD.MSBuild.Fluent definitions.</Description>
+    <PackageTags>msbuild;targets;props;sdk;dsl;cli;tool</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/JerrettDavis/JD.MSBuild.Fluent</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/JerrettDavis/JD.MSBuild.Fluent</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Authors>Jerrett Davis</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JD.MSBuild.Fluent\JD.MSBuild.Fluent.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.CommandLine" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\\..\\README.md" Pack="true" PackagePath="/" />
+    <None Include="..\\..\\LICENSE" Pack="true" PackagePath="/" Condition="Exists('..\\..\\LICENSE')" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,166 @@
+### YamlMime:TableOfContent
+items:
+- uid: JD.MSBuild.Fluent
+  name: JD.MSBuild.Fluent
+  type: Namespace
+  items:
+  - uid: JD.MSBuild.Fluent.PackageDefinition
+    name: PackageDefinition
+    type: Class
+- uid: JD.MSBuild.Fluent.Fluent
+  name: JD.MSBuild.Fluent.Fluent
+  type: Namespace
+  items:
+  - uid: JD.MSBuild.Fluent.Fluent.ChooseBuilder
+    name: ChooseBuilder
+    type: Class
+  - uid: JD.MSBuild.Fluent.Fluent.ItemBuilder
+    name: ItemBuilder
+    type: Class
+  - uid: JD.MSBuild.Fluent.Fluent.ItemGroupBuilder
+    name: ItemGroupBuilder
+    type: Class
+  - uid: JD.MSBuild.Fluent.Fluent.Package
+    name: Package
+    type: Class
+  - uid: JD.MSBuild.Fluent.Fluent.PackageBuilder
+    name: PackageBuilder
+    type: Class
+  - uid: JD.MSBuild.Fluent.Fluent.PropsBuilder
+    name: PropsBuilder
+    type: Class
+  - uid: JD.MSBuild.Fluent.Fluent.PropsGroupBuilder
+    name: PropsGroupBuilder
+    type: Class
+  - uid: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    name: TargetBuilder
+    type: Class
+  - uid: JD.MSBuild.Fluent.Fluent.TargetsBuilder
+    name: TargetsBuilder
+    type: Class
+  - uid: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+    name: TaskInvocationBuilder
+    type: Class
+- uid: JD.MSBuild.Fluent.IR
+  name: JD.MSBuild.Fluent.IR
+  type: Namespace
+  items:
+  - uid: JD.MSBuild.Fluent.IR.IMsBuildItemGroupEntry
+    name: IMsBuildItemGroupEntry
+    type: Interface
+  - uid: JD.MSBuild.Fluent.IR.IMsBuildProjectElement
+    name: IMsBuildProjectElement
+    type: Interface
+  - uid: JD.MSBuild.Fluent.IR.IMsBuildPropertyGroupEntry
+    name: IMsBuildPropertyGroupEntry
+    type: Interface
+  - uid: JD.MSBuild.Fluent.IR.MsBuildChoose
+    name: MsBuildChoose
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildComment
+    name: MsBuildComment
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildErrorStep
+    name: MsBuildErrorStep
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildExecStep
+    name: MsBuildExecStep
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildImport
+    name: MsBuildImport
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildItem
+    name: MsBuildItem
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildItemGroup
+    name: MsBuildItemGroup
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildItemGroupElement
+    name: MsBuildItemGroupElement
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+    name: MsBuildItemOperation
+    type: Enum
+  - uid: JD.MSBuild.Fluent.IR.MsBuildMessageStep
+    name: MsBuildMessageStep
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildOtherwise
+    name: MsBuildOtherwise
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildProject
+    name: MsBuildProject
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildProperty
+    name: MsBuildProperty
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildPropertyGroup
+    name: MsBuildPropertyGroup
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildPropertyGroupElement
+    name: MsBuildPropertyGroupElement
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildStep
+    name: MsBuildStep
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildTarget
+    name: MsBuildTarget
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildTargetComment
+    name: MsBuildTargetComment
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildTargetElement
+    name: MsBuildTargetElement
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildTaskOutput
+    name: MsBuildTaskOutput
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildTaskStep
+    name: MsBuildTaskStep
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildUsingTask
+    name: MsBuildUsingTask
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildWarningStep
+    name: MsBuildWarningStep
+    type: Class
+  - uid: JD.MSBuild.Fluent.IR.MsBuildWhen
+    name: MsBuildWhen
+    type: Class
+- uid: JD.MSBuild.Fluent.Packaging
+  name: JD.MSBuild.Fluent.Packaging
+  type: Namespace
+  items:
+  - uid: JD.MSBuild.Fluent.Packaging.MsBuildPackageEmitter
+    name: MsBuildPackageEmitter
+    type: Class
+  - uid: JD.MSBuild.Fluent.Packaging.PackagePackagingOptions
+    name: PackagePackagingOptions
+    type: Class
+- uid: JD.MSBuild.Fluent.Parse
+  name: JD.MSBuild.Fluent.Parse
+  type: Namespace
+  items:
+  - uid: JD.MSBuild.Fluent.Parse.MsBuildXmlParser
+    name: MsBuildXmlParser
+    type: Class
+- uid: JD.MSBuild.Fluent.Render
+  name: JD.MSBuild.Fluent.Render
+  type: Namespace
+  items:
+  - uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions
+    name: MsBuildXmlRenderOptions
+    type: Class
+  - uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer
+    name: MsBuildXmlRenderer
+    type: Class
+- uid: JD.MSBuild.Fluent.Validation
+  name: JD.MSBuild.Fluent.Validation
+  type: Namespace
+  items:
+  - uid: JD.MSBuild.Fluent.Validation.MsBuildValidationException
+    name: MsBuildValidationException
+    type: Class
+  - uid: JD.MSBuild.Fluent.Validation.MsBuildValidator
+    name: MsBuildValidator
+    type: Class
+memberLayout: SamePage

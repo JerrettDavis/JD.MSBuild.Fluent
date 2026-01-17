@@ -1,0 +1,6 @@
+**/bin/
+**/obj/
+artifacts/
+docs/_site/
+.idea/
+*.user

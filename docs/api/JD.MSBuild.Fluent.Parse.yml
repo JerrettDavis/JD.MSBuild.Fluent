@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.Parse
+  commentId: N:JD.MSBuild.Fluent.Parse
+  id: JD.MSBuild.Fluent.Parse
+  children:
+  - JD.MSBuild.Fluent.Parse.MsBuildXmlParser
+  langs:
+  - csharp
+  - vb
+  name: JD.MSBuild.Fluent.Parse
+  nameWithType: JD.MSBuild.Fluent.Parse
+  fullName: JD.MSBuild.Fluent.Parse
+  type: Namespace
+  assemblies:
+  - JD.MSBuild.Fluent
+references:
+- uid: JD.MSBuild.Fluent.Parse.MsBuildXmlParser
+  commentId: T:JD.MSBuild.Fluent.Parse.MsBuildXmlParser
+  href: JD.MSBuild.Fluent.Parse.MsBuildXmlParser.html
+  name: MsBuildXmlParser
+  nameWithType: MsBuildXmlParser
+  fullName: JD.MSBuild.Fluent.Parse.MsBuildXmlParser

@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>JD.MSBuild.Fluent</PackageId>
+    <Description>Strongly-typed fluent DSL for generating MSBuild .props/.targets/SDK assets.</Description>
+    <PackageTags>msbuild;targets;props;sdk;dsl;codegen</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/JerrettDavis/JD.MSBuild.Fluent</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/JerrettDavis/JD.MSBuild.Fluent</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Authors>Jerrett Davis</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PolySharp" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\\JD.MSBuild.Fluent.Generators\\JD.MSBuild.Fluent.Generators.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\\..\\README.md" Pack="true" PackagePath="/" />
+    <None Include="..\\..\\LICENSE" Pack="true" PackagePath="/" Condition="Exists('..\\..\\LICENSE')" />
+  </ItemGroup>
+</Project>

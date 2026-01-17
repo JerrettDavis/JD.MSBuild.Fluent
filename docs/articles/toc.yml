@@ -1,0 +1,8 @@
+- name: Getting Started
+  href: getting-started.md
+- name: Usage Guide
+  href: usage.md
+- name: CLI Reference
+  href: cli.md
+- name: Samples
+  href: samples.md

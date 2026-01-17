@@ -1,0 +1,147 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+  commentId: T:JD.MSBuild.Fluent.IR.MsBuildItemOperation
+  id: MsBuildItemOperation
+  parent: JD.MSBuild.Fluent.IR
+  children:
+  - JD.MSBuild.Fluent.IR.MsBuildItemOperation.Include
+  - JD.MSBuild.Fluent.IR.MsBuildItemOperation.Remove
+  - JD.MSBuild.Fluent.IR.MsBuildItemOperation.Update
+  langs:
+  - csharp
+  - vb
+  name: MsBuildItemOperation
+  nameWithType: MsBuildItemOperation
+  fullName: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+  type: Enum
+  source:
+    id: MsBuildItemOperation
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 167
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: Operation used to define an item.
+  example: []
+  syntax:
+    content: public enum MsBuildItemOperation
+    content.vb: Public Enum MsBuildItemOperation
+- uid: JD.MSBuild.Fluent.IR.MsBuildItemOperation.Include
+  commentId: F:JD.MSBuild.Fluent.IR.MsBuildItemOperation.Include
+  id: Include
+  parent: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+  langs:
+  - csharp
+  - vb
+  name: Include
+  nameWithType: MsBuildItemOperation.Include
+  fullName: JD.MSBuild.Fluent.IR.MsBuildItemOperation.Include
+  type: Field
+  source:
+    id: Include
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 172
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: Include an item.
+  example: []
+  syntax:
+    content: Include = 0
+    return:
+      type: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+- uid: JD.MSBuild.Fluent.IR.MsBuildItemOperation.Remove
+  commentId: F:JD.MSBuild.Fluent.IR.MsBuildItemOperation.Remove
+  id: Remove
+  parent: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+  langs:
+  - csharp
+  - vb
+  name: Remove
+  nameWithType: MsBuildItemOperation.Remove
+  fullName: JD.MSBuild.Fluent.IR.MsBuildItemOperation.Remove
+  type: Field
+  source:
+    id: Remove
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 176
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: Remove an item.
+  example: []
+  syntax:
+    content: Remove = 1
+    return:
+      type: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+- uid: JD.MSBuild.Fluent.IR.MsBuildItemOperation.Update
+  commentId: F:JD.MSBuild.Fluent.IR.MsBuildItemOperation.Update
+  id: Update
+  parent: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+  langs:
+  - csharp
+  - vb
+  name: Update
+  nameWithType: MsBuildItemOperation.Update
+  fullName: JD.MSBuild.Fluent.IR.MsBuildItemOperation.Update
+  type: Field
+  source:
+    id: Update
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 180
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: Update an item.
+  example: []
+  syntax:
+    content: Update = 2
+    return:
+      type: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+references:
+- uid: JD.MSBuild.Fluent.IR
+  commentId: N:JD.MSBuild.Fluent.IR
+  href: JD.html
+  name: JD.MSBuild.Fluent.IR
+  nameWithType: JD.MSBuild.Fluent.IR
+  fullName: JD.MSBuild.Fluent.IR
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.IR
+    name: IR
+    href: JD.MSBuild.Fluent.IR.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.IR
+    name: IR
+    href: JD.MSBuild.Fluent.IR.html
+- uid: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+  commentId: T:JD.MSBuild.Fluent.IR.MsBuildItemOperation
+  parent: JD.MSBuild.Fluent.IR
+  href: JD.MSBuild.Fluent.IR.MsBuildItemOperation.html
+  name: MsBuildItemOperation
+  nameWithType: MsBuildItemOperation
+  fullName: JD.MSBuild.Fluent.IR.MsBuildItemOperation

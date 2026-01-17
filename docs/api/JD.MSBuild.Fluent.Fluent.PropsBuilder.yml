@@ -1,0 +1,852 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.PropsBuilder
+  id: PropsBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  children:
+  - JD.MSBuild.Fluent.Fluent.PropsBuilder.Choose(System.Action{JD.MSBuild.Fluent.Fluent.ChooseBuilder})
+  - JD.MSBuild.Fluent.Fluent.PropsBuilder.Comment(System.String)
+  - JD.MSBuild.Fluent.Fluent.PropsBuilder.For(JD.MSBuild.Fluent.IR.MsBuildProject)
+  - JD.MSBuild.Fluent.Fluent.PropsBuilder.Import(System.String,System.String,System.String)
+  - JD.MSBuild.Fluent.Fluent.PropsBuilder.Item(System.String,JD.MSBuild.Fluent.IR.MsBuildItemOperation,System.String,System.Action{JD.MSBuild.Fluent.Fluent.ItemBuilder},System.String,System.String)
+  - JD.MSBuild.Fluent.Fluent.PropsBuilder.ItemGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder},System.String)
+  - JD.MSBuild.Fluent.Fluent.PropsBuilder.Property(System.String,System.String,System.String)
+  - JD.MSBuild.Fluent.Fluent.PropsBuilder.PropertyGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder},System.String)
+  langs:
+  - csharp
+  - vb
+  name: PropsBuilder
+  nameWithType: PropsBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder
+  type: Class
+  source:
+    id: PropsBuilder
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 139
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Fluent builder for props (property/item/import/choose) files.
+  example: []
+  syntax:
+    content: public sealed class PropsBuilder
+    content.vb: Public NotInheritable Class PropsBuilder
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.For(JD.MSBuild.Fluent.IR.MsBuildProject)
+  commentId: M:JD.MSBuild.Fluent.Fluent.PropsBuilder.For(JD.MSBuild.Fluent.IR.MsBuildProject)
+  id: For(JD.MSBuild.Fluent.IR.MsBuildProject)
+  parent: JD.MSBuild.Fluent.Fluent.PropsBuilder
+  langs:
+  - csharp
+  - vb
+  name: For(MsBuildProject)
+  nameWithType: PropsBuilder.For(MsBuildProject)
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.For(JD.MSBuild.Fluent.IR.MsBuildProject)
+  type: Method
+  source:
+    id: For
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 146
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Creates a props builder for an existing project.
+  example: []
+  syntax:
+    content: public static PropsBuilder For(MsBuildProject project)
+    parameters:
+    - id: project
+      type: JD.MSBuild.Fluent.IR.MsBuildProject
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PropsBuilder
+    content.vb: Public Shared Function [For](project As MsBuildProject) As PropsBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PropsBuilder.For*
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.Import(System.String,System.String,System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.PropsBuilder.Import(System.String,System.String,System.String)
+  id: Import(System.String,System.String,System.String)
+  parent: JD.MSBuild.Fluent.Fluent.PropsBuilder
+  langs:
+  - csharp
+  - vb
+  name: Import(string, string?, string?)
+  nameWithType: PropsBuilder.Import(string, string?, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.Import(string, string?, string?)
+  type: Method
+  source:
+    id: Import
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 153
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds an Import to the project.
+  example: []
+  syntax:
+    content: public PropsBuilder Import(string project, string? condition = null, string? sdk = null)
+    parameters:
+    - id: project
+      type: System.String
+    - id: condition
+      type: System.String
+    - id: sdk
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PropsBuilder
+    content.vb: Public Function Import(project As String, condition As String = Nothing, sdk As String = Nothing) As PropsBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PropsBuilder.Import*
+  nameWithType.vb: PropsBuilder.Import(String, String, String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PropsBuilder.Import(String, String, String)
+  name.vb: Import(String, String, String)
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.Comment(System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.PropsBuilder.Comment(System.String)
+  id: Comment(System.String)
+  parent: JD.MSBuild.Fluent.Fluent.PropsBuilder
+  langs:
+  - csharp
+  - vb
+  name: Comment(string)
+  nameWithType: PropsBuilder.Comment(string)
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.Comment(string)
+  type: Method
+  source:
+    id: Comment
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 164
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds a project-level comment.
+  example: []
+  syntax:
+    content: public PropsBuilder Comment(string text)
+    parameters:
+    - id: text
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PropsBuilder
+    content.vb: Public Function Comment(text As String) As PropsBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PropsBuilder.Comment*
+  nameWithType.vb: PropsBuilder.Comment(String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PropsBuilder.Comment(String)
+  name.vb: Comment(String)
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.Property(System.String,System.String,System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.PropsBuilder.Property(System.String,System.String,System.String)
+  id: Property(System.String,System.String,System.String)
+  parent: JD.MSBuild.Fluent.Fluent.PropsBuilder
+  langs:
+  - csharp
+  - vb
+  name: Property(string, string, string?)
+  nameWithType: PropsBuilder.Property(string, string, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.Property(string, string, string?)
+  type: Method
+  source:
+    id: Property
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 173
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds a property to the last property group or creates one if needed.
+  example: []
+  syntax:
+    content: public PropsBuilder Property(string name, string value, string? condition = null)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: System.String
+    - id: condition
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PropsBuilder
+    content.vb: Public Function [Property](name As String, value As String, condition As String = Nothing) As PropsBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PropsBuilder.Property*
+  nameWithType.vb: PropsBuilder.Property(String, String, String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PropsBuilder.Property(String, String, String)
+  name.vb: Property(String, String, String)
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.PropertyGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder},System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.PropsBuilder.PropertyGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder},System.String)
+  id: PropertyGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder},System.String)
+  parent: JD.MSBuild.Fluent.Fluent.PropsBuilder
+  langs:
+  - csharp
+  - vb
+  name: PropertyGroup(string?, Action<PropsGroupBuilder>, string?)
+  nameWithType: PropsBuilder.PropertyGroup(string?, Action<PropsGroupBuilder>, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.PropertyGroup(string?, System.Action<JD.MSBuild.Fluent.Fluent.PropsGroupBuilder>, string?)
+  type: Method
+  source:
+    id: PropertyGroup
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 183
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds a new property group.
+  example: []
+  syntax:
+    content: public PropsBuilder PropertyGroup(string? condition, Action<PropsGroupBuilder> configure, string? label = null)
+    parameters:
+    - id: condition
+      type: System.String
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder}
+    - id: label
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PropsBuilder
+    content.vb: Public Function PropertyGroup(condition As String, configure As Action(Of PropsGroupBuilder), label As String = Nothing) As PropsBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PropsBuilder.PropertyGroup*
+  nameWithType.vb: PropsBuilder.PropertyGroup(String, Action(Of PropsGroupBuilder), String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PropsBuilder.PropertyGroup(String, System.Action(Of JD.MSBuild.Fluent.Fluent.PropsGroupBuilder), String)
+  name.vb: PropertyGroup(String, Action(Of PropsGroupBuilder), String)
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.Item(System.String,JD.MSBuild.Fluent.IR.MsBuildItemOperation,System.String,System.Action{JD.MSBuild.Fluent.Fluent.ItemBuilder},System.String,System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.PropsBuilder.Item(System.String,JD.MSBuild.Fluent.IR.MsBuildItemOperation,System.String,System.Action{JD.MSBuild.Fluent.Fluent.ItemBuilder},System.String,System.String)
+  id: Item(System.String,JD.MSBuild.Fluent.IR.MsBuildItemOperation,System.String,System.Action{JD.MSBuild.Fluent.Fluent.ItemBuilder},System.String,System.String)
+  parent: JD.MSBuild.Fluent.Fluent.PropsBuilder
+  langs:
+  - csharp
+  - vb
+  name: Item(string, MsBuildItemOperation, string, Action<ItemBuilder>?, string?, string?)
+  nameWithType: PropsBuilder.Item(string, MsBuildItemOperation, string, Action<ItemBuilder>?, string?, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.Item(string, JD.MSBuild.Fluent.IR.MsBuildItemOperation, string, System.Action<JD.MSBuild.Fluent.Fluent.ItemBuilder>?, string?, string?)
+  type: Method
+  source:
+    id: Item
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 193
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds an item to the last item group or creates one if needed.
+  example: []
+  syntax:
+    content: public PropsBuilder Item(string itemType, MsBuildItemOperation op, string spec, Action<ItemBuilder>? configure = null, string? condition = null, string? exclude = null)
+    parameters:
+    - id: itemType
+      type: System.String
+    - id: op
+      type: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+    - id: spec
+      type: System.String
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.ItemBuilder}
+    - id: condition
+      type: System.String
+    - id: exclude
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PropsBuilder
+    content.vb: Public Function Item(itemType As String, op As MsBuildItemOperation, spec As String, configure As Action(Of ItemBuilder) = Nothing, condition As String = Nothing, exclude As String = Nothing) As PropsBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PropsBuilder.Item*
+  nameWithType.vb: PropsBuilder.Item(String, MsBuildItemOperation, String, Action(Of ItemBuilder), String, String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PropsBuilder.Item(String, JD.MSBuild.Fluent.IR.MsBuildItemOperation, String, System.Action(Of JD.MSBuild.Fluent.Fluent.ItemBuilder), String, String)
+  name.vb: Item(String, MsBuildItemOperation, String, Action(Of ItemBuilder), String, String)
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.ItemGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder},System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.PropsBuilder.ItemGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder},System.String)
+  id: ItemGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder},System.String)
+  parent: JD.MSBuild.Fluent.Fluent.PropsBuilder
+  langs:
+  - csharp
+  - vb
+  name: ItemGroup(string?, Action<ItemGroupBuilder>, string?)
+  nameWithType: PropsBuilder.ItemGroup(string?, Action<ItemGroupBuilder>, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.ItemGroup(string?, System.Action<JD.MSBuild.Fluent.Fluent.ItemGroupBuilder>, string?)
+  type: Method
+  source:
+    id: ItemGroup
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 205
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds a new item group.
+  example: []
+  syntax:
+    content: public PropsBuilder ItemGroup(string? condition, Action<ItemGroupBuilder> configure, string? label = null)
+    parameters:
+    - id: condition
+      type: System.String
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder}
+    - id: label
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PropsBuilder
+    content.vb: Public Function ItemGroup(condition As String, configure As Action(Of ItemGroupBuilder), label As String = Nothing) As PropsBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PropsBuilder.ItemGroup*
+  nameWithType.vb: PropsBuilder.ItemGroup(String, Action(Of ItemGroupBuilder), String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PropsBuilder.ItemGroup(String, System.Action(Of JD.MSBuild.Fluent.Fluent.ItemGroupBuilder), String)
+  name.vb: ItemGroup(String, Action(Of ItemGroupBuilder), String)
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.Choose(System.Action{JD.MSBuild.Fluent.Fluent.ChooseBuilder})
+  commentId: M:JD.MSBuild.Fluent.Fluent.PropsBuilder.Choose(System.Action{JD.MSBuild.Fluent.Fluent.ChooseBuilder})
+  id: Choose(System.Action{JD.MSBuild.Fluent.Fluent.ChooseBuilder})
+  parent: JD.MSBuild.Fluent.Fluent.PropsBuilder
+  langs:
+  - csharp
+  - vb
+  name: Choose(Action<ChooseBuilder>)
+  nameWithType: PropsBuilder.Choose(Action<ChooseBuilder>)
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.Choose(System.Action<JD.MSBuild.Fluent.Fluent.ChooseBuilder>)
+  type: Method
+  source:
+    id: Choose
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 215
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds a Choose element.
+  example: []
+  syntax:
+    content: public PropsBuilder Choose(Action<ChooseBuilder> configure)
+    parameters:
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.ChooseBuilder}
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PropsBuilder
+    content.vb: Public Function Choose(configure As Action(Of ChooseBuilder)) As PropsBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PropsBuilder.Choose*
+  nameWithType.vb: PropsBuilder.Choose(Action(Of ChooseBuilder))
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PropsBuilder.Choose(System.Action(Of JD.MSBuild.Fluent.Fluent.ChooseBuilder))
+  name.vb: Choose(Action(Of ChooseBuilder))
+references:
+- uid: JD.MSBuild.Fluent.Fluent
+  commentId: N:JD.MSBuild.Fluent.Fluent
+  href: JD.html
+  name: JD.MSBuild.Fluent.Fluent
+  nameWithType: JD.MSBuild.Fluent.Fluent
+  fullName: JD.MSBuild.Fluent.Fluent
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.Fluent.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.Fluent.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.For*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PropsBuilder.For
+  href: JD.MSBuild.Fluent.Fluent.PropsBuilder.html#JD_MSBuild_Fluent_Fluent_PropsBuilder_For_JD_MSBuild_Fluent_IR_MsBuildProject_
+  name: For
+  nameWithType: PropsBuilder.For
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.For
+- uid: JD.MSBuild.Fluent.IR.MsBuildProject
+  commentId: T:JD.MSBuild.Fluent.IR.MsBuildProject
+  parent: JD.MSBuild.Fluent.IR
+  href: JD.MSBuild.Fluent.IR.MsBuildProject.html
+  name: MsBuildProject
+  nameWithType: MsBuildProject
+  fullName: JD.MSBuild.Fluent.IR.MsBuildProject
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.PropsBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.PropsBuilder.html
+  name: PropsBuilder
+  nameWithType: PropsBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder
+- uid: JD.MSBuild.Fluent.IR
+  commentId: N:JD.MSBuild.Fluent.IR
+  href: JD.html
+  name: JD.MSBuild.Fluent.IR
+  nameWithType: JD.MSBuild.Fluent.IR
+  fullName: JD.MSBuild.Fluent.IR
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.IR
+    name: IR
+    href: JD.MSBuild.Fluent.IR.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.IR
+    name: IR
+    href: JD.MSBuild.Fluent.IR.html
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.Import*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PropsBuilder.Import
+  href: JD.MSBuild.Fluent.Fluent.PropsBuilder.html#JD_MSBuild_Fluent_Fluent_PropsBuilder_Import_System_String_System_String_System_String_
+  name: Import
+  nameWithType: PropsBuilder.Import
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.Import
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.Comment*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PropsBuilder.Comment
+  href: JD.MSBuild.Fluent.Fluent.PropsBuilder.html#JD_MSBuild_Fluent_Fluent_PropsBuilder_Comment_System_String_
+  name: Comment
+  nameWithType: PropsBuilder.Comment
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.Comment
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.Property*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PropsBuilder.Property
+  href: JD.MSBuild.Fluent.Fluent.PropsBuilder.html#JD_MSBuild_Fluent_Fluent_PropsBuilder_Property_System_String_System_String_System_String_
+  name: Property
+  nameWithType: PropsBuilder.Property
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.Property
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.PropertyGroup*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PropsBuilder.PropertyGroup
+  href: JD.MSBuild.Fluent.Fluent.PropsBuilder.html#JD_MSBuild_Fluent_Fluent_PropsBuilder_PropertyGroup_System_String_System_Action_JD_MSBuild_Fluent_Fluent_PropsGroupBuilder__System_String_
+  name: PropertyGroup
+  nameWithType: PropsBuilder.PropertyGroup
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.PropertyGroup
+- uid: System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder}
+  commentId: T:System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<PropsGroupBuilder>
+  nameWithType: Action<PropsGroupBuilder>
+  fullName: System.Action<JD.MSBuild.Fluent.Fluent.PropsGroupBuilder>
+  nameWithType.vb: Action(Of PropsGroupBuilder)
+  fullName.vb: System.Action(Of JD.MSBuild.Fluent.Fluent.PropsGroupBuilder)
+  name.vb: Action(Of PropsGroupBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: JD.MSBuild.Fluent.Fluent.PropsGroupBuilder
+    name: PropsGroupBuilder
+    href: JD.MSBuild.Fluent.Fluent.PropsGroupBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: JD.MSBuild.Fluent.Fluent.PropsGroupBuilder
+    name: PropsGroupBuilder
+    href: JD.MSBuild.Fluent.Fluent.PropsGroupBuilder.html
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.Item*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PropsBuilder.Item
+  href: JD.MSBuild.Fluent.Fluent.PropsBuilder.html#JD_MSBuild_Fluent_Fluent_PropsBuilder_Item_System_String_JD_MSBuild_Fluent_IR_MsBuildItemOperation_System_String_System_Action_JD_MSBuild_Fluent_Fluent_ItemBuilder__System_String_System_String_
+  name: Item
+  nameWithType: PropsBuilder.Item
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.Item
+- uid: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+  commentId: T:JD.MSBuild.Fluent.IR.MsBuildItemOperation
+  parent: JD.MSBuild.Fluent.IR
+  href: JD.MSBuild.Fluent.IR.MsBuildItemOperation.html
+  name: MsBuildItemOperation
+  nameWithType: MsBuildItemOperation
+  fullName: JD.MSBuild.Fluent.IR.MsBuildItemOperation
+- uid: System.Action{JD.MSBuild.Fluent.Fluent.ItemBuilder}
+  commentId: T:System.Action{JD.MSBuild.Fluent.Fluent.ItemBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<ItemBuilder>
+  nameWithType: Action<ItemBuilder>
+  fullName: System.Action<JD.MSBuild.Fluent.Fluent.ItemBuilder>
+  nameWithType.vb: Action(Of ItemBuilder)
+  fullName.vb: System.Action(Of JD.MSBuild.Fluent.Fluent.ItemBuilder)
+  name.vb: Action(Of ItemBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: JD.MSBuild.Fluent.Fluent.ItemBuilder
+    name: ItemBuilder
+    href: JD.MSBuild.Fluent.Fluent.ItemBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: JD.MSBuild.Fluent.Fluent.ItemBuilder
+    name: ItemBuilder
+    href: JD.MSBuild.Fluent.Fluent.ItemBuilder.html
+  - name: )
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.ItemGroup*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PropsBuilder.ItemGroup
+  href: JD.MSBuild.Fluent.Fluent.PropsBuilder.html#JD_MSBuild_Fluent_Fluent_PropsBuilder_ItemGroup_System_String_System_Action_JD_MSBuild_Fluent_Fluent_ItemGroupBuilder__System_String_
+  name: ItemGroup
+  nameWithType: PropsBuilder.ItemGroup
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.ItemGroup
+- uid: System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder}
+  commentId: T:System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<ItemGroupBuilder>
+  nameWithType: Action<ItemGroupBuilder>
+  fullName: System.Action<JD.MSBuild.Fluent.Fluent.ItemGroupBuilder>
+  nameWithType.vb: Action(Of ItemGroupBuilder)
+  fullName.vb: System.Action(Of JD.MSBuild.Fluent.Fluent.ItemGroupBuilder)
+  name.vb: Action(Of ItemGroupBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: JD.MSBuild.Fluent.Fluent.ItemGroupBuilder
+    name: ItemGroupBuilder
+    href: JD.MSBuild.Fluent.Fluent.ItemGroupBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: JD.MSBuild.Fluent.Fluent.ItemGroupBuilder
+    name: ItemGroupBuilder
+    href: JD.MSBuild.Fluent.Fluent.ItemGroupBuilder.html
+  - name: )
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder.Choose*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PropsBuilder.Choose
+  href: JD.MSBuild.Fluent.Fluent.PropsBuilder.html#JD_MSBuild_Fluent_Fluent_PropsBuilder_Choose_System_Action_JD_MSBuild_Fluent_Fluent_ChooseBuilder__
+  name: Choose
+  nameWithType: PropsBuilder.Choose
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder.Choose
+- uid: System.Action{JD.MSBuild.Fluent.Fluent.ChooseBuilder}
+  commentId: T:System.Action{JD.MSBuild.Fluent.Fluent.ChooseBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<ChooseBuilder>
+  nameWithType: Action<ChooseBuilder>
+  fullName: System.Action<JD.MSBuild.Fluent.Fluent.ChooseBuilder>
+  nameWithType.vb: Action(Of ChooseBuilder)
+  fullName.vb: System.Action(Of JD.MSBuild.Fluent.Fluent.ChooseBuilder)
+  name.vb: Action(Of ChooseBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: JD.MSBuild.Fluent.Fluent.ChooseBuilder
+    name: ChooseBuilder
+    href: JD.MSBuild.Fluent.Fluent.ChooseBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: JD.MSBuild.Fluent.Fluent.ChooseBuilder
+    name: ChooseBuilder
+    href: JD.MSBuild.Fluent.Fluent.ChooseBuilder.html
+  - name: )

@@ -1,0 +1,20 @@
+- name: Overview
+  href: index.md
+- name: Basic Samples
+  items:
+    - name: Minimal SDK Package
+      href: basic/minimal-sdk.md
+    - name: Property Definition Package
+      href: basic/properties.md
+    - name: Simple Target Package
+      href: basic/simple-target.md
+- name: Real-World Samples
+  items:
+    - name: Database Build Integration
+      href: real-world/database-build.md
+    - name: Docker Integration
+      href: real-world/docker-integration.md
+    - name: Code Generation Pipeline
+      href: real-world/code-generation.md
+    - name: Multi-Project Orchestration
+      href: real-world/multi-project.md

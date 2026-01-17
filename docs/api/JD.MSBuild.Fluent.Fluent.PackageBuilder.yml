@@ -1,0 +1,932 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.PackageBuilder
+  id: PackageBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  children:
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder.#ctor(System.String)
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder.Build
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildProps(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTargets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveProps(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveTargets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder.Description(System.String)
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder.Pack(System.Action{JD.MSBuild.Fluent.Packaging.PackagePackagingOptions})
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder.Props(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkProps(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkTargets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder.Targets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  langs:
+  - csharp
+  - vb
+  name: PackageBuilder
+  nameWithType: PackageBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  type: Class
+  source:
+    id: PackageBuilder
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 19
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Fluent builder for creating <xref href="JD.MSBuild.Fluent.PackageDefinition" data-throw-if-not-resolved="false"></xref> instances.
+  example: []
+  syntax:
+    content: public sealed class PackageBuilder
+    content.vb: Public NotInheritable Class PackageBuilder
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.#ctor(System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.PackageBuilder.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  langs:
+  - csharp
+  - vb
+  name: PackageBuilder(string)
+  nameWithType: PackageBuilder.PackageBuilder(string)
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.PackageBuilder(string)
+  type: Constructor
+  source:
+    id: .ctor
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 26
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Creates a package builder with the given ID.
+  example: []
+  syntax:
+    content: public PackageBuilder(string id)
+    parameters:
+    - id: id
+      type: System.String
+    content.vb: Public Sub New(id As String)
+  overload: JD.MSBuild.Fluent.Fluent.PackageBuilder.#ctor*
+  nameWithType.vb: PackageBuilder.New(String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PackageBuilder.New(String)
+  name.vb: New(String)
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.Description(System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.PackageBuilder.Description(System.String)
+  id: Description(System.String)
+  parent: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  langs:
+  - csharp
+  - vb
+  name: Description(string)
+  nameWithType: PackageBuilder.Description(string)
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.Description(string)
+  type: Method
+  source:
+    id: Description
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 34
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Sets the package description.
+  example: []
+  syntax:
+    content: public PackageBuilder Description(string description)
+    parameters:
+    - id: description
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PackageBuilder
+    content.vb: Public Function Description(description As String) As PackageBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PackageBuilder.Description*
+  nameWithType.vb: PackageBuilder.Description(String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PackageBuilder.Description(String)
+  name.vb: Description(String)
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.Props(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  commentId: M:JD.MSBuild.Fluent.Fluent.PackageBuilder.Props(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  id: Props(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  parent: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  langs:
+  - csharp
+  - vb
+  name: Props(Action<PropsBuilder>)
+  nameWithType: PackageBuilder.Props(Action<PropsBuilder>)
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.Props(System.Action<JD.MSBuild.Fluent.Fluent.PropsBuilder>)
+  type: Method
+  source:
+    id: Props
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 43
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Configures base props.
+  example: []
+  syntax:
+    content: public PackageBuilder Props(Action<PropsBuilder> configure)
+    parameters:
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder}
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PackageBuilder
+    content.vb: Public Function Props(configure As Action(Of PropsBuilder)) As PackageBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PackageBuilder.Props*
+  nameWithType.vb: PackageBuilder.Props(Action(Of PropsBuilder))
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PackageBuilder.Props(System.Action(Of JD.MSBuild.Fluent.Fluent.PropsBuilder))
+  name.vb: Props(Action(Of PropsBuilder))
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.Targets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  commentId: M:JD.MSBuild.Fluent.Fluent.PackageBuilder.Targets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  id: Targets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  parent: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  langs:
+  - csharp
+  - vb
+  name: Targets(Action<TargetsBuilder>)
+  nameWithType: PackageBuilder.Targets(Action<TargetsBuilder>)
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.Targets(System.Action<JD.MSBuild.Fluent.Fluent.TargetsBuilder>)
+  type: Method
+  source:
+    id: Targets
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 52
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Configures base targets.
+  example: []
+  syntax:
+    content: public PackageBuilder Targets(Action<TargetsBuilder> configure)
+    parameters:
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder}
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PackageBuilder
+    content.vb: Public Function Targets(configure As Action(Of TargetsBuilder)) As PackageBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PackageBuilder.Targets*
+  nameWithType.vb: PackageBuilder.Targets(Action(Of TargetsBuilder))
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PackageBuilder.Targets(System.Action(Of JD.MSBuild.Fluent.Fluent.TargetsBuilder))
+  name.vb: Targets(Action(Of TargetsBuilder))
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildProps(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  commentId: M:JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildProps(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  id: BuildProps(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  parent: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  langs:
+  - csharp
+  - vb
+  name: BuildProps(Action<PropsBuilder>)
+  nameWithType: PackageBuilder.BuildProps(Action<PropsBuilder>)
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildProps(System.Action<JD.MSBuild.Fluent.Fluent.PropsBuilder>)
+  type: Method
+  source:
+    id: BuildProps
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 61
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Configures build/ props output.
+  example: []
+  syntax:
+    content: public PackageBuilder BuildProps(Action<PropsBuilder> configure)
+    parameters:
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder}
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PackageBuilder
+    content.vb: Public Function BuildProps(configure As Action(Of PropsBuilder)) As PackageBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildProps*
+  nameWithType.vb: PackageBuilder.BuildProps(Action(Of PropsBuilder))
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildProps(System.Action(Of JD.MSBuild.Fluent.Fluent.PropsBuilder))
+  name.vb: BuildProps(Action(Of PropsBuilder))
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTargets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  commentId: M:JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTargets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  id: BuildTargets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  parent: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  langs:
+  - csharp
+  - vb
+  name: BuildTargets(Action<TargetsBuilder>)
+  nameWithType: PackageBuilder.BuildTargets(Action<TargetsBuilder>)
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTargets(System.Action<JD.MSBuild.Fluent.Fluent.TargetsBuilder>)
+  type: Method
+  source:
+    id: BuildTargets
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 71
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Configures build/ targets output.
+  example: []
+  syntax:
+    content: public PackageBuilder BuildTargets(Action<TargetsBuilder> configure)
+    parameters:
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder}
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PackageBuilder
+    content.vb: Public Function BuildTargets(configure As Action(Of TargetsBuilder)) As PackageBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTargets*
+  nameWithType.vb: PackageBuilder.BuildTargets(Action(Of TargetsBuilder))
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTargets(System.Action(Of JD.MSBuild.Fluent.Fluent.TargetsBuilder))
+  name.vb: BuildTargets(Action(Of TargetsBuilder))
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveProps(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  commentId: M:JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveProps(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  id: BuildTransitiveProps(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  parent: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  langs:
+  - csharp
+  - vb
+  name: BuildTransitiveProps(Action<PropsBuilder>)
+  nameWithType: PackageBuilder.BuildTransitiveProps(Action<PropsBuilder>)
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveProps(System.Action<JD.MSBuild.Fluent.Fluent.PropsBuilder>)
+  type: Method
+  source:
+    id: BuildTransitiveProps
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 81
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Configures buildTransitive/ props output.
+  example: []
+  syntax:
+    content: public PackageBuilder BuildTransitiveProps(Action<PropsBuilder> configure)
+    parameters:
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder}
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PackageBuilder
+    content.vb: Public Function BuildTransitiveProps(configure As Action(Of PropsBuilder)) As PackageBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveProps*
+  nameWithType.vb: PackageBuilder.BuildTransitiveProps(Action(Of PropsBuilder))
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveProps(System.Action(Of JD.MSBuild.Fluent.Fluent.PropsBuilder))
+  name.vb: BuildTransitiveProps(Action(Of PropsBuilder))
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveTargets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  commentId: M:JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveTargets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  id: BuildTransitiveTargets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  parent: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  langs:
+  - csharp
+  - vb
+  name: BuildTransitiveTargets(Action<TargetsBuilder>)
+  nameWithType: PackageBuilder.BuildTransitiveTargets(Action<TargetsBuilder>)
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveTargets(System.Action<JD.MSBuild.Fluent.Fluent.TargetsBuilder>)
+  type: Method
+  source:
+    id: BuildTransitiveTargets
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 91
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Configures buildTransitive/ targets output.
+  example: []
+  syntax:
+    content: public PackageBuilder BuildTransitiveTargets(Action<TargetsBuilder> configure)
+    parameters:
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder}
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PackageBuilder
+    content.vb: Public Function BuildTransitiveTargets(configure As Action(Of TargetsBuilder)) As PackageBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveTargets*
+  nameWithType.vb: PackageBuilder.BuildTransitiveTargets(Action(Of TargetsBuilder))
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveTargets(System.Action(Of JD.MSBuild.Fluent.Fluent.TargetsBuilder))
+  name.vb: BuildTransitiveTargets(Action(Of TargetsBuilder))
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkProps(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  commentId: M:JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkProps(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  id: SdkProps(System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder})
+  parent: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  langs:
+  - csharp
+  - vb
+  name: SdkProps(Action<PropsBuilder>)
+  nameWithType: PackageBuilder.SdkProps(Action<PropsBuilder>)
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkProps(System.Action<JD.MSBuild.Fluent.Fluent.PropsBuilder>)
+  type: Method
+  source:
+    id: SdkProps
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 101
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Configures Sdk props output.
+  example: []
+  syntax:
+    content: public PackageBuilder SdkProps(Action<PropsBuilder> configure)
+    parameters:
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder}
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PackageBuilder
+    content.vb: Public Function SdkProps(configure As Action(Of PropsBuilder)) As PackageBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkProps*
+  nameWithType.vb: PackageBuilder.SdkProps(Action(Of PropsBuilder))
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkProps(System.Action(Of JD.MSBuild.Fluent.Fluent.PropsBuilder))
+  name.vb: SdkProps(Action(Of PropsBuilder))
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkTargets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  commentId: M:JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkTargets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  id: SdkTargets(System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder})
+  parent: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  langs:
+  - csharp
+  - vb
+  name: SdkTargets(Action<TargetsBuilder>)
+  nameWithType: PackageBuilder.SdkTargets(Action<TargetsBuilder>)
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkTargets(System.Action<JD.MSBuild.Fluent.Fluent.TargetsBuilder>)
+  type: Method
+  source:
+    id: SdkTargets
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 111
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Configures Sdk targets output.
+  example: []
+  syntax:
+    content: public PackageBuilder SdkTargets(Action<TargetsBuilder> configure)
+    parameters:
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder}
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PackageBuilder
+    content.vb: Public Function SdkTargets(configure As Action(Of TargetsBuilder)) As PackageBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkTargets*
+  nameWithType.vb: PackageBuilder.SdkTargets(Action(Of TargetsBuilder))
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkTargets(System.Action(Of JD.MSBuild.Fluent.Fluent.TargetsBuilder))
+  name.vb: SdkTargets(Action(Of TargetsBuilder))
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.Pack(System.Action{JD.MSBuild.Fluent.Packaging.PackagePackagingOptions})
+  commentId: M:JD.MSBuild.Fluent.Fluent.PackageBuilder.Pack(System.Action{JD.MSBuild.Fluent.Packaging.PackagePackagingOptions})
+  id: Pack(System.Action{JD.MSBuild.Fluent.Packaging.PackagePackagingOptions})
+  parent: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  langs:
+  - csharp
+  - vb
+  name: Pack(Action<PackagePackagingOptions>)
+  nameWithType: PackageBuilder.Pack(Action<PackagePackagingOptions>)
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.Pack(System.Action<JD.MSBuild.Fluent.Packaging.PackagePackagingOptions>)
+  type: Method
+  source:
+    id: Pack
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 121
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Configures packaging options.
+  example: []
+  syntax:
+    content: public PackageBuilder Pack(Action<PackagePackagingOptions> configure)
+    parameters:
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Packaging.PackagePackagingOptions}
+    return:
+      type: JD.MSBuild.Fluent.Fluent.PackageBuilder
+    content.vb: Public Function Pack(configure As Action(Of PackagePackagingOptions)) As PackageBuilder
+  overload: JD.MSBuild.Fluent.Fluent.PackageBuilder.Pack*
+  nameWithType.vb: PackageBuilder.Pack(Action(Of PackagePackagingOptions))
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PackageBuilder.Pack(System.Action(Of JD.MSBuild.Fluent.Packaging.PackagePackagingOptions))
+  name.vb: Pack(Action(Of PackagePackagingOptions))
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.Build
+  commentId: M:JD.MSBuild.Fluent.Fluent.PackageBuilder.Build
+  id: Build
+  parent: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  langs:
+  - csharp
+  - vb
+  name: Build()
+  nameWithType: PackageBuilder.Build()
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.Build()
+  type: Method
+  source:
+    id: Build
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 130
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Builds the final package definition.
+  example: []
+  syntax:
+    content: public PackageDefinition Build()
+    return:
+      type: JD.MSBuild.Fluent.PackageDefinition
+    content.vb: Public Function Build() As PackageDefinition
+  overload: JD.MSBuild.Fluent.Fluent.PackageBuilder.Build*
+references:
+- uid: JD.MSBuild.Fluent.PackageDefinition
+  commentId: T:JD.MSBuild.Fluent.PackageDefinition
+  parent: JD.MSBuild.Fluent
+  href: JD.MSBuild.Fluent.PackageDefinition.html
+  name: PackageDefinition
+  nameWithType: PackageDefinition
+  fullName: JD.MSBuild.Fluent.PackageDefinition
+- uid: JD.MSBuild.Fluent.Fluent
+  commentId: N:JD.MSBuild.Fluent.Fluent
+  href: JD.html
+  name: JD.MSBuild.Fluent.Fluent
+  nameWithType: JD.MSBuild.Fluent.Fluent
+  fullName: JD.MSBuild.Fluent.Fluent
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.Fluent.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.Fluent.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: JD.MSBuild.Fluent
+  commentId: N:JD.MSBuild.Fluent
+  href: JD.html
+  name: JD.MSBuild.Fluent
+  nameWithType: JD.MSBuild.Fluent
+  fullName: JD.MSBuild.Fluent
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.#ctor*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PackageBuilder.#ctor
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html#JD_MSBuild_Fluent_Fluent_PackageBuilder__ctor_System_String_
+  name: PackageBuilder
+  nameWithType: PackageBuilder.PackageBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.PackageBuilder
+  nameWithType.vb: PackageBuilder.New
+  fullName.vb: JD.MSBuild.Fluent.Fluent.PackageBuilder.New
+  name.vb: New
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.Description*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PackageBuilder.Description
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html#JD_MSBuild_Fluent_Fluent_PackageBuilder_Description_System_String_
+  name: Description
+  nameWithType: PackageBuilder.Description
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.Description
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.PackageBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html
+  name: PackageBuilder
+  nameWithType: PackageBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.Props*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PackageBuilder.Props
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html#JD_MSBuild_Fluent_Fluent_PackageBuilder_Props_System_Action_JD_MSBuild_Fluent_Fluent_PropsBuilder__
+  name: Props
+  nameWithType: PackageBuilder.Props
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.Props
+- uid: System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder}
+  commentId: T:System.Action{JD.MSBuild.Fluent.Fluent.PropsBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<PropsBuilder>
+  nameWithType: Action<PropsBuilder>
+  fullName: System.Action<JD.MSBuild.Fluent.Fluent.PropsBuilder>
+  nameWithType.vb: Action(Of PropsBuilder)
+  fullName.vb: System.Action(Of JD.MSBuild.Fluent.Fluent.PropsBuilder)
+  name.vb: Action(Of PropsBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: JD.MSBuild.Fluent.Fluent.PropsBuilder
+    name: PropsBuilder
+    href: JD.MSBuild.Fluent.Fluent.PropsBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: JD.MSBuild.Fluent.Fluent.PropsBuilder
+    name: PropsBuilder
+    href: JD.MSBuild.Fluent.Fluent.PropsBuilder.html
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.Targets*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PackageBuilder.Targets
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html#JD_MSBuild_Fluent_Fluent_PackageBuilder_Targets_System_Action_JD_MSBuild_Fluent_Fluent_TargetsBuilder__
+  name: Targets
+  nameWithType: PackageBuilder.Targets
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.Targets
+- uid: System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder}
+  commentId: T:System.Action{JD.MSBuild.Fluent.Fluent.TargetsBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<TargetsBuilder>
+  nameWithType: Action<TargetsBuilder>
+  fullName: System.Action<JD.MSBuild.Fluent.Fluent.TargetsBuilder>
+  nameWithType.vb: Action(Of TargetsBuilder)
+  fullName.vb: System.Action(Of JD.MSBuild.Fluent.Fluent.TargetsBuilder)
+  name.vb: Action(Of TargetsBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: JD.MSBuild.Fluent.Fluent.TargetsBuilder
+    name: TargetsBuilder
+    href: JD.MSBuild.Fluent.Fluent.TargetsBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: JD.MSBuild.Fluent.Fluent.TargetsBuilder
+    name: TargetsBuilder
+    href: JD.MSBuild.Fluent.Fluent.TargetsBuilder.html
+  - name: )
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildProps*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildProps
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html#JD_MSBuild_Fluent_Fluent_PackageBuilder_BuildProps_System_Action_JD_MSBuild_Fluent_Fluent_PropsBuilder__
+  name: BuildProps
+  nameWithType: PackageBuilder.BuildProps
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildProps
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTargets*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTargets
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html#JD_MSBuild_Fluent_Fluent_PackageBuilder_BuildTargets_System_Action_JD_MSBuild_Fluent_Fluent_TargetsBuilder__
+  name: BuildTargets
+  nameWithType: PackageBuilder.BuildTargets
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTargets
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveProps*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveProps
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html#JD_MSBuild_Fluent_Fluent_PackageBuilder_BuildTransitiveProps_System_Action_JD_MSBuild_Fluent_Fluent_PropsBuilder__
+  name: BuildTransitiveProps
+  nameWithType: PackageBuilder.BuildTransitiveProps
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveProps
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveTargets*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveTargets
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html#JD_MSBuild_Fluent_Fluent_PackageBuilder_BuildTransitiveTargets_System_Action_JD_MSBuild_Fluent_Fluent_TargetsBuilder__
+  name: BuildTransitiveTargets
+  nameWithType: PackageBuilder.BuildTransitiveTargets
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.BuildTransitiveTargets
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkProps*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkProps
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html#JD_MSBuild_Fluent_Fluent_PackageBuilder_SdkProps_System_Action_JD_MSBuild_Fluent_Fluent_PropsBuilder__
+  name: SdkProps
+  nameWithType: PackageBuilder.SdkProps
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkProps
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkTargets*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkTargets
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html#JD_MSBuild_Fluent_Fluent_PackageBuilder_SdkTargets_System_Action_JD_MSBuild_Fluent_Fluent_TargetsBuilder__
+  name: SdkTargets
+  nameWithType: PackageBuilder.SdkTargets
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.SdkTargets
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.Pack*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PackageBuilder.Pack
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html#JD_MSBuild_Fluent_Fluent_PackageBuilder_Pack_System_Action_JD_MSBuild_Fluent_Packaging_PackagePackagingOptions__
+  name: Pack
+  nameWithType: PackageBuilder.Pack
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.Pack
+- uid: System.Action{JD.MSBuild.Fluent.Packaging.PackagePackagingOptions}
+  commentId: T:System.Action{JD.MSBuild.Fluent.Packaging.PackagePackagingOptions}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<PackagePackagingOptions>
+  nameWithType: Action<PackagePackagingOptions>
+  fullName: System.Action<JD.MSBuild.Fluent.Packaging.PackagePackagingOptions>
+  nameWithType.vb: Action(Of PackagePackagingOptions)
+  fullName.vb: System.Action(Of JD.MSBuild.Fluent.Packaging.PackagePackagingOptions)
+  name.vb: Action(Of PackagePackagingOptions)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: JD.MSBuild.Fluent.Packaging.PackagePackagingOptions
+    name: PackagePackagingOptions
+    href: JD.MSBuild.Fluent.Packaging.PackagePackagingOptions.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: JD.MSBuild.Fluent.Packaging.PackagePackagingOptions
+    name: PackagePackagingOptions
+    href: JD.MSBuild.Fluent.Packaging.PackagePackagingOptions.html
+  - name: )
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder.Build*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.PackageBuilder.Build
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html#JD_MSBuild_Fluent_Fluent_PackageBuilder_Build
+  name: Build
+  nameWithType: PackageBuilder.Build
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder.Build

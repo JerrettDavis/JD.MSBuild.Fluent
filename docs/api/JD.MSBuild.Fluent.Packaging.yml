@@ -1,0 +1,69 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.Packaging
+  commentId: N:JD.MSBuild.Fluent.Packaging
+  id: JD.MSBuild.Fluent.Packaging
+  children:
+  - JD.MSBuild.Fluent.Packaging.MsBuildPackageEmitter
+  - JD.MSBuild.Fluent.Packaging.PackagePackagingOptions
+  langs:
+  - csharp
+  - vb
+  name: JD.MSBuild.Fluent.Packaging
+  nameWithType: JD.MSBuild.Fluent.Packaging
+  fullName: JD.MSBuild.Fluent.Packaging
+  type: Namespace
+  assemblies:
+  - JD.MSBuild.Fluent
+references:
+- uid: JD.MSBuild.Fluent.Packaging.MsBuildPackageEmitter
+  commentId: T:JD.MSBuild.Fluent.Packaging.MsBuildPackageEmitter
+  href: JD.MSBuild.Fluent.Packaging.MsBuildPackageEmitter.html
+  name: MsBuildPackageEmitter
+  nameWithType: MsBuildPackageEmitter
+  fullName: JD.MSBuild.Fluent.Packaging.MsBuildPackageEmitter
+- uid: JD.MSBuild.Fluent.Packaging.PackagePackagingOptions
+  commentId: T:JD.MSBuild.Fluent.Packaging.PackagePackagingOptions
+  parent: JD.MSBuild.Fluent.Packaging
+  href: JD.MSBuild.Fluent.Packaging.PackagePackagingOptions.html
+  name: PackagePackagingOptions
+  nameWithType: PackagePackagingOptions
+  fullName: JD.MSBuild.Fluent.Packaging.PackagePackagingOptions
+- uid: JD.MSBuild.Fluent.Packaging
+  commentId: N:JD.MSBuild.Fluent.Packaging
+  href: JD.html
+  name: JD.MSBuild.Fluent.Packaging
+  nameWithType: JD.MSBuild.Fluent.Packaging
+  fullName: JD.MSBuild.Fluent.Packaging
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Packaging
+    name: Packaging
+    href: JD.MSBuild.Fluent.Packaging.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Packaging
+    name: Packaging
+    href: JD.MSBuild.Fluent.Packaging.html

@@ -1,0 +1,711 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget
+  commentId: T:JD.MSBuild.Fluent.IR.MsBuildTarget
+  id: MsBuildTarget
+  parent: JD.MSBuild.Fluent.IR
+  children:
+  - JD.MSBuild.Fluent.IR.MsBuildTarget.AfterTargets
+  - JD.MSBuild.Fluent.IR.MsBuildTarget.BeforeTargets
+  - JD.MSBuild.Fluent.IR.MsBuildTarget.Condition
+  - JD.MSBuild.Fluent.IR.MsBuildTarget.DependsOnTargets
+  - JD.MSBuild.Fluent.IR.MsBuildTarget.Elements
+  - JD.MSBuild.Fluent.IR.MsBuildTarget.Inputs
+  - JD.MSBuild.Fluent.IR.MsBuildTarget.Label
+  - JD.MSBuild.Fluent.IR.MsBuildTarget.Name
+  - JD.MSBuild.Fluent.IR.MsBuildTarget.Outputs
+  langs:
+  - csharp
+  - vb
+  name: MsBuildTarget
+  nameWithType: MsBuildTarget
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget
+  type: Class
+  source:
+    id: MsBuildTarget
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 243
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: Represents a Target element.
+  example: []
+  syntax:
+    content: 'public sealed class MsBuildTarget : IMsBuildProjectElement'
+    content.vb: Public NotInheritable Class MsBuildTarget Implements IMsBuildProjectElement
+  inheritance:
+  - System.Object
+  implements:
+  - JD.MSBuild.Fluent.IR.IMsBuildProjectElement
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.Name
+  commentId: P:JD.MSBuild.Fluent.IR.MsBuildTarget.Name
+  id: Name
+  parent: JD.MSBuild.Fluent.IR.MsBuildTarget
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: MsBuildTarget.Name
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.Name
+  type: Property
+  source:
+    id: Name
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 248
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: Target name.
+  example: []
+  syntax:
+    content: public required string Name { get; init; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: JD.MSBuild.Fluent.IR.MsBuildTarget.Name*
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.Condition
+  commentId: P:JD.MSBuild.Fluent.IR.MsBuildTarget.Condition
+  id: Condition
+  parent: JD.MSBuild.Fluent.IR.MsBuildTarget
+  langs:
+  - csharp
+  - vb
+  name: Condition
+  nameWithType: MsBuildTarget.Condition
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.Condition
+  type: Property
+  source:
+    id: Condition
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 252
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: Optional target condition.
+  example: []
+  syntax:
+    content: public string? Condition { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Condition As String
+  overload: JD.MSBuild.Fluent.IR.MsBuildTarget.Condition*
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.BeforeTargets
+  commentId: P:JD.MSBuild.Fluent.IR.MsBuildTarget.BeforeTargets
+  id: BeforeTargets
+  parent: JD.MSBuild.Fluent.IR.MsBuildTarget
+  langs:
+  - csharp
+  - vb
+  name: BeforeTargets
+  nameWithType: MsBuildTarget.BeforeTargets
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.BeforeTargets
+  type: Property
+  source:
+    id: BeforeTargets
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 256
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: BeforeTargets attribute.
+  example: []
+  syntax:
+    content: public string? BeforeTargets { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property BeforeTargets As String
+  overload: JD.MSBuild.Fluent.IR.MsBuildTarget.BeforeTargets*
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.AfterTargets
+  commentId: P:JD.MSBuild.Fluent.IR.MsBuildTarget.AfterTargets
+  id: AfterTargets
+  parent: JD.MSBuild.Fluent.IR.MsBuildTarget
+  langs:
+  - csharp
+  - vb
+  name: AfterTargets
+  nameWithType: MsBuildTarget.AfterTargets
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.AfterTargets
+  type: Property
+  source:
+    id: AfterTargets
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 260
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: AfterTargets attribute.
+  example: []
+  syntax:
+    content: public string? AfterTargets { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AfterTargets As String
+  overload: JD.MSBuild.Fluent.IR.MsBuildTarget.AfterTargets*
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.DependsOnTargets
+  commentId: P:JD.MSBuild.Fluent.IR.MsBuildTarget.DependsOnTargets
+  id: DependsOnTargets
+  parent: JD.MSBuild.Fluent.IR.MsBuildTarget
+  langs:
+  - csharp
+  - vb
+  name: DependsOnTargets
+  nameWithType: MsBuildTarget.DependsOnTargets
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.DependsOnTargets
+  type: Property
+  source:
+    id: DependsOnTargets
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 264
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: DependsOnTargets attribute.
+  example: []
+  syntax:
+    content: public string? DependsOnTargets { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property DependsOnTargets As String
+  overload: JD.MSBuild.Fluent.IR.MsBuildTarget.DependsOnTargets*
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.Inputs
+  commentId: P:JD.MSBuild.Fluent.IR.MsBuildTarget.Inputs
+  id: Inputs
+  parent: JD.MSBuild.Fluent.IR.MsBuildTarget
+  langs:
+  - csharp
+  - vb
+  name: Inputs
+  nameWithType: MsBuildTarget.Inputs
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.Inputs
+  type: Property
+  source:
+    id: Inputs
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 268
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: Inputs attribute.
+  example: []
+  syntax:
+    content: public string? Inputs { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Inputs As String
+  overload: JD.MSBuild.Fluent.IR.MsBuildTarget.Inputs*
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.Outputs
+  commentId: P:JD.MSBuild.Fluent.IR.MsBuildTarget.Outputs
+  id: Outputs
+  parent: JD.MSBuild.Fluent.IR.MsBuildTarget
+  langs:
+  - csharp
+  - vb
+  name: Outputs
+  nameWithType: MsBuildTarget.Outputs
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.Outputs
+  type: Property
+  source:
+    id: Outputs
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 272
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: Outputs attribute.
+  example: []
+  syntax:
+    content: public string? Outputs { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Outputs As String
+  overload: JD.MSBuild.Fluent.IR.MsBuildTarget.Outputs*
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.Label
+  commentId: P:JD.MSBuild.Fluent.IR.MsBuildTarget.Label
+  id: Label
+  parent: JD.MSBuild.Fluent.IR.MsBuildTarget
+  langs:
+  - csharp
+  - vb
+  name: Label
+  nameWithType: MsBuildTarget.Label
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.Label
+  type: Property
+  source:
+    id: Label
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 276
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: Optional label attribute.
+  example: []
+  syntax:
+    content: public string? Label { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Label As String
+  overload: JD.MSBuild.Fluent.IR.MsBuildTarget.Label*
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.Elements
+  commentId: P:JD.MSBuild.Fluent.IR.MsBuildTarget.Elements
+  id: Elements
+  parent: JD.MSBuild.Fluent.IR.MsBuildTarget
+  langs:
+  - csharp
+  - vb
+  name: Elements
+  nameWithType: MsBuildTarget.Elements
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.Elements
+  type: Property
+  source:
+    id: Elements
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 281
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: Ordered elements inside the target.
+  example: []
+  syntax:
+    content: public List<MsBuildTargetElement> Elements { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.List{JD.MSBuild.Fluent.IR.MsBuildTargetElement}
+    content.vb: Public ReadOnly Property Elements As List(Of MsBuildTargetElement)
+  overload: JD.MSBuild.Fluent.IR.MsBuildTarget.Elements*
+references:
+- uid: JD.MSBuild.Fluent.IR
+  commentId: N:JD.MSBuild.Fluent.IR
+  href: JD.html
+  name: JD.MSBuild.Fluent.IR
+  nameWithType: JD.MSBuild.Fluent.IR
+  fullName: JD.MSBuild.Fluent.IR
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.IR
+    name: IR
+    href: JD.MSBuild.Fluent.IR.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.IR
+    name: IR
+    href: JD.MSBuild.Fluent.IR.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: JD.MSBuild.Fluent.IR.IMsBuildProjectElement
+  commentId: T:JD.MSBuild.Fluent.IR.IMsBuildProjectElement
+  parent: JD.MSBuild.Fluent.IR
+  href: JD.MSBuild.Fluent.IR.IMsBuildProjectElement.html
+  name: IMsBuildProjectElement
+  nameWithType: IMsBuildProjectElement
+  fullName: JD.MSBuild.Fluent.IR.IMsBuildProjectElement
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.Name*
+  commentId: Overload:JD.MSBuild.Fluent.IR.MsBuildTarget.Name
+  href: JD.MSBuild.Fluent.IR.MsBuildTarget.html#JD_MSBuild_Fluent_IR_MsBuildTarget_Name
+  name: Name
+  nameWithType: MsBuildTarget.Name
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.Condition*
+  commentId: Overload:JD.MSBuild.Fluent.IR.MsBuildTarget.Condition
+  href: JD.MSBuild.Fluent.IR.MsBuildTarget.html#JD_MSBuild_Fluent_IR_MsBuildTarget_Condition
+  name: Condition
+  nameWithType: MsBuildTarget.Condition
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.Condition
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.BeforeTargets*
+  commentId: Overload:JD.MSBuild.Fluent.IR.MsBuildTarget.BeforeTargets
+  href: JD.MSBuild.Fluent.IR.MsBuildTarget.html#JD_MSBuild_Fluent_IR_MsBuildTarget_BeforeTargets
+  name: BeforeTargets
+  nameWithType: MsBuildTarget.BeforeTargets
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.BeforeTargets
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.AfterTargets*
+  commentId: Overload:JD.MSBuild.Fluent.IR.MsBuildTarget.AfterTargets
+  href: JD.MSBuild.Fluent.IR.MsBuildTarget.html#JD_MSBuild_Fluent_IR_MsBuildTarget_AfterTargets
+  name: AfterTargets
+  nameWithType: MsBuildTarget.AfterTargets
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.AfterTargets
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.DependsOnTargets*
+  commentId: Overload:JD.MSBuild.Fluent.IR.MsBuildTarget.DependsOnTargets
+  href: JD.MSBuild.Fluent.IR.MsBuildTarget.html#JD_MSBuild_Fluent_IR_MsBuildTarget_DependsOnTargets
+  name: DependsOnTargets
+  nameWithType: MsBuildTarget.DependsOnTargets
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.DependsOnTargets
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.Inputs*
+  commentId: Overload:JD.MSBuild.Fluent.IR.MsBuildTarget.Inputs
+  href: JD.MSBuild.Fluent.IR.MsBuildTarget.html#JD_MSBuild_Fluent_IR_MsBuildTarget_Inputs
+  name: Inputs
+  nameWithType: MsBuildTarget.Inputs
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.Inputs
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.Outputs*
+  commentId: Overload:JD.MSBuild.Fluent.IR.MsBuildTarget.Outputs
+  href: JD.MSBuild.Fluent.IR.MsBuildTarget.html#JD_MSBuild_Fluent_IR_MsBuildTarget_Outputs
+  name: Outputs
+  nameWithType: MsBuildTarget.Outputs
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.Outputs
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.Label*
+  commentId: Overload:JD.MSBuild.Fluent.IR.MsBuildTarget.Label
+  href: JD.MSBuild.Fluent.IR.MsBuildTarget.html#JD_MSBuild_Fluent_IR_MsBuildTarget_Label
+  name: Label
+  nameWithType: MsBuildTarget.Label
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.Label
+- uid: JD.MSBuild.Fluent.IR.MsBuildTarget.Elements*
+  commentId: Overload:JD.MSBuild.Fluent.IR.MsBuildTarget.Elements
+  href: JD.MSBuild.Fluent.IR.MsBuildTarget.html#JD_MSBuild_Fluent_IR_MsBuildTarget_Elements
+  name: Elements
+  nameWithType: MsBuildTarget.Elements
+  fullName: JD.MSBuild.Fluent.IR.MsBuildTarget.Elements
+- uid: System.Collections.Generic.List{JD.MSBuild.Fluent.IR.MsBuildTargetElement}
+  commentId: T:System.Collections.Generic.List{JD.MSBuild.Fluent.IR.MsBuildTargetElement}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<MsBuildTargetElement>
+  nameWithType: List<MsBuildTargetElement>
+  fullName: System.Collections.Generic.List<JD.MSBuild.Fluent.IR.MsBuildTargetElement>
+  nameWithType.vb: List(Of MsBuildTargetElement)
+  fullName.vb: System.Collections.Generic.List(Of JD.MSBuild.Fluent.IR.MsBuildTargetElement)
+  name.vb: List(Of MsBuildTargetElement)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: JD.MSBuild.Fluent.IR.MsBuildTargetElement
+    name: MsBuildTargetElement
+    href: JD.MSBuild.Fluent.IR.MsBuildTargetElement.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: JD.MSBuild.Fluent.IR.MsBuildTargetElement
+    name: MsBuildTargetElement
+    href: JD.MSBuild.Fluent.IR.MsBuildTargetElement.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic

@@ -1,0 +1,23 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- CLI -->
+    <PackageVersion Include="System.CommandLine" Version="2.0.2" />
+    <!-- Downlevel language polyfills -->
+    <PackageVersion Include="PolySharp" Version="1.15.0" />
+    <!-- Source generators -->
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />
+    <!-- Tests -->
+    <PackageVersion Include="TinyBDD.Xunit" Version="0.18.1" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageVersion Include="Verify.Xunit" Version="31.9.4" />
+    <!-- Pinned to last Apache 2.0 release line; v8+ changes license terms -->
+    <PackageVersion Include="FluentAssertions" Version="7.0.0" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+  </ItemGroup>
+</Project>

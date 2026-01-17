@@ -1,0 +1,1045 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.TargetBuilder
+  id: TargetBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  children:
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.AfterTargets(System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.BeforeTargets(System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.Comment(System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.Condition(System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.DependsOnTargets(System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.Error(System.String,System.String,System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.Exec(System.String,System.String,System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.Inputs(System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.ItemGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder},System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.Label(System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.Message(System.String,System.String,System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.Outputs(System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.PropertyGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder},System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.Task(System.String,System.Action{JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder},System.String)
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder.Warning(System.String,System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: TargetBuilder
+  nameWithType: TargetBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  type: Class
+  source:
+    id: TargetBuilder
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 493
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Fluent builder for a Target element.
+  example: []
+  syntax:
+    content: public sealed class TargetBuilder
+    content.vb: Public NotInheritable Class TargetBuilder
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Condition(System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.Condition(System.String)
+  id: Condition(System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: Condition(string)
+  nameWithType: TargetBuilder.Condition(string)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Condition(string)
+  type: Method
+  source:
+    id: Condition
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 501
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Sets the target Condition.
+  example: []
+  syntax:
+    content: public TargetBuilder Condition(string condition)
+    parameters:
+    - id: condition
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function Condition(condition As String) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.Condition*
+  nameWithType.vb: TargetBuilder.Condition(String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.Condition(String)
+  name.vb: Condition(String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.BeforeTargets(System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.BeforeTargets(System.String)
+  id: BeforeTargets(System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: BeforeTargets(string)
+  nameWithType: TargetBuilder.BeforeTargets(string)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.BeforeTargets(string)
+  type: Method
+  source:
+    id: BeforeTargets
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 505
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Sets the BeforeTargets attribute.
+  example: []
+  syntax:
+    content: public TargetBuilder BeforeTargets(string before)
+    parameters:
+    - id: before
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function BeforeTargets(before As String) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.BeforeTargets*
+  nameWithType.vb: TargetBuilder.BeforeTargets(String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.BeforeTargets(String)
+  name.vb: BeforeTargets(String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.AfterTargets(System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.AfterTargets(System.String)
+  id: AfterTargets(System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: AfterTargets(string)
+  nameWithType: TargetBuilder.AfterTargets(string)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.AfterTargets(string)
+  type: Method
+  source:
+    id: AfterTargets
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 509
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Sets the AfterTargets attribute.
+  example: []
+  syntax:
+    content: public TargetBuilder AfterTargets(string after)
+    parameters:
+    - id: after
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function AfterTargets(after As String) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.AfterTargets*
+  nameWithType.vb: TargetBuilder.AfterTargets(String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.AfterTargets(String)
+  name.vb: AfterTargets(String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.DependsOnTargets(System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.DependsOnTargets(System.String)
+  id: DependsOnTargets(System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: DependsOnTargets(string)
+  nameWithType: TargetBuilder.DependsOnTargets(string)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.DependsOnTargets(string)
+  type: Method
+  source:
+    id: DependsOnTargets
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 513
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Sets the DependsOnTargets attribute.
+  example: []
+  syntax:
+    content: public TargetBuilder DependsOnTargets(string depends)
+    parameters:
+    - id: depends
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function DependsOnTargets(depends As String) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.DependsOnTargets*
+  nameWithType.vb: TargetBuilder.DependsOnTargets(String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.DependsOnTargets(String)
+  name.vb: DependsOnTargets(String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Inputs(System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.Inputs(System.String)
+  id: Inputs(System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: Inputs(string)
+  nameWithType: TargetBuilder.Inputs(string)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Inputs(string)
+  type: Method
+  source:
+    id: Inputs
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 517
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Sets the Inputs attribute.
+  example: []
+  syntax:
+    content: public TargetBuilder Inputs(string inputs)
+    parameters:
+    - id: inputs
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function Inputs(inputs As String) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.Inputs*
+  nameWithType.vb: TargetBuilder.Inputs(String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.Inputs(String)
+  name.vb: Inputs(String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Outputs(System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.Outputs(System.String)
+  id: Outputs(System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: Outputs(string)
+  nameWithType: TargetBuilder.Outputs(string)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Outputs(string)
+  type: Method
+  source:
+    id: Outputs
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 521
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Sets the Outputs attribute.
+  example: []
+  syntax:
+    content: public TargetBuilder Outputs(string outputs)
+    parameters:
+    - id: outputs
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function Outputs(outputs As String) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.Outputs*
+  nameWithType.vb: TargetBuilder.Outputs(String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.Outputs(String)
+  name.vb: Outputs(String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Label(System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.Label(System.String)
+  id: Label(System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: Label(string)
+  nameWithType: TargetBuilder.Label(string)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Label(string)
+  type: Method
+  source:
+    id: Label
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 525
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Sets the Label attribute.
+  example: []
+  syntax:
+    content: public TargetBuilder Label(string label)
+    parameters:
+    - id: label
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function Label(label As String) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.Label*
+  nameWithType.vb: TargetBuilder.Label(String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.Label(String)
+  name.vb: Label(String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Message(System.String,System.String,System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.Message(System.String,System.String,System.String)
+  id: Message(System.String,System.String,System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: Message(string, string, string?)
+  nameWithType: TargetBuilder.Message(string, string, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Message(string, string, string?)
+  type: Method
+  source:
+    id: Message
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 530
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds a Message task to the target.
+  example: []
+  syntax:
+    content: public TargetBuilder Message(string text, string importance = "High", string? condition = null)
+    parameters:
+    - id: text
+      type: System.String
+    - id: importance
+      type: System.String
+    - id: condition
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function Message(text As String, importance As String = "High", condition As String = Nothing) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.Message*
+  nameWithType.vb: TargetBuilder.Message(String, String, String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.Message(String, String, String)
+  name.vb: Message(String, String, String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Exec(System.String,System.String,System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.Exec(System.String,System.String,System.String)
+  id: Exec(System.String,System.String,System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: Exec(string, string?, string?)
+  nameWithType: TargetBuilder.Exec(string, string?, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Exec(string, string?, string?)
+  type: Method
+  source:
+    id: Exec
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 539
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds an Exec task to the target.
+  example: []
+  syntax:
+    content: public TargetBuilder Exec(string command, string? workingDirectory = null, string? condition = null)
+    parameters:
+    - id: command
+      type: System.String
+    - id: workingDirectory
+      type: System.String
+    - id: condition
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function Exec(command As String, workingDirectory As String = Nothing, condition As String = Nothing) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.Exec*
+  nameWithType.vb: TargetBuilder.Exec(String, String, String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.Exec(String, String, String)
+  name.vb: Exec(String, String, String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Task(System.String,System.Action{JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder},System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.Task(System.String,System.Action{JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder},System.String)
+  id: Task(System.String,System.Action{JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder},System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: Task(string, Action<TaskInvocationBuilder>, string?)
+  nameWithType: TargetBuilder.Task(string, Action<TaskInvocationBuilder>, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Task(string, System.Action<JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder>, string?)
+  type: Method
+  source:
+    id: Task
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 548
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds an arbitrary task to the target.
+  example: []
+  syntax:
+    content: public TargetBuilder Task(string taskName, Action<TaskInvocationBuilder> configure, string? condition = null)
+    parameters:
+    - id: taskName
+      type: System.String
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder}
+    - id: condition
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function Task(taskName As String, configure As Action(Of TaskInvocationBuilder), condition As String = Nothing) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.Task*
+  nameWithType.vb: TargetBuilder.Task(String, Action(Of TaskInvocationBuilder), String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.Task(String, System.Action(Of JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder), String)
+  name.vb: Task(String, Action(Of TaskInvocationBuilder), String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Error(System.String,System.String,System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.Error(System.String,System.String,System.String)
+  id: Error(System.String,System.String,System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: Error(string, string?, string?)
+  nameWithType: TargetBuilder.Error(string, string?, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Error(string, string?, string?)
+  type: Method
+  source:
+    id: Error
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 559
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds an Error task to the target.
+  example: []
+  syntax:
+    content: public TargetBuilder Error(string text, string? code = null, string? condition = null)
+    parameters:
+    - id: text
+      type: System.String
+    - id: code
+      type: System.String
+    - id: condition
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function [Error](text As String, code As String = Nothing, condition As String = Nothing) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.Error*
+  nameWithType.vb: TargetBuilder.Error(String, String, String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.Error(String, String, String)
+  name.vb: Error(String, String, String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Warning(System.String,System.String,System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.Warning(System.String,System.String,System.String)
+  id: Warning(System.String,System.String,System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: Warning(string, string?, string?)
+  nameWithType: TargetBuilder.Warning(string, string?, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Warning(string, string?, string?)
+  type: Method
+  source:
+    id: Warning
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 568
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds a Warning task to the target.
+  example: []
+  syntax:
+    content: public TargetBuilder Warning(string text, string? code = null, string? condition = null)
+    parameters:
+    - id: text
+      type: System.String
+    - id: code
+      type: System.String
+    - id: condition
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function Warning(text As String, code As String = Nothing, condition As String = Nothing) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.Warning*
+  nameWithType.vb: TargetBuilder.Warning(String, String, String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.Warning(String, String, String)
+  name.vb: Warning(String, String, String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Comment(System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.Comment(System.String)
+  id: Comment(System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: Comment(string)
+  nameWithType: TargetBuilder.Comment(string)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Comment(string)
+  type: Method
+  source:
+    id: Comment
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 577
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds a comment to the target.
+  example: []
+  syntax:
+    content: public TargetBuilder Comment(string text)
+    parameters:
+    - id: text
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function Comment(text As String) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.Comment*
+  nameWithType.vb: TargetBuilder.Comment(String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.Comment(String)
+  name.vb: Comment(String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.PropertyGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder},System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.PropertyGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder},System.String)
+  id: PropertyGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder},System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: PropertyGroup(string?, Action<PropsGroupBuilder>, string?)
+  nameWithType: TargetBuilder.PropertyGroup(string?, Action<PropsGroupBuilder>, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.PropertyGroup(string?, System.Action<JD.MSBuild.Fluent.Fluent.PropsGroupBuilder>, string?)
+  type: Method
+  source:
+    id: PropertyGroup
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 586
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds a PropertyGroup inside the target.
+  example: []
+  syntax:
+    content: public TargetBuilder PropertyGroup(string? condition, Action<PropsGroupBuilder> configure, string? label = null)
+    parameters:
+    - id: condition
+      type: System.String
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder}
+    - id: label
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function PropertyGroup(condition As String, configure As Action(Of PropsGroupBuilder), label As String = Nothing) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.PropertyGroup*
+  nameWithType.vb: TargetBuilder.PropertyGroup(String, Action(Of PropsGroupBuilder), String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.PropertyGroup(String, System.Action(Of JD.MSBuild.Fluent.Fluent.PropsGroupBuilder), String)
+  name.vb: PropertyGroup(String, Action(Of PropsGroupBuilder), String)
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.ItemGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder},System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TargetBuilder.ItemGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder},System.String)
+  id: ItemGroup(System.String,System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder},System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  langs:
+  - csharp
+  - vb
+  name: ItemGroup(string?, Action<ItemGroupBuilder>, string?)
+  nameWithType: TargetBuilder.ItemGroup(string?, Action<ItemGroupBuilder>, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.ItemGroup(string?, System.Action<JD.MSBuild.Fluent.Fluent.ItemGroupBuilder>, string?)
+  type: Method
+  source:
+    id: ItemGroup
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 597
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds an ItemGroup inside the target.
+  example: []
+  syntax:
+    content: public TargetBuilder ItemGroup(string? condition, Action<ItemGroupBuilder> configure, string? label = null)
+    parameters:
+    - id: condition
+      type: System.String
+    - id: configure
+      type: System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder}
+    - id: label
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TargetBuilder
+    content.vb: Public Function ItemGroup(condition As String, configure As Action(Of ItemGroupBuilder), label As String = Nothing) As TargetBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TargetBuilder.ItemGroup*
+  nameWithType.vb: TargetBuilder.ItemGroup(String, Action(Of ItemGroupBuilder), String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TargetBuilder.ItemGroup(String, System.Action(Of JD.MSBuild.Fluent.Fluent.ItemGroupBuilder), String)
+  name.vb: ItemGroup(String, Action(Of ItemGroupBuilder), String)
+references:
+- uid: JD.MSBuild.Fluent.Fluent
+  commentId: N:JD.MSBuild.Fluent.Fluent
+  href: JD.html
+  name: JD.MSBuild.Fluent.Fluent
+  nameWithType: JD.MSBuild.Fluent.Fluent
+  fullName: JD.MSBuild.Fluent.Fluent
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.Fluent.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.Fluent.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Condition*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.Condition
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_Condition_System_String_
+  name: Condition
+  nameWithType: TargetBuilder.Condition
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Condition
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.TargetBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html
+  name: TargetBuilder
+  nameWithType: TargetBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.BeforeTargets*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.BeforeTargets
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_BeforeTargets_System_String_
+  name: BeforeTargets
+  nameWithType: TargetBuilder.BeforeTargets
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.BeforeTargets
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.AfterTargets*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.AfterTargets
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_AfterTargets_System_String_
+  name: AfterTargets
+  nameWithType: TargetBuilder.AfterTargets
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.AfterTargets
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.DependsOnTargets*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.DependsOnTargets
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_DependsOnTargets_System_String_
+  name: DependsOnTargets
+  nameWithType: TargetBuilder.DependsOnTargets
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.DependsOnTargets
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Inputs*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.Inputs
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_Inputs_System_String_
+  name: Inputs
+  nameWithType: TargetBuilder.Inputs
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Inputs
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Outputs*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.Outputs
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_Outputs_System_String_
+  name: Outputs
+  nameWithType: TargetBuilder.Outputs
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Outputs
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Label*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.Label
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_Label_System_String_
+  name: Label
+  nameWithType: TargetBuilder.Label
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Label
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Message*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.Message
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_Message_System_String_System_String_System_String_
+  name: Message
+  nameWithType: TargetBuilder.Message
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Message
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Exec*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.Exec
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_Exec_System_String_System_String_System_String_
+  name: Exec
+  nameWithType: TargetBuilder.Exec
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Exec
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Task*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.Task
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_Task_System_String_System_Action_JD_MSBuild_Fluent_Fluent_TaskInvocationBuilder__System_String_
+  name: Task
+  nameWithType: TargetBuilder.Task
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Task
+- uid: System.Action{JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder}
+  commentId: T:System.Action{JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<TaskInvocationBuilder>
+  nameWithType: Action<TaskInvocationBuilder>
+  fullName: System.Action<JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder>
+  nameWithType.vb: Action(Of TaskInvocationBuilder)
+  fullName.vb: System.Action(Of JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder)
+  name.vb: Action(Of TaskInvocationBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+    name: TaskInvocationBuilder
+    href: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+    name: TaskInvocationBuilder
+    href: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.html
+  - name: )
+- uid: System.Action`1
+  commentId: T:System.Action`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<T>
+  nameWithType: Action<T>
+  fullName: System.Action<T>
+  nameWithType.vb: Action(Of T)
+  fullName.vb: System.Action(Of T)
+  name.vb: Action(Of T)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Error*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.Error
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_Error_System_String_System_String_System_String_
+  name: Error
+  nameWithType: TargetBuilder.Error
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Error
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Warning*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.Warning
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_Warning_System_String_System_String_System_String_
+  name: Warning
+  nameWithType: TargetBuilder.Warning
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Warning
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.Comment*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.Comment
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_Comment_System_String_
+  name: Comment
+  nameWithType: TargetBuilder.Comment
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.Comment
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.PropertyGroup*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.PropertyGroup
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_PropertyGroup_System_String_System_Action_JD_MSBuild_Fluent_Fluent_PropsGroupBuilder__System_String_
+  name: PropertyGroup
+  nameWithType: TargetBuilder.PropertyGroup
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.PropertyGroup
+- uid: System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder}
+  commentId: T:System.Action{JD.MSBuild.Fluent.Fluent.PropsGroupBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<PropsGroupBuilder>
+  nameWithType: Action<PropsGroupBuilder>
+  fullName: System.Action<JD.MSBuild.Fluent.Fluent.PropsGroupBuilder>
+  nameWithType.vb: Action(Of PropsGroupBuilder)
+  fullName.vb: System.Action(Of JD.MSBuild.Fluent.Fluent.PropsGroupBuilder)
+  name.vb: Action(Of PropsGroupBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: JD.MSBuild.Fluent.Fluent.PropsGroupBuilder
+    name: PropsGroupBuilder
+    href: JD.MSBuild.Fluent.Fluent.PropsGroupBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: JD.MSBuild.Fluent.Fluent.PropsGroupBuilder
+    name: PropsGroupBuilder
+    href: JD.MSBuild.Fluent.Fluent.PropsGroupBuilder.html
+  - name: )
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder.ItemGroup*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TargetBuilder.ItemGroup
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html#JD_MSBuild_Fluent_Fluent_TargetBuilder_ItemGroup_System_String_System_Action_JD_MSBuild_Fluent_Fluent_ItemGroupBuilder__System_String_
+  name: ItemGroup
+  nameWithType: TargetBuilder.ItemGroup
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder.ItemGroup
+- uid: System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder}
+  commentId: T:System.Action{JD.MSBuild.Fluent.Fluent.ItemGroupBuilder}
+  parent: System
+  definition: System.Action`1
+  href: https://learn.microsoft.com/dotnet/api/system.action-1
+  name: Action<ItemGroupBuilder>
+  nameWithType: Action<ItemGroupBuilder>
+  fullName: System.Action<JD.MSBuild.Fluent.Fluent.ItemGroupBuilder>
+  nameWithType.vb: Action(Of ItemGroupBuilder)
+  fullName.vb: System.Action(Of JD.MSBuild.Fluent.Fluent.ItemGroupBuilder)
+  name.vb: Action(Of ItemGroupBuilder)
+  spec.csharp:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: <
+  - uid: JD.MSBuild.Fluent.Fluent.ItemGroupBuilder
+    name: ItemGroupBuilder
+    href: JD.MSBuild.Fluent.Fluent.ItemGroupBuilder.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Action`1
+    name: Action
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.action-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: JD.MSBuild.Fluent.Fluent.ItemGroupBuilder
+    name: ItemGroupBuilder
+    href: JD.MSBuild.Fluent.Fluent.ItemGroupBuilder.html
+  - name: )

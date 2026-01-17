@@ -1,0 +1,432 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+  id: TaskInvocationBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  children:
+  - JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputItem(System.String,System.String,System.String)
+  - JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputProperty(System.String,System.String,System.String)
+  - JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.Param(System.String,System.String)
+  langs:
+  - csharp
+  - vb
+  name: TaskInvocationBuilder
+  nameWithType: TaskInvocationBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+  type: Class
+  source:
+    id: TaskInvocationBuilder
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 609
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Fluent builder for task parameters and outputs.
+  example: []
+  syntax:
+    content: public sealed class TaskInvocationBuilder
+    content.vb: Public NotInheritable Class TaskInvocationBuilder
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.Param(System.String,System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.Param(System.String,System.String)
+  id: Param(System.String,System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+  langs:
+  - csharp
+  - vb
+  name: Param(string, string)
+  nameWithType: TaskInvocationBuilder.Param(string, string)
+  fullName: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.Param(string, string)
+  type: Method
+  source:
+    id: Param
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 617
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds a task parameter.
+  example: []
+  syntax:
+    content: public TaskInvocationBuilder Param(string name, string value)
+    parameters:
+    - id: name
+      type: System.String
+    - id: value
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+    content.vb: Public Function Param(name As String, value As String) As TaskInvocationBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.Param*
+  nameWithType.vb: TaskInvocationBuilder.Param(String, String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.Param(String, String)
+  name.vb: Param(String, String)
+- uid: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputProperty(System.String,System.String,System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputProperty(System.String,System.String,System.String)
+  id: OutputProperty(System.String,System.String,System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+  langs:
+  - csharp
+  - vb
+  name: OutputProperty(string, string, string?)
+  nameWithType: TaskInvocationBuilder.OutputProperty(string, string, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputProperty(string, string, string?)
+  type: Method
+  source:
+    id: OutputProperty
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 626
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds a task Output mapping to a property.
+  example: []
+  syntax:
+    content: public TaskInvocationBuilder OutputProperty(string taskParameter, string propertyName, string? condition = null)
+    parameters:
+    - id: taskParameter
+      type: System.String
+    - id: propertyName
+      type: System.String
+    - id: condition
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+    content.vb: Public Function OutputProperty(taskParameter As String, propertyName As String, condition As String = Nothing) As TaskInvocationBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputProperty*
+  nameWithType.vb: TaskInvocationBuilder.OutputProperty(String, String, String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputProperty(String, String, String)
+  name.vb: OutputProperty(String, String, String)
+- uid: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputItem(System.String,System.String,System.String)
+  commentId: M:JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputItem(System.String,System.String,System.String)
+  id: OutputItem(System.String,System.String,System.String)
+  parent: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+  langs:
+  - csharp
+  - vb
+  name: OutputItem(string, string, string?)
+  nameWithType: TaskInvocationBuilder.OutputItem(string, string, string?)
+  fullName: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputItem(string, string, string?)
+  type: Method
+  source:
+    id: OutputItem
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Fluent\Builders.cs
+    startLine: 640
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Fluent
+  summary: Adds a task Output mapping to an item.
+  example: []
+  syntax:
+    content: public TaskInvocationBuilder OutputItem(string taskParameter, string itemName, string? condition = null)
+    parameters:
+    - id: taskParameter
+      type: System.String
+    - id: itemName
+      type: System.String
+    - id: condition
+      type: System.String
+    return:
+      type: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+    content.vb: Public Function OutputItem(taskParameter As String, itemName As String, condition As String = Nothing) As TaskInvocationBuilder
+  overload: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputItem*
+  nameWithType.vb: TaskInvocationBuilder.OutputItem(String, String, String)
+  fullName.vb: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputItem(String, String, String)
+  name.vb: OutputItem(String, String, String)
+references:
+- uid: JD.MSBuild.Fluent.Fluent
+  commentId: N:JD.MSBuild.Fluent.Fluent
+  href: JD.html
+  name: JD.MSBuild.Fluent.Fluent
+  nameWithType: JD.MSBuild.Fluent.Fluent
+  fullName: JD.MSBuild.Fluent.Fluent
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.Fluent.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.Fluent.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.Param*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.Param
+  href: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.html#JD_MSBuild_Fluent_Fluent_TaskInvocationBuilder_Param_System_String_System_String_
+  name: Param
+  nameWithType: TaskInvocationBuilder.Param
+  fullName: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.Param
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.html
+  name: TaskInvocationBuilder
+  nameWithType: TaskInvocationBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+- uid: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputProperty*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputProperty
+  href: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.html#JD_MSBuild_Fluent_Fluent_TaskInvocationBuilder_OutputProperty_System_String_System_String_System_String_
+  name: OutputProperty
+  nameWithType: TaskInvocationBuilder.OutputProperty
+  fullName: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputProperty
+- uid: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputItem*
+  commentId: Overload:JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputItem
+  href: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.html#JD_MSBuild_Fluent_Fluent_TaskInvocationBuilder_OutputItem_System_String_System_String_System_String_
+  name: OutputItem
+  nameWithType: TaskInvocationBuilder.OutputItem
+  fullName: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.OutputItem

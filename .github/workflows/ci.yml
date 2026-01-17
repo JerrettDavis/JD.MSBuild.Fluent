@@ -1,0 +1,180 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  pr-checks:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_NOLOGO: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          include-prerelease: true
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c Release --no-restore
+
+      - name: Test
+        run: dotnet test -c Release --no-build --collect:"XPlat Code Coverage" --results-directory artifacts/TestResults
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: artifacts/TestResults/**/coverage.cobertura.xml
+          fail_ci_if_error: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Pack
+        run: dotnet pack -c Release --no-build -o artifacts/nuget
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget
+          path: artifacts/nuget/*.nupkg
+
+  release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_NOLOGO: true
+      INCLUDE_SYMBOLS: true
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          include-prerelease: true
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Fetch tags
+        run: git fetch --prune --tags
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v4
+        with:
+          versionSpec: '6.x'
+
+      - name: Run GitVersion
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v4
+
+      - name: Set version env vars
+        run: |
+          echo "PACKAGE_VERSION=${{ steps.gitversion.outputs.majorMinorPatch }}" >> $GITHUB_ENV
+          echo "ASSEMBLY_VERSION=${{ steps.gitversion.outputs.assemblySemVer }}" >> $GITHUB_ENV
+          echo "FILE_VERSION=${{ steps.gitversion.outputs.assemblySemFileVer }}" >> $GITHUB_ENV
+
+      - name: Build
+        run: >
+          dotnet build -c Release --no-restore
+          /p:ContinuousIntegrationBuild=true
+          /p:Version=${{ env.PACKAGE_VERSION }}
+          /p:AssemblyVersion=${{ env.ASSEMBLY_VERSION }}
+          /p:FileVersion=${{ env.FILE_VERSION }}
+          /p:PackageVersion=${{ env.PACKAGE_VERSION }}
+
+      - name: Test
+        run: dotnet test -c Release --no-build
+
+      - name: Pack
+        run: >
+          dotnet pack -c Release --no-build -o artifacts/nuget
+          /p:ContinuousIntegrationBuild=true
+          /p:IncludeSymbols=${{ env.INCLUDE_SYMBOLS }}
+          /p:SymbolPackageFormat=snupkg
+          /p:Version=${{ env.PACKAGE_VERSION }}
+          /p:AssemblyVersion=${{ env.ASSEMBLY_VERSION }}
+          /p:FileVersion=${{ env.FILE_VERSION }}
+          /p:PackageVersion=${{ env.PACKAGE_VERSION }}
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget
+          path: artifacts/nuget/*.nupkg
+
+      - name: Create and push git tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          if git rev-parse "v${PACKAGE_VERSION}" >/dev/null 2>&1; then
+            echo "Tag v${PACKAGE_VERSION} already exists. Skipping tag push."
+          else
+            git tag "v${PACKAGE_VERSION}"
+            git push origin "v${PACKAGE_VERSION}"
+          fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.PACKAGE_VERSION }}
+          name: Release v${{ env.PACKAGE_VERSION }}
+          files: |
+            artifacts/nuget/*.nupkg
+            artifacts/nuget/*.snupkg
+          generate_release_notes: true
+
+      - name: Push to NuGet.org
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          if [ -n "$NUGET_API_KEY" ]; then
+            dotnet nuget push "artifacts/nuget/*.nupkg" \
+              --api-key "$NUGET_API_KEY" \
+              --source https://api.nuget.org/v3/index.json \
+              --skip-duplicate
+          else
+            echo "Skipping NuGet.org push: API key not set."
+          fi
+
+      - name: Push to GitHub Packages
+        run: |
+          dotnet nuget push "artifacts/nuget/*.nupkg" \
+            --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json" \
+            --api-key "${{ secrets.GITHUB_TOKEN }}" \
+            --skip-duplicate
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          include-prerelease: true
+
+      - name: Install DocFX
+        run: |
+          dotnet tool install -g docfx
+          echo "$HOME/.dotnet/tools" >> $GITHUB_PATH
+
+      - name: Build docs
+        run: docfx docs/docfx.json

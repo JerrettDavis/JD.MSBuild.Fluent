@@ -1,0 +1,64 @@
+- name: Overview
+  href: index.md
+- name: Getting Started
+  items:
+    - name: Installation
+      href: getting-started/installation.md
+    - name: Quick Start
+      href: getting-started/quick-start.md
+    - name: Your First Package
+      href: getting-started/first-package.md
+- name: Core Concepts
+  items:
+    - name: Architecture Overview
+      href: core-concepts/architecture.md
+    - name: Intermediate Representation (IR)
+      href: core-concepts/ir.md
+    - name: Fluent Builders
+      href: core-concepts/builders.md
+    - name: Package Structure
+      href: core-concepts/package-structure.md
+- name: Working with Properties & Items
+  items:
+    - name: Properties
+      href: properties-items/properties.md
+    - name: Items
+      href: properties-items/items.md
+    - name: Item Metadata
+      href: properties-items/metadata.md
+    - name: Conditional Logic
+      href: properties-items/conditionals.md
+- name: Working with Targets & Tasks
+  items:
+    - name: Targets Overview
+      href: targets-tasks/targets.md
+    - name: Target Orchestration
+      href: targets-tasks/orchestration.md
+    - name: Built-in Tasks
+      href: targets-tasks/builtin-tasks.md
+    - name: Custom Tasks
+      href: targets-tasks/custom-tasks.md
+    - name: Task Outputs
+      href: targets-tasks/task-outputs.md
+- name: Advanced Topics
+  items:
+    - name: UsingTask Declarations
+      href: advanced/usingtask.md
+    - name: Multi-TFM Support
+      href: advanced/multi-tfm.md
+    - name: Choose Constructs
+      href: advanced/choose.md
+    - name: Imports
+      href: advanced/imports.md
+    - name: Strongly-Typed Helpers
+      href: advanced/strongly-typed.md
+- name: Migration & Best Practices
+  items:
+    - name: Migrating from XML
+      href: migration/from-xml.md
+    - name: Best Practices
+      href: best-practices/index.md
+    - name: Troubleshooting
+      href: troubleshooting/index.md
+- name: CLI Reference
+  href: cli/index.md

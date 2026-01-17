@@ -1,0 +1,25 @@
+{
+  "metadata": [
+    {
+      "src": [
+        { "src": "..", "files": [ "src/JD.MSBuild.Fluent/JD.MSBuild.Fluent.csproj" ] },
+        { "src": "..", "files": [ "src/JD.MSBuild.Fluent.Cli/JD.MSBuild.Fluent.Cli.csproj" ] }
+      ],
+      "dest": "api",
+      "disableGitFeatures": false
+    }
+  ],
+  "build": {
+    "content": [
+      { "files": [ "index.md", "toc.yml", "articles/**.md", "articles/**/toc.yml", "api/**.yml", "api/index.md", "api/toc.yml" ] }
+    ],
+    "resource": [
+      { "files": [ "images/**" ] }
+    ],
+    "dest": "_site",
+    "globalMetadata": {
+      "_appTitle": "JD.MSBuild.Fluent",
+      "_enableSearch": true
+    }
+  }
+}

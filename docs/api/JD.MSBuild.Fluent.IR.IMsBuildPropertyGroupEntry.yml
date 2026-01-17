@@ -1,0 +1,65 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.IR.IMsBuildPropertyGroupEntry
+  commentId: T:JD.MSBuild.Fluent.IR.IMsBuildPropertyGroupEntry
+  id: IMsBuildPropertyGroupEntry
+  parent: JD.MSBuild.Fluent.IR
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: IMsBuildPropertyGroupEntry
+  nameWithType: IMsBuildPropertyGroupEntry
+  fullName: JD.MSBuild.Fluent.IR.IMsBuildPropertyGroupEntry
+  type: Interface
+  source:
+    id: IMsBuildPropertyGroupEntry
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\IR\MsBuildProject.cs
+    startLine: 53
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.IR
+  summary: Marker interface for entries within a property group.
+  example: []
+  syntax:
+    content: public interface IMsBuildPropertyGroupEntry
+    content.vb: Public Interface IMsBuildPropertyGroupEntry
+references:
+- uid: JD.MSBuild.Fluent.IR
+  commentId: N:JD.MSBuild.Fluent.IR
+  href: JD.html
+  name: JD.MSBuild.Fluent.IR
+  nameWithType: JD.MSBuild.Fluent.IR
+  fullName: JD.MSBuild.Fluent.IR
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.IR
+    name: IR
+    href: JD.MSBuild.Fluent.IR.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.IR
+    name: IR
+    href: JD.MSBuild.Fluent.IR.html

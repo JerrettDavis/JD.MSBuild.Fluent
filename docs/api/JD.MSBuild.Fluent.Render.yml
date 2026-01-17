@@ -1,0 +1,70 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.Render
+  commentId: N:JD.MSBuild.Fluent.Render
+  id: JD.MSBuild.Fluent.Render
+  children:
+  - JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions
+  - JD.MSBuild.Fluent.Render.MsBuildXmlRenderer
+  langs:
+  - csharp
+  - vb
+  name: JD.MSBuild.Fluent.Render
+  nameWithType: JD.MSBuild.Fluent.Render
+  fullName: JD.MSBuild.Fluent.Render
+  type: Namespace
+  assemblies:
+  - JD.MSBuild.Fluent
+references:
+- uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer
+  commentId: T:JD.MSBuild.Fluent.Render.MsBuildXmlRenderer
+  parent: JD.MSBuild.Fluent.Render
+  href: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.html
+  name: MsBuildXmlRenderer
+  nameWithType: MsBuildXmlRenderer
+  fullName: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer
+- uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions
+  commentId: T:JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions
+  parent: JD.MSBuild.Fluent.Render
+  href: JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions.html
+  name: MsBuildXmlRenderOptions
+  nameWithType: MsBuildXmlRenderOptions
+  fullName: JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions
+- uid: JD.MSBuild.Fluent.Render
+  commentId: N:JD.MSBuild.Fluent.Render
+  href: JD.html
+  name: JD.MSBuild.Fluent.Render
+  nameWithType: JD.MSBuild.Fluent.Render
+  fullName: JD.MSBuild.Fluent.Render
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Render
+    name: Render
+    href: JD.MSBuild.Fluent.Render.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Render
+    name: Render
+    href: JD.MSBuild.Fluent.Render.html

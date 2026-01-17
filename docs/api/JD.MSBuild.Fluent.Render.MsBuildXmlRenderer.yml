@@ -1,0 +1,531 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer
+  commentId: T:JD.MSBuild.Fluent.Render.MsBuildXmlRenderer
+  id: MsBuildXmlRenderer
+  parent: JD.MSBuild.Fluent.Render
+  children:
+  - JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.#ctor(JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions)
+  - JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Options
+  - JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Render(JD.MSBuild.Fluent.IR.MsBuildProject,System.IO.TextWriter)
+  - JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.RenderToString(JD.MSBuild.Fluent.IR.MsBuildProject)
+  langs:
+  - csharp
+  - vb
+  name: MsBuildXmlRenderer
+  nameWithType: MsBuildXmlRenderer
+  fullName: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer
+  type: Class
+  source:
+    id: MsBuildXmlRenderer
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Render\MsBuildXmlRenderer.cs
+    startLine: 10
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Render
+  summary: Renders <xref href="JD.MSBuild.Fluent.IR.MsBuildProject" data-throw-if-not-resolved="false"></xref> models into MSBuild XML.
+  example: []
+  syntax:
+    content: public sealed class MsBuildXmlRenderer
+    content.vb: Public NotInheritable Class MsBuildXmlRenderer
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.#ctor(JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions)
+  commentId: M:JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.#ctor(JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions)
+  id: '#ctor(JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions)'
+  parent: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer
+  langs:
+  - csharp
+  - vb
+  name: MsBuildXmlRenderer(MsBuildXmlRenderOptions?)
+  nameWithType: MsBuildXmlRenderer.MsBuildXmlRenderer(MsBuildXmlRenderOptions?)
+  fullName: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.MsBuildXmlRenderer(JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions?)
+  type: Constructor
+  source:
+    id: .ctor
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Render\MsBuildXmlRenderer.cs
+    startLine: 15
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Render
+  summary: Creates a renderer with optional render options.
+  example: []
+  syntax:
+    content: public MsBuildXmlRenderer(MsBuildXmlRenderOptions? options = null)
+    parameters:
+    - id: options
+      type: JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions
+    content.vb: Public Sub New(options As MsBuildXmlRenderOptions = Nothing)
+  overload: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.#ctor*
+  nameWithType.vb: MsBuildXmlRenderer.New(MsBuildXmlRenderOptions)
+  fullName.vb: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.New(JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions)
+  name.vb: New(MsBuildXmlRenderOptions)
+- uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Options
+  commentId: P:JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Options
+  id: Options
+  parent: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer
+  langs:
+  - csharp
+  - vb
+  name: Options
+  nameWithType: MsBuildXmlRenderer.Options
+  fullName: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Options
+  type: Property
+  source:
+    id: Options
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Render\MsBuildXmlRenderer.cs
+    startLine: 23
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Render
+  summary: Render options used by this renderer.
+  example: []
+  syntax:
+    content: public MsBuildXmlRenderOptions Options { get; }
+    parameters: []
+    return:
+      type: JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions
+    content.vb: Public ReadOnly Property Options As MsBuildXmlRenderOptions
+  overload: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Options*
+- uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.RenderToString(JD.MSBuild.Fluent.IR.MsBuildProject)
+  commentId: M:JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.RenderToString(JD.MSBuild.Fluent.IR.MsBuildProject)
+  id: RenderToString(JD.MSBuild.Fluent.IR.MsBuildProject)
+  parent: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer
+  langs:
+  - csharp
+  - vb
+  name: RenderToString(MsBuildProject)
+  nameWithType: MsBuildXmlRenderer.RenderToString(MsBuildProject)
+  fullName: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.RenderToString(JD.MSBuild.Fluent.IR.MsBuildProject)
+  type: Method
+  source:
+    id: RenderToString
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Render\MsBuildXmlRenderer.cs
+    startLine: 28
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Render
+  summary: Renders a project to a string.
+  example: []
+  syntax:
+    content: public string RenderToString(MsBuildProject project)
+    parameters:
+    - id: project
+      type: JD.MSBuild.Fluent.IR.MsBuildProject
+    return:
+      type: System.String
+    content.vb: Public Function RenderToString(project As MsBuildProject) As String
+  overload: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.RenderToString*
+- uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Render(JD.MSBuild.Fluent.IR.MsBuildProject,System.IO.TextWriter)
+  commentId: M:JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Render(JD.MSBuild.Fluent.IR.MsBuildProject,System.IO.TextWriter)
+  id: Render(JD.MSBuild.Fluent.IR.MsBuildProject,System.IO.TextWriter)
+  parent: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer
+  langs:
+  - csharp
+  - vb
+  name: Render(MsBuildProject, TextWriter)
+  nameWithType: MsBuildXmlRenderer.Render(MsBuildProject, TextWriter)
+  fullName: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Render(JD.MSBuild.Fluent.IR.MsBuildProject, System.IO.TextWriter)
+  type: Method
+  source:
+    id: Render
+    path: C:\git\JD.MSBuild.Fluent\src\JD.MSBuild.Fluent\Render\MsBuildXmlRenderer.cs
+    startLine: 38
+  assemblies:
+  - JD.MSBuild.Fluent
+  namespace: JD.MSBuild.Fluent.Render
+  summary: Renders a project to the provided writer.
+  example: []
+  syntax:
+    content: public void Render(MsBuildProject project, TextWriter writer)
+    parameters:
+    - id: project
+      type: JD.MSBuild.Fluent.IR.MsBuildProject
+    - id: writer
+      type: System.IO.TextWriter
+    content.vb: Public Sub Render(project As MsBuildProject, writer As TextWriter)
+  overload: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Render*
+references:
+- uid: JD.MSBuild.Fluent.IR.MsBuildProject
+  commentId: T:JD.MSBuild.Fluent.IR.MsBuildProject
+  parent: JD.MSBuild.Fluent.IR
+  href: JD.MSBuild.Fluent.IR.MsBuildProject.html
+  name: MsBuildProject
+  nameWithType: MsBuildProject
+  fullName: JD.MSBuild.Fluent.IR.MsBuildProject
+- uid: JD.MSBuild.Fluent.Render
+  commentId: N:JD.MSBuild.Fluent.Render
+  href: JD.html
+  name: JD.MSBuild.Fluent.Render
+  nameWithType: JD.MSBuild.Fluent.Render
+  fullName: JD.MSBuild.Fluent.Render
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Render
+    name: Render
+    href: JD.MSBuild.Fluent.Render.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Render
+    name: Render
+    href: JD.MSBuild.Fluent.Render.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: JD.MSBuild.Fluent.IR
+  commentId: N:JD.MSBuild.Fluent.IR
+  href: JD.html
+  name: JD.MSBuild.Fluent.IR
+  nameWithType: JD.MSBuild.Fluent.IR
+  fullName: JD.MSBuild.Fluent.IR
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.IR
+    name: IR
+    href: JD.MSBuild.Fluent.IR.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.IR
+    name: IR
+    href: JD.MSBuild.Fluent.IR.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.#ctor*
+  commentId: Overload:JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.#ctor
+  href: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.html#JD_MSBuild_Fluent_Render_MsBuildXmlRenderer__ctor_JD_MSBuild_Fluent_Render_MsBuildXmlRenderOptions_
+  name: MsBuildXmlRenderer
+  nameWithType: MsBuildXmlRenderer.MsBuildXmlRenderer
+  fullName: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.MsBuildXmlRenderer
+  nameWithType.vb: MsBuildXmlRenderer.New
+  fullName.vb: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.New
+  name.vb: New
+- uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions
+  commentId: T:JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions
+  parent: JD.MSBuild.Fluent.Render
+  href: JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions.html
+  name: MsBuildXmlRenderOptions
+  nameWithType: MsBuildXmlRenderOptions
+  fullName: JD.MSBuild.Fluent.Render.MsBuildXmlRenderOptions
+- uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Options*
+  commentId: Overload:JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Options
+  href: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.html#JD_MSBuild_Fluent_Render_MsBuildXmlRenderer_Options
+  name: Options
+  nameWithType: MsBuildXmlRenderer.Options
+  fullName: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Options
+- uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.RenderToString*
+  commentId: Overload:JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.RenderToString
+  href: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.html#JD_MSBuild_Fluent_Render_MsBuildXmlRenderer_RenderToString_JD_MSBuild_Fluent_IR_MsBuildProject_
+  name: RenderToString
+  nameWithType: MsBuildXmlRenderer.RenderToString
+  fullName: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.RenderToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Render*
+  commentId: Overload:JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Render
+  href: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.html#JD_MSBuild_Fluent_Render_MsBuildXmlRenderer_Render_JD_MSBuild_Fluent_IR_MsBuildProject_System_IO_TextWriter_
+  name: Render
+  nameWithType: MsBuildXmlRenderer.Render
+  fullName: JD.MSBuild.Fluent.Render.MsBuildXmlRenderer.Render
+- uid: System.IO.TextWriter
+  commentId: T:System.IO.TextWriter
+  parent: System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.io.textwriter
+  name: TextWriter
+  nameWithType: TextWriter
+  fullName: System.IO.TextWriter
+- uid: System.IO
+  commentId: N:System.IO
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.IO
+  nameWithType: System.IO
+  fullName: System.IO
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.IO
+    name: IO
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.io

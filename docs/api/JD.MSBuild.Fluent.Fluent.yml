@@ -1,0 +1,133 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.Fluent
+  commentId: N:JD.MSBuild.Fluent.Fluent
+  id: JD.MSBuild.Fluent.Fluent
+  children:
+  - JD.MSBuild.Fluent.Fluent.ChooseBuilder
+  - JD.MSBuild.Fluent.Fluent.ItemBuilder
+  - JD.MSBuild.Fluent.Fluent.ItemGroupBuilder
+  - JD.MSBuild.Fluent.Fluent.Package
+  - JD.MSBuild.Fluent.Fluent.PackageBuilder
+  - JD.MSBuild.Fluent.Fluent.PropsBuilder
+  - JD.MSBuild.Fluent.Fluent.PropsGroupBuilder
+  - JD.MSBuild.Fluent.Fluent.TargetBuilder
+  - JD.MSBuild.Fluent.Fluent.TargetsBuilder
+  - JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+  langs:
+  - csharp
+  - vb
+  name: JD.MSBuild.Fluent.Fluent
+  nameWithType: JD.MSBuild.Fluent.Fluent
+  fullName: JD.MSBuild.Fluent.Fluent
+  type: Namespace
+  assemblies:
+  - JD.MSBuild.Fluent
+references:
+- uid: JD.MSBuild.Fluent.Fluent.Package
+  commentId: T:JD.MSBuild.Fluent.Fluent.Package
+  href: JD.MSBuild.Fluent.Fluent.Package.html
+  name: Package
+  nameWithType: Package
+  fullName: JD.MSBuild.Fluent.Fluent.Package
+- uid: JD.MSBuild.Fluent.Fluent.PackageBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.PackageBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.PackageBuilder.html
+  name: PackageBuilder
+  nameWithType: PackageBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.PackageBuilder
+- uid: JD.MSBuild.Fluent.Fluent.PropsBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.PropsBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.PropsBuilder.html
+  name: PropsBuilder
+  nameWithType: PropsBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.PropsBuilder
+- uid: JD.MSBuild.Fluent.Fluent.PropsGroupBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.PropsGroupBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.PropsGroupBuilder.html
+  name: PropsGroupBuilder
+  nameWithType: PropsGroupBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.PropsGroupBuilder
+- uid: JD.MSBuild.Fluent.Fluent.ItemGroupBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.ItemGroupBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.ItemGroupBuilder.html
+  name: ItemGroupBuilder
+  nameWithType: ItemGroupBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.ItemGroupBuilder
+- uid: JD.MSBuild.Fluent.Fluent.ItemBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.ItemBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.ItemBuilder.html
+  name: ItemBuilder
+  nameWithType: ItemBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.ItemBuilder
+- uid: JD.MSBuild.Fluent.Fluent.ChooseBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.ChooseBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.ChooseBuilder.html
+  name: ChooseBuilder
+  nameWithType: ChooseBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.ChooseBuilder
+- uid: JD.MSBuild.Fluent.Fluent.TargetsBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.TargetsBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.TargetsBuilder.html
+  name: TargetsBuilder
+  nameWithType: TargetsBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.TargetsBuilder
+- uid: JD.MSBuild.Fluent.Fluent.TargetBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.TargetBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.TargetBuilder.html
+  name: TargetBuilder
+  nameWithType: TargetBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.TargetBuilder
+- uid: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+  commentId: T:JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+  parent: JD.MSBuild.Fluent.Fluent
+  href: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder.html
+  name: TaskInvocationBuilder
+  nameWithType: TaskInvocationBuilder
+  fullName: JD.MSBuild.Fluent.Fluent.TaskInvocationBuilder
+- uid: JD.MSBuild.Fluent.Fluent
+  commentId: N:JD.MSBuild.Fluent.Fluent
+  href: JD.html
+  name: JD.MSBuild.Fluent.Fluent
+  nameWithType: JD.MSBuild.Fluent.Fluent
+  fullName: JD.MSBuild.Fluent.Fluent
+  spec.csharp:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.Fluent.html
+  spec.vb:
+  - uid: JD
+    name: JD
+    href: JD.html
+  - name: .
+  - uid: JD.MSBuild
+    name: MSBuild
+    href: JD.MSBuild.html
+  - name: .
+  - uid: JD.MSBuild.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.html
+  - name: .
+  - uid: JD.MSBuild.Fluent.Fluent
+    name: Fluent
+    href: JD.MSBuild.Fluent.Fluent.html

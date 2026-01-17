@@ -1,0 +1,30 @@
+### YamlMime:ManagedReference
+items:
+- uid: JD.MSBuild.Fluent.Validation
+  commentId: N:JD.MSBuild.Fluent.Validation
+  id: JD.MSBuild.Fluent.Validation
+  children:
+  - JD.MSBuild.Fluent.Validation.MsBuildValidationException
+  - JD.MSBuild.Fluent.Validation.MsBuildValidator
+  langs:
+  - csharp
+  - vb
+  name: JD.MSBuild.Fluent.Validation
+  nameWithType: JD.MSBuild.Fluent.Validation
+  fullName: JD.MSBuild.Fluent.Validation
+  type: Namespace
+  assemblies:
+  - JD.MSBuild.Fluent
+references:
+- uid: JD.MSBuild.Fluent.Validation.MsBuildValidationException
+  commentId: T:JD.MSBuild.Fluent.Validation.MsBuildValidationException
+  href: JD.MSBuild.Fluent.Validation.MsBuildValidationException.html
+  name: MsBuildValidationException
+  nameWithType: MsBuildValidationException
+  fullName: JD.MSBuild.Fluent.Validation.MsBuildValidationException
+- uid: JD.MSBuild.Fluent.Validation.MsBuildValidator
+  commentId: T:JD.MSBuild.Fluent.Validation.MsBuildValidator
+  href: JD.MSBuild.Fluent.Validation.MsBuildValidator.html
+  name: MsBuildValidator
+  nameWithType: MsBuildValidator
+  fullName: JD.MSBuild.Fluent.Validation.MsBuildValidator

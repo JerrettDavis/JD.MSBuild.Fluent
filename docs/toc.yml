@@ -1,0 +1,11 @@
+- name: Home
+  href: index.md
+- name: User Guides
+  href: user-guides/toc.yml
+- name: Tutorials
+  href: tutorials/toc.yml
+- name: Samples
+  href: samples/toc.yml
+- name: API Reference
+  href: api/
+  homepage: api/index.md
