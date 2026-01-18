@@ -2,6 +2,9 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+#if !NET472
+using System.Runtime.Loader;
+#endif
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using JD.MSBuild.Fluent;
@@ -45,9 +48,42 @@ public class GenerateMSBuildAssets : Task
   [Output]
   public ITaskItem[] GeneratedFiles { get; set; } = Array.Empty<ITaskItem>();
 
+#if !NET472
+  private class DefinitionFactoryContext : AssemblyLoadContext
+  {
+    private readonly AssemblyDependencyResolver _resolver;
+    private readonly string _taskDirectory;
+
+    public DefinitionFactoryContext(string assemblyPath, string taskDirectory) 
+      : base(isCollectible: true)
+    {
+      _resolver = new AssemblyDependencyResolver(assemblyPath);
+      _taskDirectory = taskDirectory;
+    }
+
+    protected override Assembly? Load(AssemblyName assemblyName)
+    {
+      // CRITICAL: Load JD.MSBuild.Fluent from the task directory to ensure type identity
+      if (assemblyName.Name == "JD.MSBuild.Fluent")
+      {
+        var fluentPath = Path.Combine(_taskDirectory, "JD.MSBuild.Fluent.dll");
+        if (File.Exists(fluentPath))
+          return LoadFromAssemblyPath(fluentPath);
+      }
+
+      // Use the dependency resolver for other assemblies
+      var assemblyPath = _resolver.ResolveAssemblyToPath(assemblyName);
+      if (assemblyPath != null)
+        return LoadFromAssemblyPath(assemblyPath);
+
+      // Fall back to default context for framework assemblies
+      return null;
+    }
+  }
+#else
   static GenerateMSBuildAssets()
   {
-    // Register assembly resolver to find JD.MSBuild.Fluent.dll in the same directory as the task DLL
+    // For .NET Framework, register assembly resolver
     AppDomain.CurrentDomain.AssemblyResolve += OnAssemblyResolve;
   }
 
@@ -55,7 +91,7 @@ public class GenerateMSBuildAssets : Task
   {
     var assemblyName = new AssemblyName(args.Name);
     
-    // Look in the same directory as the task DLL for ANY assembly
+    // Look in the same directory as the task DLL for assemblies
     var taskAssemblyLocation = typeof(GenerateMSBuildAssets).Assembly.Location;
     var taskDirectory = Path.GetDirectoryName(taskAssemblyLocation);
     if (string.IsNullOrEmpty(taskDirectory))
@@ -64,6 +100,7 @@ public class GenerateMSBuildAssets : Task
     var assemblyPath = Path.Combine(taskDirectory, assemblyName.Name + ".dll");
     return File.Exists(assemblyPath) ? Assembly.LoadFrom(assemblyPath) : null;
   }
+#endif
 
   public override bool Execute()
   {
@@ -111,25 +148,42 @@ public class GenerateMSBuildAssets : Task
 
   private PackageDefinition? LoadDefinitionFromFactory()
   {
+#if !NET472
+    DefinitionFactoryContext? context = null;
+#endif
+    
     try
     {
-      // CRITICAL: Pre-load JD.MSBuild.Fluent.dll from the task directory FIRST
-      // This ensures the user assembly uses OUR copy, not a potentially different one from their bin folder
+      // Get task directory for loading JD.MSBuild.Fluent
       var taskAssemblyLocation = typeof(GenerateMSBuildAssets).Assembly.Location;
       var taskDirectory = Path.GetDirectoryName(taskAssemblyLocation);
-      if (!string.IsNullOrEmpty(taskDirectory))
+      if (string.IsNullOrEmpty(taskDirectory))
       {
-        var fluentAssemblyPath = Path.Combine(taskDirectory, "JD.MSBuild.Fluent.dll");
-        if (File.Exists(fluentAssemblyPath))
-        {
-          // Force load this assembly into the default context BEFORE loading user assembly
-          var fluentAsm = Assembly.LoadFrom(fluentAssemblyPath);
-          Log.LogMessage(MessageImportance.Low, $"Pre-loaded JD.MSBuild.Fluent from: {fluentAsm.Location}");
-        }
+        Log.LogError("Could not determine task assembly directory");
+        return null;
+      }
+
+#if !NET472
+      // Create isolated load context that forces JD.MSBuild.Fluent to load from task directory
+      context = new DefinitionFactoryContext(AssemblyFile, taskDirectory);
+      
+      // Load user assembly in the isolated context
+      var assembly = context.LoadFromAssemblyPath(AssemblyFile);
+#else
+      // For .NET Framework, pre-load JD.MSBuild.Fluent from task directory
+      var fluentAssemblyPath = Path.Combine(taskDirectory, "JD.MSBuild.Fluent.dll");
+      if (File.Exists(fluentAssemblyPath))
+      {
+        var fluentAsm = Assembly.LoadFrom(fluentAssemblyPath);
+        Log.LogMessage(MessageImportance.Low, $"Pre-loaded JD.MSBuild.Fluent from: {fluentAsm.Location}");
       }
       
-      // Now load user assembly - it should resolve JD.MSBuild.Fluent to the one we just loaded
+      // Load user assembly
       var assembly = Assembly.LoadFrom(AssemblyFile);
+#endif
+      
+      Log.LogMessage(MessageImportance.Low, 
+        $"Loaded user assembly: {assembly.FullName} from {assembly.Location}");
       
       // Find type
       var type = assembly.GetType(FactoryType);
@@ -170,18 +224,18 @@ public class GenerateMSBuildAssets : Task
         return null;
       }
 
-      // The result is a PackageDefinition from the user's assembly context
-      // We need to work with it via reflection since it's a different type identity
+      // Try to cast to PackageDefinition
       var packageDef = result as PackageDefinition;
       if (packageDef == null)
       {
-        // Log detailed type information for debugging
+        // Type identity mismatch - keep diagnostics for debugging
         var resultType = result.GetType();
         var expectedType = typeof(PackageDefinition);
-        Log.LogError($"Factory method returned type {resultType.FullName} from assembly {resultType.Assembly.FullName}");
-        Log.LogError($"Expected type {expectedType.FullName} from assembly {expectedType.Assembly.FullName}");
-        Log.LogError($"Types equal: {resultType == expectedType}");
-        Log.LogError($"Assemblies equal: {resultType.Assembly == expectedType.Assembly}");
+        Log.LogError($"Type identity mismatch!");
+        Log.LogError($"  Returned: {resultType.FullName} from {resultType.Assembly.Location}");
+        Log.LogError($"  Expected: {expectedType.FullName} from {expectedType.Assembly.Location}");
+        Log.LogError($"  Types equal: {resultType == expectedType}");
+        Log.LogError($"  Assemblies equal: {resultType.Assembly.FullName == expectedType.Assembly.FullName}");
         return null;
       }
 
@@ -202,8 +256,15 @@ public class GenerateMSBuildAssets : Task
     }
     catch (Exception ex)
     {
-      Log.LogErrorFromException(ex);
+      Log.LogErrorFromException(ex, showStackTrace: true);
       return null;
+    }
+    finally
+    {
+#if !NET472
+      // Don't unload the context yet - we still need the PackageDefinition object
+      // MSBuild will clean up after the task completes
+#endif
     }
   }
 }
