@@ -4,3 +4,7 @@ artifacts/
 docs/_site/
 .idea/
 *.user
+
+## Ignore scaffolded test files
+samples/Scaffolded*.cs
+samples/test-scaffold.*

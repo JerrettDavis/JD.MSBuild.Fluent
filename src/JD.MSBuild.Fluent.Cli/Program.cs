@@ -58,6 +58,50 @@ generate.SetAction(parseResult =>
 
 root.Subcommands.Add(generate);
 
+// Scaffold command - convert XML to fluent API
+var scaffold = new Command("scaffold", "Convert MSBuild XML (.props/.targets) to fluent API C# code.");
+var xmlFileOpt = new Option<FileInfo>("--xml")
+{
+  Description = "Path to MSBuild XML file (.props or .targets) to scaffold",
+  Arity = ArgumentArity.ExactlyOne
+};
+var scaffoldOutOpt = new Option<FileInfo?>("--output")
+{
+  Description = "Output C# file path (default: DefinitionFactory.cs in current directory)"
+};
+var packageIdOpt = new Option<string?>("--package-id")
+{
+  Description = "Package ID for the definition (default: derived from filename)"
+};
+var classNameOpt = new Option<string?>("--class-name")
+{
+  Description = "Factory class name (default: DefinitionFactory)"
+};
+
+scaffold.Options.Add(xmlFileOpt);
+scaffold.Options.Add(scaffoldOutOpt);
+scaffold.Options.Add(packageIdOpt);
+scaffold.Options.Add(classNameOpt);
+
+scaffold.SetAction(parseResult =>
+{
+  var xmlFile = parseResult.GetValue(xmlFileOpt)!;
+  var outputFile = parseResult.GetValue(scaffoldOutOpt);
+  var packageId = parseResult.GetValue(packageIdOpt);
+  var className = parseResult.GetValue(classNameOpt);
+
+  var scaffolder = new JD.MSBuild.Fluent.Cli.XmlToFluentScaffolder();
+  var code = scaffolder.Scaffold(xmlFile.FullName, packageId, className);
+
+  var outPath = outputFile?.FullName ?? Path.Combine(Directory.GetCurrentDirectory(), "DefinitionFactory.cs");
+  File.WriteAllText(outPath, code);
+
+  Console.WriteLine($"Scaffolded fluent API code to: {outPath}");
+  Console.WriteLine($"Review and adjust the generated code as needed.");
+});
+
+root.Subcommands.Add(scaffold);
+
 return root.Parse(args).Invoke();
 
 static PackageDefinition LoadFromFactory(FileInfo? asmFile, string? typeName, string methodName)

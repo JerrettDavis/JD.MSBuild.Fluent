@@ -1,0 +1,27 @@
+<Project>
+  <UsingTask TaskName="MyCustomTask" AssemblyFile="$(MSBuildThisFileDirectory)\..\tasks\MyCustomTask.dll" />
+  
+  <Target Name="MyPackage_PreBuild" BeforeTargets="Build" Condition="'$(MyPackageEnabled)' == 'true'">
+    <Message Text="Running MyPackage Pre-Build" Importance="High" />
+    
+    <PropertyGroup>
+      <_MyPackageTemp>$(MSBuildProjectDirectory)\obj\mypackage</_MyPackageTemp>
+    </PropertyGroup>
+    
+    <MakeDir Directories="$(_MyPackageTemp)" />
+    
+    <Exec Command="dotnet --version" WorkingDirectory="$(MSBuildProjectDirectory)" />
+    
+    <ItemGroup>
+      <_MyPackageFiles Include="src/**/*.cs" />
+    </ItemGroup>
+    
+    <MyCustomTask Files="@(_MyPackageFiles)" OutputPath="$(_MyPackageTemp)">
+      <Output TaskParameter="GeneratedFiles" ItemName="MyPackageGenerated" />
+    </MyCustomTask>
+  </Target>
+  
+  <Target Name="MyPackage_PostBuild" AfterTargets="Build" DependsOnTargets="MyPackage_PreBuild">
+    <Warning Text="Post-build complete" />
+  </Target>
+</Project>

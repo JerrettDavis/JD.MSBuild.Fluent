@@ -1,0 +1,31 @@
+<Project>
+  <PropertyGroup>
+    <MyPackageEnabled>true</MyPackageEnabled>
+    <MyPackageVersion>1.0.0</MyPackageVersion>
+  </PropertyGroup>
+  
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <MyPackageOptimized>true</MyPackageOptimized>
+  </PropertyGroup>
+  
+  <Choose>
+    <When Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+      <PropertyGroup>
+        <MyPackagePlatform>Windows</MyPackagePlatform>
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <MyPackagePlatform>Unix</MyPackagePlatform>
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+  
+  <ItemGroup>
+    <None Include="README.md">
+      <Pack>true</Pack>
+      <PackagePath>docs/</PackagePath>
+    </None>
+    <Content Include="assets/**/*" Exclude="assets/**/*.tmp" />
+  </ItemGroup>
+</Project>
