@@ -76,15 +76,25 @@
       <Output TaskParameter="GeneratedFiles" ItemName="_JDMSBuildFluentGeneratedFiles" />
     </GenerateMSBuildAssets>
     
-    <!-- Copy generated files to output location -->
-    <Copy SourceFiles="@(_JDMSBuildFluentGeneratedFiles)" 
-          DestinationFiles="@(_JDMSBuildFluentGeneratedFiles->'$(_JDMSBuildFluentOutput)\%(RecursiveDir)%(Filename)%(Extension)')" 
-          SkipUnchangedFiles="true"
-          Condition="'@(_JDMSBuildFluentGeneratedFiles)' != ''" />
+    <!-- Copy entire generated directory structure -->
+    <ItemGroup>
+      <_TempGeneratedFiles Include="$(_JDMSBuildFluentTempOutput)\**\*.props" />
+      <_TempGeneratedFiles Include="$(_JDMSBuildFluentTempOutput)\**\*.targets" />
+    </ItemGroup>
     
-    <!-- Add generated files to Content for IDE visibility (will be auto-included in pack) -->
-    <ItemGroup Condition="'@(_JDMSBuildFluentGeneratedFiles)' != ''">
-      <Content Include="@(_JDMSBuildFluentGeneratedFiles->'$(_JDMSBuildFluentOutput)\%(RecursiveDir)%(Filename)%(Extension)')"
+    <Copy SourceFiles="@(_TempGeneratedFiles)" 
+          DestinationFiles="@(_TempGeneratedFiles->'$(_JDMSBuildFluentOutput)\%(RecursiveDir)%(Filename)%(Extension)')" 
+          SkipUnchangedFiles="true"
+          Condition="'@(_TempGeneratedFiles)' != ''" />
+    
+    <!-- Add generated files to Content for IDE visibility -->
+    <ItemGroup Condition="'@(_TempGeneratedFiles)' != ''">
+      <Content Include="$(_JDMSBuildFluentOutput)\**\*.props"
+               Exclude="$(_JDMSBuildFluentOutput)\obj\**;$(_JDMSBuildFluentOutput)\bin\**"
+               Visible="false" 
+               CopyToOutputDirectory="Never" />
+      <Content Include="$(_JDMSBuildFluentOutput)\**\*.targets"
+               Exclude="$(_JDMSBuildFluentOutput)\obj\**;$(_JDMSBuildFluentOutput)\bin\**"
                Visible="false" 
                CopyToOutputDirectory="Never" />
     </ItemGroup>

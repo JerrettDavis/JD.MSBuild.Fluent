@@ -238,6 +238,7 @@ public class GenerateMSBuildAssets : Task
         });
         
         Log.LogMessage(MessageImportance.Low, "Serialized PackageDefinition to JSON");
+        Log.LogMessage(MessageImportance.Low, $"JSON: {json}");
         
         // Deserialize into our context
         var packageDef = JsonSerializer.Deserialize<PackageDefinition>(json, new JsonSerializerOptions
@@ -254,6 +255,8 @@ public class GenerateMSBuildAssets : Task
         
         Log.LogMessage(MessageImportance.Normal, 
           $"Loaded package definition: {packageDef.Id}");
+        Log.LogMessage(MessageImportance.Normal, 
+          $"Packaging.BuildTransitive = {packageDef.Packaging.BuildTransitive}");
 
         return packageDef;
       }

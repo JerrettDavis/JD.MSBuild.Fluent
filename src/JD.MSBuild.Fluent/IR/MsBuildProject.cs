@@ -9,31 +9,31 @@ public sealed class MsBuildProject
   /// <summary>
   /// Ordered project-level elements when order is important.
   /// </summary>
-  public List<IMsBuildProjectElement> Elements { get; } = [];
+  public List<IMsBuildProjectElement> Elements { get; set; } = [];
   /// <summary>
   /// Property groups in this project.
   /// </summary>
-  public List<MsBuildPropertyGroup> PropertyGroups { get; } = [];
+  public List<MsBuildPropertyGroup> PropertyGroups { get; set; } = [];
   /// <summary>
   /// Item groups in this project.
   /// </summary>
-  public List<MsBuildItemGroup> ItemGroups { get; } = [];
+  public List<MsBuildItemGroup> ItemGroups { get; set; } = [];
   /// <summary>
   /// Import statements for this project.
   /// </summary>
-  public List<MsBuildImport> Imports { get; } = [];
+  public List<MsBuildImport> Imports { get; set; } = [];
   /// <summary>
   /// UsingTask declarations for this project.
   /// </summary>
-  public List<MsBuildUsingTask> UsingTasks { get; } = [];
+  public List<MsBuildUsingTask> UsingTasks { get; set; } = [];
   /// <summary>
   /// Targets declared in this project.
   /// </summary>
-  public List<MsBuildTarget> Targets { get; } = [];
+  public List<MsBuildTarget> Targets { get; set; } = [];
   /// <summary>
   /// Choose elements declared in this project.
   /// </summary>
-  public List<MsBuildChoose> Chooses { get; } = [];
+  public List<MsBuildChoose> Chooses { get; set; } = [];
 
   /// <summary>
   /// Optional label comment used by renderers for human readability.
@@ -78,11 +78,11 @@ public sealed class MsBuildPropertyGroup : IMsBuildProjectElement
   /// <summary>
   /// Properties contained in the group.
   /// </summary>
-  public List<MsBuildProperty> Properties { get; } = [];
+  public List<MsBuildProperty> Properties { get; set; } = [];
   /// <summary>
   /// Ordered entries within the group, including comments.
   /// </summary>
-  public List<IMsBuildPropertyGroupEntry> Entries { get; } = [];
+  public List<IMsBuildPropertyGroupEntry> Entries { get; set; } = [];
 }
 
 /// <summary>
@@ -120,11 +120,11 @@ public sealed class MsBuildItemGroup : IMsBuildProjectElement
   /// <summary>
   /// Items contained in the group.
   /// </summary>
-  public List<MsBuildItem> Items { get; } = [];
+  public List<MsBuildItem> Items { get; set; } = [];
   /// <summary>
   /// Ordered entries within the group, including comments.
   /// </summary>
-  public List<IMsBuildItemGroupEntry> Entries { get; } = [];
+  public List<IMsBuildItemGroupEntry> Entries { get; set; } = [];
 }
 
 /// <summary>
@@ -155,11 +155,11 @@ public sealed class MsBuildItem : IMsBuildItemGroupEntry
   /// <summary>
   /// Item metadata elements.
   /// </summary>
-  public Dictionary<string, string> Metadata { get; } = new(StringComparer.Ordinal);
+  public Dictionary<string, string> Metadata { get; set; } = new(StringComparer.Ordinal);
   /// <summary>
   /// Item metadata expressed as attributes.
   /// </summary>
-  public Dictionary<string, string> MetadataAttributes { get; } = new(StringComparer.Ordinal);
+  public Dictionary<string, string> MetadataAttributes { get; set; } = new(StringComparer.Ordinal);
 }
 
 /// <summary>
@@ -279,7 +279,7 @@ public sealed class MsBuildTarget : IMsBuildProjectElement
   /// <summary>
   /// Ordered elements inside the target.
   /// </summary>
-  public List<MsBuildTargetElement> Elements { get; } = [];
+  public List<MsBuildTargetElement> Elements { get; set; } = [];
 }
 
 /// <summary>
@@ -383,11 +383,11 @@ public sealed class MsBuildTaskStep : MsBuildStep
   /// <summary>
   /// Task parameters as attributes.
   /// </summary>
-  public Dictionary<string, string> Parameters { get; } = new(StringComparer.Ordinal);
+  public Dictionary<string, string> Parameters { get; set; } = new(StringComparer.Ordinal);
   /// <summary>
   /// Output declarations.
   /// </summary>
-  public List<MsBuildTaskOutput> Outputs { get; } = [];
+  public List<MsBuildTaskOutput> Outputs { get; set; } = [];
 }
 
 /// <summary>
@@ -451,7 +451,7 @@ public sealed class MsBuildChoose : IMsBuildProjectElement
   /// <summary>
   /// When clauses.
   /// </summary>
-  public List<MsBuildWhen> Whens { get; } = [];
+  public List<MsBuildWhen> Whens { get; set; } = [];
   /// <summary>
   /// Optional Otherwise clause.
   /// </summary>
@@ -470,11 +470,11 @@ public sealed class MsBuildWhen
   /// <summary>
   /// Property groups inside the when clause.
   /// </summary>
-  public List<MsBuildPropertyGroup> PropertyGroups { get; } = [];
+  public List<MsBuildPropertyGroup> PropertyGroups { get; set; } = [];
   /// <summary>
   /// Item groups inside the when clause.
   /// </summary>
-  public List<MsBuildItemGroup> ItemGroups { get; } = [];
+  public List<MsBuildItemGroup> ItemGroups { get; set; } = [];
 }
 
 /// <summary>
@@ -485,9 +485,10 @@ public sealed class MsBuildOtherwise
   /// <summary>
   /// Property groups inside the otherwise clause.
   /// </summary>
-  public List<MsBuildPropertyGroup> PropertyGroups { get; } = [];
+  public List<MsBuildPropertyGroup> PropertyGroups { get; set; } = [];
   /// <summary>
   /// Item groups inside the otherwise clause.
   /// </summary>
-  public List<MsBuildItemGroup> ItemGroups { get; } = [];
+  public List<MsBuildItemGroup> ItemGroups { get; set; } = [];
 }
+
