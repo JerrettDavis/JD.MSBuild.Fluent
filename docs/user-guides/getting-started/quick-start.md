@@ -91,9 +91,39 @@ The `Pack()` method controls packaging options:
 
 ## Generating MSBuild Assets
 
-Once you've defined your package, generate the MSBuild XML files:
+### Automatic Build Integration (Recommended)
 
-### Using the CLI Tool
+**MSBuild automatically generates assets during build** - no manual steps required!
+
+When you build your project, JD.MSBuild.Fluent automatically:
+1. Loads your factory class
+2. Invokes the `Create()` method
+3. Generates MSBuild assets
+4. Includes them in your package
+
+Configuration (all optional):
+
+```xml
+<PropertyGroup>
+  <!-- Enable/disable generation (default: true) -->
+  <JDMSBuildFluentGenerateEnabled>true</JDMSBuildFluentGenerateEnabled>
+  
+  <!-- Specify factory type (default: auto-detects {RootNamespace}.DefinitionFactory) -->
+  <JDMSBuildFluentDefinitionType>MyCompany.Build.MyBuildPackageFactory</JDMSBuildFluentDefinitionType>
+  
+  <!-- Factory method name (default: Create) -->
+  <JDMSBuildFluentFactoryMethod>Create</JDMSBuildFluentFactoryMethod>
+  
+  <!-- Output directory (default: obj/msbuild) -->
+  <JDMSBuildFluentOutputDir>$(MSBuildProjectDirectory)\msbuild</JDMSBuildFluentOutputDir>
+</PropertyGroup>
+```
+
+Generated files are automatically included in your NuGet package.
+
+### Manual Generation with CLI (Optional)
+
+For manual control or debugging, use the CLI tool:
 
 ```bash
 # Generate from a compiled assembly

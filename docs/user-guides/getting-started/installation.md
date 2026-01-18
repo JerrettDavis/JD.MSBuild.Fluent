@@ -15,7 +15,7 @@ Before installing JD.MSBuild.Fluent, ensure you have:
 
 ### Method 1: NuGet Package (Recommended)
 
-Add JD.MSBuild.Fluent to your build definitions project using the .NET CLI:
+Add JD.MSBuild.Fluent to your project using the .NET CLI:
 
 ```bash
 dotnet add package JD.MSBuild.Fluent
@@ -43,7 +43,9 @@ Or by adding the PackageReference directly to your `.csproj`:
 
 > **Note**: Replace `Version="*"` with a specific version in production. Check [NuGet.org](https://www.nuget.org/packages/JD.MSBuild.Fluent) for the latest stable version.
 
-### Method 2: CLI Tool (Global)
+**MSBuild assets are generated automatically during build** - no manual generation required! The package includes native MSBuild tasks that run during your project's build.
+
+### Method 2: CLI Tool (Optional)
 
 Install the JD.MSBuild.Fluent CLI tool globally for generating MSBuild assets from any directory:
 
@@ -101,22 +103,49 @@ Reference the local build in your project:
 
 ## Project Setup
 
-### Creating a Build Definitions Project
+### Creating a Build Package Project
 
-Create a new class library project dedicated to your MSBuild package definitions:
+Create a new class library project for your MSBuild package:
 
 ```bash
-dotnet new classlib -n MyCompany.Build.Definitions
-cd MyCompany.Build.Definitions
+dotnet new classlib -n MyCompany.Build
+cd MyCompany.Build
 dotnet add package JD.MSBuild.Fluent
+```
+
+Your factory class must be named `DefinitionFactory` (or configure via MSBuild property):
+
+```csharp
+using JD.MSBuild.Fluent;
+using JD.MSBuild.Fluent.Fluent;
+
+namespace MyCompany.Build;
+
+public static class DefinitionFactory  // Important: must be named DefinitionFactory
+{
+    public static PackageDefinition Create()
+    {
+        return Package.Define("MyCompany.Build")
+            .Props(p => p.Property("MyCompanyEnabled", "true"))
+            .Targets(t => t.Target("Hello", tgt => tgt.Message("Hello!")))
+            .Build();
+    }
+}
+```
+
+**Automatic generation**: Build the project and MSBuild assets are generated automatically!
+
+```bash
+dotnet build
+# Generated files in obj/msbuild/build/ and obj/msbuild/buildTransitive/
 ```
 
 **Recommended project structure:**
 
 ```
-MyCompany.Build.Definitions/
-├── MyCompany.Build.Definitions.csproj
-├── PackageFactory.cs              # Main factory method
+MyCompany.Build/
+├── MyCompany.Build.csproj
+├── DefinitionFactory.cs           # Main factory (auto-detected)
 ├── Targets/
 │   ├── PreBuildTargets.cs         # Pre-build target definitions
 │   └── PostBuildTargets.cs        # Post-build target definitions
@@ -135,16 +164,16 @@ MyCompany.Build.Definitions/
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    
+    <!-- Optional: Customize MSBuild generation -->
+    <JDMSBuildFluentGenerateEnabled>true</JDMSBuildFluentGenerateEnabled>
+    <!-- Default factory type: $(RootNamespace).DefinitionFactory -->
+    <!-- <JDMSBuildFluentDefinitionType>MyCompany.Build.CustomFactory</JDMSBuildFluentDefinitionType> -->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JD.MSBuild.Fluent" Version="1.0.0" />
+    <PackageReference Include="JD.MSBuild.Fluent" Version="*" />
   </ItemGroup>
-  
-  <!-- Optional: Generate MSBuild assets on build -->
-  <Target Name="GenerateMSBuildAssets" AfterTargets="Build">
-    <Exec Command="jdmsbuild generate --assembly $(TargetPath) --type MyCompany.Build.PackageFactory --method Create --output $(MSBuildProjectDirectory)/../artifacts/msbuild" />
-  </Target>
 </Project>
 ```
 
@@ -152,7 +181,7 @@ MyCompany.Build.Definitions/
 
 Create a simple factory to verify your installation:
 
-**PackageFactory.cs:**
+**DefinitionFactory.cs:**
 
 ```csharp
 using JD.MSBuild.Fluent;
@@ -160,7 +189,7 @@ using JD.MSBuild.Fluent.Fluent;
 
 namespace MyCompany.Build;
 
-public static class PackageFactory
+public static class DefinitionFactory
 {
     public static PackageDefinition Create()
     {
@@ -175,27 +204,27 @@ public static class PackageFactory
 }
 ```
 
-Build the project:
+Build the project - assets are generated automatically:
 
 ```bash
 dotnet build
 ```
 
-Generate MSBuild assets:
+Verify the generated files in `obj/msbuild/build/`:
+
+```bash
+ls obj/msbuild/build/
+# Should contain: MyCompany.Build.props, MyCompany.Build.targets
+```
+
+Optional - Generate manually with CLI:
 
 ```bash
 jdmsbuild generate \
-    --assembly bin/Debug/net8.0/MyCompany.Build.Definitions.dll \
-    --type MyCompany.Build.PackageFactory \
+    --assembly bin/Debug/net8.0/MyCompany.Build.dll \
+    --type MyCompany.Build.DefinitionFactory \
     --method Create \
     --output ./output
-```
-
-Verify the generated files:
-
-```bash
-ls output/build/
-# Should contain: MyCompany.Build.props, MyCompany.Build.targets
 ```
 
 ## IDE Configuration

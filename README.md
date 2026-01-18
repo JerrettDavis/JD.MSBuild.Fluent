@@ -6,12 +6,18 @@ The goal is to make authoring MSBuild packages feel like writing normal C# - DRY
 
 ## Documentation
 
-- Docs site sources live in `docs/` (DocFX).
+- [Full documentation](docs/)
 - API reference is generated from XML documentation comments.
 
 ## Quick start
 
-### Author a definition
+### 1. Install the package
+
+```xml
+<PackageReference Include="JD.MSBuild.Fluent" Version="*" />
+```
+
+### 2. Define your MSBuild assets
 
 ```csharp
 using JD.MSBuild.Fluent;
@@ -19,7 +25,7 @@ using JD.MSBuild.Fluent.Fluent;
 
 namespace MySdk;
 
-public static class Factory
+public static class DefinitionFactory
 {
   public static PackageDefinition Create() => Package.Define("MySdk")
     .Props(p => p
@@ -34,13 +40,43 @@ public static class Factory
 }
 ```
 
-### Generate assets
+### 3. Generate assets automatically
 
-1. Build the project containing your factory (`Factory.Create`) to produce an assembly.
-2. Run:
+**MSBuild automatically generates assets during build** - no CLI required!
+
+Configure in your `.csproj`:
+
+```xml
+<PropertyGroup>
+  <!-- Enable generation (optional - defaults to true) -->
+  <JDMSBuildFluentGenerateEnabled>true</JDMSBuildFluentGenerateEnabled>
+  
+  <!-- Specify factory type (optional - auto-detects DefinitionFactory) -->
+  <JDMSBuildFluentDefinitionType>MySdk.DefinitionFactory</JDMSBuildFluentDefinitionType>
+  
+  <!-- Output directory (optional - defaults to obj/msbuild) -->
+  <JDMSBuildFluentOutputDir>$(MSBuildProjectDirectory)\msbuild</JDMSBuildFluentOutputDir>
+</PropertyGroup>
+```
+
+Generated files are included in the build and packaged automatically:
+- `build/<id>.props`
+- `build/<id>.targets`
+- `buildTransitive/<id>.props` and `.targets` (if enabled)
+- `Sdk/<id>/Sdk.props` and `Sdk.targets` (if enabled)
+
+### Optional: CLI for manual generation
+
+Install the CLI tool globally:
 
 ```bash
-jdmsbuild generate --assembly path/to/MySdk.dll --type MySdk.Factory --method Create --output artifacts/msbuild
+dotnet tool install -g JD.MSBuild.Fluent.Cli
+```
+
+Generate manually:
+
+```bash
+jdmsbuild generate --assembly path/to/MySdk.dll --type MySdk.DefinitionFactory --method Create --output msbuild
 ```
 
 Or generate the built-in example:
