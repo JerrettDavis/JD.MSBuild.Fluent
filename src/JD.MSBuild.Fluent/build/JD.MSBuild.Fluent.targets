@@ -1,47 +1,93 @@
 <Project>
-  <Target Name="JDMSBuildFluentGenerate" AfterTargets="Build" Condition="'$(JDMSBuildFluentGenerateEnabled)' == 'true' and '$(TargetFramework)' != ''">
+
+  <PropertyGroup>
+    <!-- Enable/disable generation (default: true) -->
+    <JDMSBuildFluentGenerateEnabled Condition="'$(JDMSBuildFluentGenerateEnabled)' == ''">true</JDMSBuildFluentGenerateEnabled>
+    
+    <!-- Factory type (auto-detected if blank) -->
+    <JDMSBuildFluentDefinitionType Condition="'$(JDMSBuildFluentDefinitionType)' == ''"></JDMSBuildFluentDefinitionType>
+    
+    <!-- Factory method name (default: Create) -->
+    <JDMSBuildFluentDefinitionMethod Condition="'$(JDMSBuildFluentDefinitionMethod)' == ''">Create</JDMSBuildFluentDefinitionMethod>
+    
+    <!-- Auto-detect factory type if not specified -->
+    <JDMSBuildFluentAutoDetect Condition="'$(JDMSBuildFluentAutoDetect)' == '' and '$(JDMSBuildFluentDefinitionType)' == ''">true</JDMSBuildFluentAutoDetect>
+  </PropertyGroup>
+
+  <!--
+    Determine the correct task assembly path based on MSBuild runtime and version.
+    
+    The task assembly is multi-targeted:
+    - net472: For .NET Framework MSBuild
+    - net8.0/net9.0/net10.0: For .NET Core MSBuild (version-matched)
+  -->
+  <PropertyGroup>
+    <!-- Select task assembly based on MSBuild version -->
+    <_JDMSBuildFluentTasksFolder Condition="'$(MSBuildRuntimeType)' == 'Core' and $([MSBuild]::VersionGreaterThanOrEquals('$(MSBuildVersion)', '18.0'))">net10.0</_JDMSBuildFluentTasksFolder>
+    <_JDMSBuildFluentTasksFolder Condition="'$(_JDMSBuildFluentTasksFolder)' == '' and '$(MSBuildRuntimeType)' == 'Core' and $([MSBuild]::VersionGreaterThanOrEquals('$(MSBuildVersion)', '17.14'))">net10.0</_JDMSBuildFluentTasksFolder>
+    <_JDMSBuildFluentTasksFolder Condition="'$(_JDMSBuildFluentTasksFolder)' == '' and '$(MSBuildRuntimeType)' == 'Core' and $([MSBuild]::VersionGreaterThanOrEquals('$(MSBuildVersion)', '17.12'))">net9.0</_JDMSBuildFluentTasksFolder>
+    <_JDMSBuildFluentTasksFolder Condition="'$(_JDMSBuildFluentTasksFolder)' == '' and '$(MSBuildRuntimeType)' == 'Core'">net8.0</_JDMSBuildFluentTasksFolder>
+    <_JDMSBuildFluentTasksFolder Condition="'$(_JDMSBuildFluentTasksFolder)' == ''">net472</_JDMSBuildFluentTasksFolder>
+
+    <_JDMSBuildFluentTaskAssembly>$(MSBuildThisFileDirectory)..\tasks\$(_JDMSBuildFluentTasksFolder)\JD.MSBuild.Fluent.Tasks.dll</_JDMSBuildFluentTaskAssembly>
+  </PropertyGroup>
+
+  <!-- Register MSBuild task -->
+  <UsingTask TaskName="JD.MSBuild.Fluent.Tasks.GenerateMSBuildAssets"
+             AssemblyFile="$(_JDMSBuildFluentTaskAssembly)" />
+
+  <!-- Generate MSBuild assets after compilation using native task -->
+  <Target Name="JDMSBuildFluentGenerate" 
+          AfterTargets="AfterBuild" 
+          BeforeTargets="PrepareForPublish;GenerateNuspec;_GetPackageFiles"
+          Condition="'$(JDMSBuildFluentGenerateEnabled)' == 'true' and '$(TargetFramework)' != '' and Exists('$(TargetPath)')">
+    
     <PropertyGroup>
       <_JDMSBuildFluentAssembly>$(TargetPath)</_JDMSBuildFluentAssembly>
       <_JDMSBuildFluentTempOutput>$(MSBuildProjectDirectory)\obj\msbuild_fluent_generated</_JDMSBuildFluentTempOutput>
+      <_JDMSBuildFluentOutput>$(MSBuildProjectDirectory)</_JDMSBuildFluentOutput>
+      
+      <!-- Auto-detect factory type -->
       <_JDMSBuildFluentType Condition="'$(JDMSBuildFluentDefinitionType)' != ''">$(JDMSBuildFluentDefinitionType)</_JDMSBuildFluentType>
       <_JDMSBuildFluentType Condition="'$(_JDMSBuildFluentType)' == '' and '$(JDMSBuildFluentAutoDetect)' == 'true'">$(RootNamespace).DefinitionFactory</_JDMSBuildFluentType>
       <_JDMSBuildFluentType Condition="'$(_JDMSBuildFluentType)' == '' and '$(JDMSBuildFluentAutoDetect)' == 'true' and '$(RootNamespace)' == ''">$(AssemblyName).DefinitionFactory</_JDMSBuildFluentType>
     </PropertyGroup>
     
     <!-- Skip if no type specified -->
-    <Warning Text="JD.MSBuild.Fluent: No definition type specified. Set JDMSBuildFluentDefinitionType property."
+    <Warning Text="JD.MSBuild.Fluent: No definition type specified. Set JDMSBuildFluentDefinitionType property or ensure $(RootNamespace).DefinitionFactory exists."
              Condition="'$(_JDMSBuildFluentType)' == ''" />
     
-    <!-- Generate MSBuild files -->
-    <Message Text="JD.MSBuild.Fluent: Generating MSBuild files from $(_JDMSBuildFluentType)..." 
-             Importance="high" 
+    <!-- Generate MSBuild assets using native task -->
+    <Message Text="JD.MSBuild.Fluent: Generating MSBuild assets from $(_JDMSBuildFluentType).$(JDMSBuildFluentDefinitionMethod)()..." 
+             Importance="High"
              Condition="'$(_JDMSBuildFluentType)' != ''" />
     
-    <Exec Command="dotnet tool restore" 
-          WorkingDirectory="$(MSBuildProjectDirectory)\.." 
-          ContinueOnError="true" 
-          StandardOutputImportance="low"
-          Condition="'$(_JDMSBuildFluentType)' != ''" />
+    <GenerateMSBuildAssets AssemblyFile="$(_JDMSBuildFluentAssembly)"
+                           FactoryType="$(_JDMSBuildFluentType)"
+                           FactoryMethod="$(JDMSBuildFluentDefinitionMethod)"
+                           OutputPath="$(_JDMSBuildFluentTempOutput)"
+                           Condition="'$(_JDMSBuildFluentType)' != ''">
+      <Output TaskParameter="GeneratedFiles" ItemName="_JDMSBuildFluentGeneratedFiles" />
+    </GenerateMSBuildAssets>
     
-    <Exec Command="dotnet tool run jdmsbuild generate --assembly &quot;$(_JDMSBuildFluentAssembly)&quot; --type $(_JDMSBuildFluentType) --method $(JDMSBuildFluentDefinitionMethod) --output &quot;$(_JDMSBuildFluentTempOutput)&quot;" 
-          WorkingDirectory="$(MSBuildProjectDirectory)\.." 
-          Condition="'$(_JDMSBuildFluentType)' != ''" />
+    <!-- Copy generated files to output location -->
+    <Copy SourceFiles="@(_JDMSBuildFluentGeneratedFiles)" 
+          DestinationFiles="@(_JDMSBuildFluentGeneratedFiles->'$(_JDMSBuildFluentOutput)\%(RecursiveDir)%(Filename)%(Extension)')" 
+          SkipUnchangedFiles="true"
+          Condition="'@(_JDMSBuildFluentGeneratedFiles)' != ''" />
     
-    <!-- Find and copy generated files -->
-    <ItemGroup Condition="'$(_JDMSBuildFluentType)' != ''">
-      <_GeneratedMSBuildFiles Include="$(_JDMSBuildFluentTempOutput)\**\*.props" />
-      <_GeneratedMSBuildFiles Include="$(_JDMSBuildFluentTempOutput)\**\*.targets" />
+    <!-- Add generated files to Content for IDE visibility (will be auto-included in pack) -->
+    <ItemGroup Condition="'@(_JDMSBuildFluentGeneratedFiles)' != ''">
+      <Content Include="@(_JDMSBuildFluentGeneratedFiles->'$(_JDMSBuildFluentOutput)\%(RecursiveDir)%(Filename)%(Extension)')"
+               Visible="false" 
+               CopyToOutputDirectory="Never" />
     </ItemGroup>
     
-    <Copy SourceFiles="@(_GeneratedMSBuildFiles)" 
-          DestinationFiles="@(_GeneratedMSBuildFiles->'$(JDMSBuildFluentOutputPath)\%(RecursiveDir)%(Filename)%(Extension)')" 
-          SkipUnchangedFiles="true"
-          Condition="'$(_JDMSBuildFluentType)' != ''" />
-    
+    <!-- Clean up temp directory -->
     <RemoveDir Directories="$(_JDMSBuildFluentTempOutput)" Condition="'$(_JDMSBuildFluentType)' != ''" />
     
-    <Message Text="JD.MSBuild.Fluent: MSBuild files generated successfully to $(JDMSBuildFluentOutputPath)" 
-             Importance="high"
-             Condition="'$(_JDMSBuildFluentType)' != ''" />
+    <Message Text="JD.MSBuild.Fluent: Generated @(_JDMSBuildFluentGeneratedFiles->Count()) file(s)" 
+             Importance="High"
+             Condition="'@(_JDMSBuildFluentGeneratedFiles)' != ''" />
   </Target>
 </Project>

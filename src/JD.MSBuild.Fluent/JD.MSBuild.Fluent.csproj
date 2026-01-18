@@ -28,4 +28,51 @@
     <None Include="build\JD.MSBuild.Fluent.props" Pack="true" PackagePath="build" />
     <None Include="build\JD.MSBuild.Fluent.targets" Pack="true" PackagePath="build" />
   </ItemGroup>
+
+  <!-- Collect task assemblies from the referenced project after build -->
+  <Target Name="IncludeTaskAssembliesInPack" BeforeTargets="_GetPackageFiles">
+    <ItemGroup>
+      <!-- Include task assemblies in tasks folder -->
+      <!-- net472 for .NET Framework MSBuild -->
+      <None Include="$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net472\*.dll" 
+            Pack="true" 
+            PackagePath="tasks/net472" 
+            Condition="Exists('$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net472\JD.MSBuild.Fluent.Tasks.dll')" />
+      <None Include="$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net472\*.deps.json" 
+            Pack="true" 
+            PackagePath="tasks/net472" 
+            Condition="Exists('$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net472\JD.MSBuild.Fluent.Tasks.dll')" />
+      <!-- .NET Core MSBuild targets -->
+      <None Include="$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net8.0\*.dll" 
+            Pack="true" 
+            PackagePath="tasks/net8.0" 
+            Condition="Exists('$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net8.0\JD.MSBuild.Fluent.Tasks.dll')" />
+      <None Include="$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net8.0\*.deps.json" 
+            Pack="true" 
+            PackagePath="tasks/net8.0" 
+            Condition="Exists('$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net8.0\JD.MSBuild.Fluent.Tasks.dll')" />
+      <None Include="$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net9.0\*.dll" 
+            Pack="true" 
+            PackagePath="tasks/net9.0" 
+            Condition="Exists('$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net9.0\JD.MSBuild.Fluent.Tasks.dll')" />
+      <None Include="$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net9.0\*.deps.json" 
+            Pack="true" 
+            PackagePath="tasks/net9.0" 
+            Condition="Exists('$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net9.0\JD.MSBuild.Fluent.Tasks.dll')" />
+      <None Include="$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net10.0\*.dll" 
+            Pack="true" 
+            PackagePath="tasks/net10.0" 
+            Condition="Exists('$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net10.0\JD.MSBuild.Fluent.Tasks.dll')" />
+      <None Include="$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net10.0\*.deps.json" 
+            Pack="true" 
+            PackagePath="tasks/net10.0" 
+            Condition="Exists('$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net10.0\JD.MSBuild.Fluent.Tasks.dll')" />
+    </ItemGroup>
+  </Target>
+
+  <!-- Suppress warnings -->
+  <PropertyGroup>
+    <!-- NU5100: assemblies not in lib folder (task assemblies are intentionally in tasks/) -->
+    <NoWarn>$(NoWarn);NU5100</NoWarn>
+  </PropertyGroup>
 </Project>

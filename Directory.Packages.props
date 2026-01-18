@@ -7,6 +7,9 @@
     <PackageVersion Include="System.CommandLine" Version="2.0.2" />
     <!-- Downlevel language polyfills -->
     <PackageVersion Include="PolySharp" Version="1.15.0" />
+    <!-- MSBuild Tasks -->
+    <PackageVersion Include="Microsoft.Build.Framework" Version="18.0.2" />
+    <PackageVersion Include="Microsoft.Build.Utilities.Core" Version="18.0.2" />
     <!-- Source generators -->
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.10.0" />
     <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" />

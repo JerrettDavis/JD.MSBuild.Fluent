@@ -1,0 +1,19 @@
+  Determining projects to restore...
+  Restored C:\git\JD.MSBuild.Fluent\test-integration\TestPackage\TestPackage.csproj (in 276 ms).
+  TestPackage -> C:\git\JD.MSBuild.Fluent\test-integration\TestPackage\bin\Debug\net10.0\TestPackage.dll
+  JD.MSBuild.Fluent: Generating MSBuild assets from TestPackage.DefinitionFactory.Create()...
+C:\Users\jd\.nuget\packages\jd.msbuild.fluent\1.0.5\build\JD.MSBuild.Fluent.targets(43,5): error : Factory method returned type JD.MSBuild.Fluent.PackageDefinition from assembly JD.MSBuild.Fluent, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null [C:\git\JD.MSBuild.Fluent\test-integration\TestPackage\TestPackage.csproj]
+C:\Users\jd\.nuget\packages\jd.msbuild.fluent\1.0.5\build\JD.MSBuild.Fluent.targets(43,5): error : Expected type JD.MSBuild.Fluent.PackageDefinition from assembly JD.MSBuild.Fluent, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null [C:\git\JD.MSBuild.Fluent\test-integration\TestPackage\TestPackage.csproj]
+C:\Users\jd\.nuget\packages\jd.msbuild.fluent\1.0.5\build\JD.MSBuild.Fluent.targets(43,5): error : Types equal: False [C:\git\JD.MSBuild.Fluent\test-integration\TestPackage\TestPackage.csproj]
+C:\Users\jd\.nuget\packages\jd.msbuild.fluent\1.0.5\build\JD.MSBuild.Fluent.targets(43,5): error : Assemblies equal: False [C:\git\JD.MSBuild.Fluent\test-integration\TestPackage\TestPackage.csproj]
+
+Build FAILED.
+
+C:\Users\jd\.nuget\packages\jd.msbuild.fluent\1.0.5\build\JD.MSBuild.Fluent.targets(43,5): error : Factory method returned type JD.MSBuild.Fluent.PackageDefinition from assembly JD.MSBuild.Fluent, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null [C:\git\JD.MSBuild.Fluent\test-integration\TestPackage\TestPackage.csproj]
+C:\Users\jd\.nuget\packages\jd.msbuild.fluent\1.0.5\build\JD.MSBuild.Fluent.targets(43,5): error : Expected type JD.MSBuild.Fluent.PackageDefinition from assembly JD.MSBuild.Fluent, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null [C:\git\JD.MSBuild.Fluent\test-integration\TestPackage\TestPackage.csproj]
+C:\Users\jd\.nuget\packages\jd.msbuild.fluent\1.0.5\build\JD.MSBuild.Fluent.targets(43,5): error : Types equal: False [C:\git\JD.MSBuild.Fluent\test-integration\TestPackage\TestPackage.csproj]
+C:\Users\jd\.nuget\packages\jd.msbuild.fluent\1.0.5\build\JD.MSBuild.Fluent.targets(43,5): error : Assemblies equal: False [C:\git\JD.MSBuild.Fluent\test-integration\TestPackage\TestPackage.csproj]
+    0 Warning(s)
+    4 Error(s)
+
+Time Elapsed 00:00:01.64

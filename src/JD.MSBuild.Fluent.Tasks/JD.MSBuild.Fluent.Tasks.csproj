@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- Multi-target for Framework MSBuild (net472) and .NET Core MSBuild (net8.0+) -->
+    <TargetFrameworks>net472;net8.0;net9.0;net10.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <PackageId>JD.MSBuild.Fluent.Tasks</PackageId>
+    <Description>MSBuild tasks for generating MSBuild assets from JD.MSBuild.Fluent definitions.</Description>
+    <PackageTags>msbuild;tasks;targets;props;sdk;dsl;codegen</PackageTags>
+    <IsPackable>false</IsPackable>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    
+    <!-- Use latest C# for all targets -->
+    <LangVersion>latest</LangVersion>
+    
+    <!-- Disable nullable for net472 -->
+    <Nullable Condition="'$(TargetFramework)' == 'net472'">annotations</Nullable>
+    <NoWarn Condition="'$(TargetFramework)' == 'net472'">$(NoWarn);CS8632</NoWarn>
+    
+    <!--
+      Enable dynamic loading to ensure the task assembly can load its dependencies
+      from its own directory, regardless of the MSBuild host's runtime.
+    -->
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+
+    <!--
+      Generate a .deps.json file that describes the assembly's dependencies.
+      This is critical for MSBuild task loading in Visual Studio.
+    -->
+    <GenerateDependencyFile>true</GenerateDependencyFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      MSBuild packages: Use ExcludeAssets="runtime" to prevent copying to output.
+      These assemblies are provided by the MSBuild host (Visual Studio/dotnet).
+    -->
+    <PackageReference Include="Microsoft.Build.Framework" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JD.MSBuild.Fluent\JD.MSBuild.Fluent.csproj" PrivateAssets="all" />
+  </ItemGroup>
+  
+  <!--
+    Polyfills for net472: provides IsExternalInit, init accessors, etc.
+  -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+    <PackageReference Include="PolySharp">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>
