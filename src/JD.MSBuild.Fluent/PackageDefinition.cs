@@ -55,7 +55,7 @@ public sealed class PackageDefinition
   /// <summary>
   /// Packaging options controlling emitted assets.
   /// </summary>
-  public PackagePackagingOptions Packaging { get; } = new();
+  public PackagePackagingOptions Packaging { get; set; } = new();
 
   /// <summary>
   /// Returns the build props project, falling back to <see cref="Props"/>.
