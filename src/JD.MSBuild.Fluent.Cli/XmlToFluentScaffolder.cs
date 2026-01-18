@@ -13,6 +13,7 @@ public class XmlToFluentScaffolder
     private readonly HashSet<string> _propertyNames = new();
     private readonly HashSet<string> _itemTypes = new();
     private readonly HashSet<string> _targetNames = new();
+    private string _currentBuilderVar = "p"; // Track which builder variable we're using
 
     /// <summary>
     /// Scaffolds fluent API C# code from an MSBuild XML file.
@@ -111,11 +112,14 @@ public class XmlToFluentScaffolder
     private bool HasTargetsElements(XElement root)
     {
         return root.Elements("Target").Any() ||
-               root.Elements("UsingTask").Any();
+               root.Elements("UsingTask").Any() ||
+               root.Elements("PropertyGroup").Any() ||  // PropertyGroups can appear in targets files
+               root.Elements("ItemGroup").Any();        // ItemGroups can appear in targets files
     }
 
     private void GeneratePropsContent(XElement root)
     {
+        _currentBuilderVar = "p"; // Set context to props
         foreach (var element in root.Elements())
         {
             switch (element.Name.LocalName)
@@ -138,15 +142,28 @@ public class XmlToFluentScaffolder
 
     private void GenerateTargetsContent(XElement root)
     {
+        _currentBuilderVar = "t"; // Set context to targets
         foreach (var element in root.Elements())
         {
             switch (element.Name.LocalName)
             {
+                case "PropertyGroup":
+                    GeneratePropertyGroup(element);
+                    break;
+                case "ItemGroup":
+                    GenerateItemGroup(element);
+                    break;
                 case "UsingTask":
                     GenerateUsingTask(element);
                     break;
                 case "Target":
                     GenerateTarget(element);
+                    break;
+                case "Choose":
+                    GenerateChoose(element);
+                    break;
+                case "Import":
+                    GenerateImport(element);
                     break;
             }
         }
@@ -164,9 +181,9 @@ public class XmlToFluentScaffolder
             var effectiveCondition = propCondition ?? condition;
 
             if (effectiveCondition != null)
-                AppendLine($"p.Property(\"{prop.Name.LocalName}\", \"{EscapeString(prop.Value)}\", \"{EscapeString(effectiveCondition)}\");");
+                AppendLine($"{_currentBuilderVar}.Property(\"{prop.Name.LocalName}\", \"{EscapeString(prop.Value)}\", \"{EscapeString(effectiveCondition)}\");");
             else
-                AppendLine($"p.Property(\"{prop.Name.LocalName}\", \"{EscapeString(prop.Value)}\");");
+                AppendLine($"{_currentBuilderVar}.Property(\"{prop.Name.LocalName}\", \"{EscapeString(prop.Value)}\");");
 
             _propertyNames.Add(prop.Name.LocalName);
         }
@@ -174,9 +191,9 @@ public class XmlToFluentScaffolder
         {
             // Multiple properties - use PropertyGroup
             if (condition != null)
-                AppendLine($"p.PropertyGroup(\"{EscapeString(condition)}\", group =>");
+                AppendLine($"{_currentBuilderVar}.PropertyGroup(\"{EscapeString(condition)}\", group =>");
             else
-                AppendLine("p.PropertyGroup(null, group =>");
+                AppendLine($"{_currentBuilderVar}.PropertyGroup(null, group =>");
 
             AppendLine("{");
             _indent++;
@@ -202,9 +219,9 @@ public class XmlToFluentScaffolder
         var condition = itemGroup.Attribute("Condition")?.Value;
 
         if (condition != null)
-            AppendLine($"p.ItemGroup(\"{EscapeString(condition)}\", group =>");
+            AppendLine($"{_currentBuilderVar}.ItemGroup(\"{EscapeString(condition)}\", group =>");
         else
-            AppendLine("p.ItemGroup(null, group =>");
+            AppendLine($"{_currentBuilderVar}.ItemGroup(null, group =>");
 
         AppendLine("{");
         _indent++;
