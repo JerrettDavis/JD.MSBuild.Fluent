@@ -261,10 +261,7 @@ public class XmlToFluentScaffolder
 
         if (hasMetadata)
         {
-            if (condition != null)
-                AppendLine($"group.{operation}(\"{itemType}\", \"{EscapeString(value)}\", \"{EscapeString(condition)}\", item =>");
-            else
-                AppendLine($"group.{operation}(\"{itemType}\", \"{EscapeString(value)}\", item =>");
+            AppendLine($"group.{operation}(\"{itemType}\", \"{EscapeString(value)}\", item =>");
 
             AppendLine("{");
             _indent++;
@@ -279,12 +276,18 @@ public class XmlToFluentScaffolder
             }
 
             _indent--;
-            AppendLine("});");
+            
+            // For includes with metadata, pass condition as 4th parameter after the configure lambda
+            if (condition != null)
+                AppendLine($"}}, \"{EscapeString(condition)}\");");
+            else
+                AppendLine("});");
         }
         else
         {
+            // No metadata - pass null for configure and condition as 4th parameter
             if (condition != null)
-                AppendLine($"group.{operation}(\"{itemType}\", \"{EscapeString(value)}\", \"{EscapeString(condition)}\");");
+                AppendLine($"group.{operation}(\"{itemType}\", \"{EscapeString(value)}\", null, \"{EscapeString(condition)}\");");
             else
                 AppendLine($"group.{operation}(\"{itemType}\", \"{EscapeString(value)}\");");
         }
@@ -571,12 +574,17 @@ public class XmlToFluentScaffolder
         var taskName = task.Name.LocalName;
         var condition = task.Attribute("Condition")?.Value;
 
-        AppendLine($"target.Task(\"{taskName}\", task =>");
+        if (condition != null)
+        {
+            AppendLine($"target.Task(\"{taskName}\", task =>");
+        }
+        else
+        {
+            AppendLine($"target.Task(\"{taskName}\", task =>");
+        }
+        
         AppendLine("{");
         _indent++;
-
-        if (condition != null)
-            AppendLine($"task.Condition(\"{EscapeString(condition)}\");");
 
         foreach (var attr in task.Attributes())
         {
@@ -590,15 +598,30 @@ public class XmlToFluentScaffolder
             var taskParam = output.Attribute("TaskParameter")?.Value;
             var propName = output.Attribute("PropertyName")?.Value;
             var itemName = output.Attribute("ItemName")?.Value;
+            var outputCondition = output.Attribute("Condition")?.Value;
 
             if (taskParam != null && propName != null)
-                AppendLine($"task.OutputProperty(\"{taskParam}\", \"{propName}\");");
+            {
+                if (outputCondition != null)
+                    AppendLine($"task.OutputProperty(\"{taskParam}\", \"{propName}\", \"{EscapeString(outputCondition)}\");");
+                else
+                    AppendLine($"task.OutputProperty(\"{taskParam}\", \"{propName}\");");
+            }
             else if (taskParam != null && itemName != null)
-                AppendLine($"task.OutputItem(\"{taskParam}\", \"{itemName}\");");
+            {
+                if (outputCondition != null)
+                    AppendLine($"task.OutputItem(\"{taskParam}\", \"{itemName}\", \"{EscapeString(outputCondition)}\");");
+                else
+                    AppendLine($"task.OutputItem(\"{taskParam}\", \"{itemName}\");");
+            }
         }
 
         _indent--;
-        AppendLine("});");
+        
+        if (condition != null)
+            AppendLine($"}}, \"{EscapeString(condition)}\");");
+        else
+            AppendLine("});");
     }
 
     private void GenerateStronglyTypedStructs()
