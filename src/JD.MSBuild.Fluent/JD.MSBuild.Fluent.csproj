@@ -29,6 +29,25 @@
     <None Include="build\JD.MSBuild.Fluent.targets" Pack="true" PackagePath="build" />
   </ItemGroup>
 
+  <!--  Copy System.Text.Json to task output folders before packing -->
+  <Target Name="CopySystemTextJson" BeforeTargets="IncludeTaskAssembliesInPack">
+    <PropertyGroup>
+      <SystemTextJsonSource>$(NuGetPackageRoot)system.text.json\9.0.1\lib\net8.0\System.Text.Json.dll</SystemTextJsonSource>
+    </PropertyGroup>
+    <Copy
+      SourceFiles="$(SystemTextJsonSource)"
+      DestinationFolder="$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net8.0"
+      Condition="Exists('$(SystemTextJsonSource)')" />
+    <Copy
+      SourceFiles="$(SystemTextJsonSource)"
+      DestinationFolder="$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net9.0"
+      Condition="Exists('$(SystemTextJsonSource)')" />
+    <Copy
+      SourceFiles="$(SystemTextJsonSource)"
+      DestinationFolder="$(MSBuildProjectDirectory)\..\JD.MSBuild.Fluent.Tasks\bin\$(Configuration)\net10.0"
+      Condition="Exists('$(SystemTextJsonSource)')" />
+  </Target>
+  
   <!-- Collect task assemblies from the referenced project after build -->
   <Target Name="IncludeTaskAssembliesInPack" BeforeTargets="_GetPackageFiles">
     <ItemGroup>
