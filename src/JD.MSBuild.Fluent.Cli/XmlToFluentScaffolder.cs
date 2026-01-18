@@ -14,6 +14,7 @@ public class XmlToFluentScaffolder
     private readonly HashSet<string> _itemTypes = new();
     private readonly HashSet<string> _targetNames = new();
     private string _currentBuilderVar = "p"; // Track which builder variable we're using
+    private readonly List<string> _pendingComments = new(); // Track XML comments to convert to C#
 
     /// <summary>
     /// Scaffolds fluent API C# code from an MSBuild XML file.
@@ -21,25 +22,26 @@ public class XmlToFluentScaffolder
     /// <param name="xmlFilePath">Path to the MSBuild XML file (.props or .targets)</param>
     /// <param name="packageId">Package ID (defaults to filename without extension)</param>
     /// <param name="factoryClassName">Factory class name (defaults to "DefinitionFactory")</param>
+    /// <param name="returnMsBuildProject">If true, generates factory returning MsBuildProject instead of PackageDefinition</param>
     /// <returns>Generated C# code as a string</returns>
-    public string Scaffold(string xmlFilePath, string? packageId = null, string? factoryClassName = null)
+    public string Scaffold(string xmlFilePath, string? packageId = null, string? factoryClassName = null, bool returnMsBuildProject = false)
     {
         if (!File.Exists(xmlFilePath))
             throw new FileNotFoundException($"XML file not found: {xmlFilePath}", xmlFilePath);
 
-        var xml = XDocument.Load(xmlFilePath);
+        var xml = XDocument.Load(xmlFilePath, LoadOptions.PreserveWhitespace);
         var root = xml.Root ?? throw new InvalidOperationException("No root element found");
 
         var fileName = Path.GetFileNameWithoutExtension(xmlFilePath);
         var inferredPackageId = packageId ?? fileName;
         var className = factoryClassName ?? "DefinitionFactory";
 
-        GenerateFactoryClass(root, inferredPackageId, className, fileName);
+        GenerateFactoryClass(root, inferredPackageId, className, fileName, returnMsBuildProject);
 
         return _code.ToString();
     }
 
-    private void GenerateFactoryClass(XElement root, string packageId, string className, string fileName)
+    private void GenerateFactoryClass(XElement root, string packageId, string className, string fileName, bool returnMsBuildProject)
     {
         // Generate file header
         AppendLine("using JD.MSBuild.Fluent;");
@@ -54,40 +56,81 @@ public class XmlToFluentScaffolder
         AppendLine("{");
         _indent++;
 
-        // Generate factory method
-        AppendLine("public static PackageDefinition Create()");
-        AppendLine("{");
-        _indent++;
-        AppendLine($"return Package.Define(\"{packageId}\")");
-        _indent++;
-
         bool hasProps = HasPropsElements(root);
         bool hasTargets = HasTargetsElements(root);
 
-        if (hasProps)
+        if (returnMsBuildProject)
         {
-            AppendLine(".Props(p =>");
+            // Generate factory method returning MsBuildProject
+            if (hasProps && hasTargets)
+            {
+                // Can't return both props and targets as MsBuildProject
+                throw new InvalidOperationException("Cannot generate MsBuildProject factory for file with both props and targets. Split into separate files.");
+            }
+
+            if (hasProps)
+            {
+                AppendLine("public static MsBuildProject Create()");
+                AppendLine("{");
+                _indent++;
+                AppendLine("return MsBuildProject.Create(p =>");
+                AppendLine("{");
+                _indent++;
+                GeneratePropsContent(root);
+                _indent--;
+                AppendLine("});");
+                _indent--;
+                AppendLine("}");
+            }
+            else if (hasTargets)
+            {
+                AppendLine("public static MsBuildProject Create()");
+                AppendLine("{");
+                _indent++;
+                AppendLine("return MsBuildProject.Create(t =>");
+                AppendLine("{");
+                _indent++;
+                GenerateTargetsContent(root);
+                _indent--;
+                AppendLine("});");
+                _indent--;
+                AppendLine("}");
+            }
+        }
+        else
+        {
+            // Generate factory method returning PackageDefinition
+            AppendLine("public static PackageDefinition Create()");
             AppendLine("{");
             _indent++;
-            GeneratePropsContent(root);
-            _indent--;
-            AppendLine("})");
-        }
-
-        if (hasTargets)
-        {
-            AppendLine(".Targets(t =>");
-            AppendLine("{");
+            AppendLine($"return Package.Define(\"{packageId}\")");
             _indent++;
-            GenerateTargetsContent(root);
-            _indent--;
-            AppendLine("})");
-        }
 
-        AppendLine(".Build();");
-        _indent--;
-        _indent--;
-        AppendLine("}");
+            if (hasProps)
+            {
+                AppendLine(".Props(p =>");
+                AppendLine("{");
+                _indent++;
+                GeneratePropsContent(root);
+                _indent--;
+                AppendLine("})");
+            }
+
+            if (hasTargets)
+            {
+                AppendLine(".Targets(t =>");
+                AppendLine("{");
+                _indent++;
+                GenerateTargetsContent(root);
+                _indent--;
+                AppendLine("})");
+            }
+
+            AppendLine(".Build();");
+            _indent--;
+            _indent--;
+            AppendLine("}");
+        }
 
         // Generate strongly-typed name structs if any were collected
         if (_propertyNames.Count > 0 || _itemTypes.Count > 0 || _targetNames.Count > 0)
@@ -103,39 +146,50 @@ public class XmlToFluentScaffolder
 
     private bool HasPropsElements(XElement root)
     {
-        return root.Elements("PropertyGroup").Any() ||
-               root.Elements("ItemGroup").Any() ||
-               root.Elements("Choose").Any() ||
-               root.Elements("Import").Any();
+        // A props file typically contains PropertyGroup, ItemGroup, Choose, Import
+        // but no Target or UsingTask elements
+        return (root.Elements("PropertyGroup").Any() ||
+                root.Elements("ItemGroup").Any() ||
+                root.Elements("Choose").Any() ||
+                root.Elements("Import").Any()) &&
+               !root.Elements("Target").Any() &&
+               !root.Elements("UsingTask").Any();
     }
 
     private bool HasTargetsElements(XElement root)
     {
+        // A targets file contains Target or UsingTask elements
         return root.Elements("Target").Any() ||
-               root.Elements("UsingTask").Any() ||
-               root.Elements("PropertyGroup").Any() ||  // PropertyGroups can appear in targets files
-               root.Elements("ItemGroup").Any();        // ItemGroups can appear in targets files
+               root.Elements("UsingTask").Any();
     }
 
     private void GeneratePropsContent(XElement root)
     {
         _currentBuilderVar = "p"; // Set context to props
-        foreach (var element in root.Elements())
+        foreach (var node in root.Nodes())
         {
-            switch (element.Name.LocalName)
+            if (node is XComment comment)
             {
-                case "PropertyGroup":
-                    GeneratePropertyGroup(element);
-                    break;
-                case "ItemGroup":
-                    GenerateItemGroup(element);
-                    break;
-                case "Choose":
-                    GenerateChoose(element);
-                    break;
-                case "Import":
-                    GenerateImport(element);
-                    break;
+                // Emit XML comment as C# comment
+                EmitXmlComment(comment);
+            }
+            else if (node is XElement element)
+            {
+                switch (element.Name.LocalName)
+                {
+                    case "PropertyGroup":
+                        GeneratePropertyGroup(element);
+                        break;
+                    case "ItemGroup":
+                        GenerateItemGroup(element);
+                        break;
+                    case "Choose":
+                        GenerateChoose(element);
+                        break;
+                    case "Import":
+                        GenerateImport(element);
+                        break;
+                }
             }
         }
     }
@@ -143,28 +197,36 @@ public class XmlToFluentScaffolder
     private void GenerateTargetsContent(XElement root)
     {
         _currentBuilderVar = "t"; // Set context to targets
-        foreach (var element in root.Elements())
+        foreach (var node in root.Nodes())
         {
-            switch (element.Name.LocalName)
+            if (node is XComment comment)
             {
-                case "PropertyGroup":
-                    GeneratePropertyGroup(element);
-                    break;
-                case "ItemGroup":
-                    GenerateItemGroup(element);
-                    break;
-                case "UsingTask":
-                    GenerateUsingTask(element);
-                    break;
-                case "Target":
-                    GenerateTarget(element);
-                    break;
-                case "Choose":
-                    GenerateChoose(element);
-                    break;
-                case "Import":
-                    GenerateImport(element);
-                    break;
+                // Emit XML comment as C# comment
+                EmitXmlComment(comment);
+            }
+            else if (node is XElement element)
+            {
+                switch (element.Name.LocalName)
+                {
+                    case "PropertyGroup":
+                        GeneratePropertyGroup(element);
+                        break;
+                    case "ItemGroup":
+                        GenerateItemGroup(element);
+                        break;
+                    case "UsingTask":
+                        GenerateUsingTask(element);
+                        break;
+                    case "Target":
+                        GenerateTarget(element);
+                        break;
+                    case "Choose":
+                        GenerateChoose(element);
+                        break;
+                    case "Import":
+                        GenerateImport(element);
+                        break;
+                }
             }
         }
     }
@@ -173,10 +235,12 @@ public class XmlToFluentScaffolder
     {
         var condition = propertyGroup.Attribute("Condition")?.Value;
 
-        if (propertyGroup.Elements().Count() == 1)
+        var properties = propertyGroup.Elements().ToList();
+        
+        if (properties.Count == 1 && !propertyGroup.Nodes().OfType<XComment>().Any())
         {
-            // Single property - inline
-            var prop = propertyGroup.Elements().First();
+            // Single property with no comments - inline
+            var prop = properties.First();
             var propCondition = prop.Attribute("Condition")?.Value;
             var effectiveCondition = propCondition ?? condition;
 
@@ -187,9 +251,9 @@ public class XmlToFluentScaffolder
 
             _propertyNames.Add(prop.Name.LocalName);
         }
-        else if (propertyGroup.Elements().Any())
+        else if (properties.Any() || propertyGroup.Nodes().OfType<XComment>().Any())
         {
-            // Multiple properties - use PropertyGroup
+            // Multiple properties or has comments - use PropertyGroup
             if (condition != null)
                 AppendLine($"{_currentBuilderVar}.PropertyGroup(\"{EscapeString(condition)}\", group =>");
             else
@@ -198,15 +262,23 @@ public class XmlToFluentScaffolder
             AppendLine("{");
             _indent++;
 
-            foreach (var prop in propertyGroup.Elements())
+            // Process all nodes (comments and elements)
+            foreach (var node in propertyGroup.Nodes())
             {
-                var propCondition = prop.Attribute("Condition")?.Value;
-                if (propCondition != null)
-                    AppendLine($"group.Property(\"{prop.Name.LocalName}\", \"{EscapeString(prop.Value)}\", \"{EscapeString(propCondition)}\");");
-                else
-                    AppendLine($"group.Property(\"{prop.Name.LocalName}\", \"{EscapeString(prop.Value)}\");");
+                if (node is XComment comment)
+                {
+                    EmitXmlCommentInGroup(comment);
+                }
+                else if (node is XElement prop)
+                {
+                    var propCondition = prop.Attribute("Condition")?.Value;
+                    if (propCondition != null)
+                        AppendLine($"group.Property(\"{prop.Name.LocalName}\", \"{EscapeString(prop.Value)}\", \"{EscapeString(propCondition)}\");");
+                    else
+                        AppendLine($"group.Property(\"{prop.Name.LocalName}\", \"{EscapeString(prop.Value)}\");");
 
-                _propertyNames.Add(prop.Name.LocalName);
+                    _propertyNames.Add(prop.Name.LocalName);
+                }
             }
 
             _indent--;
@@ -681,6 +753,50 @@ public class XmlToFluentScaffolder
                 AppendLine($"// }}");
             }
         }
+    }
+
+    private void EmitXmlComment(XComment comment)
+    {
+        // Convert XML comment to C# comment AND fluent Comment() call
+        var text = comment.Value.Trim();
+        if (string.IsNullOrWhiteSpace(text)) return;
+
+        // First emit as C# comment for readability in code
+        var lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+        foreach (var line in lines)
+        {
+            var trimmed = line.Trim();
+            if (!string.IsNullOrEmpty(trimmed))
+                AppendLine($"// {trimmed}");
+            else
+                AppendLine("//");
+        }
+
+        // Then emit as fluent Comment() call so it gets into the XML
+        var escapedText = EscapeString(text);
+        AppendLine($"{_currentBuilderVar}.Comment(\"{escapedText}\");");
+    }
+
+    private void EmitXmlCommentInGroup(XComment comment)
+    {
+        // For comments inside PropertyGroup/ItemGroup, emit as group.Comment()
+        var text = comment.Value.Trim();
+        if (string.IsNullOrWhiteSpace(text)) return;
+
+        // First emit as C# comment for readability
+        var lines = text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+        foreach (var line in lines)
+        {
+            var trimmed = line.Trim();
+            if (!string.IsNullOrEmpty(trimmed))
+                AppendLine($"// {trimmed}");
+            else
+                AppendLine("//");
+        }
+
+        // Then emit as group.Comment() call
+        var escapedText = EscapeString(text);
+        AppendLine($"group.Comment(\"{escapedText}\");");
     }
 
     private string MakeSafeName(string name)

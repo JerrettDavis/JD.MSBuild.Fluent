@@ -77,11 +77,16 @@ var classNameOpt = new Option<string?>("--class-name")
 {
   Description = "Factory class name (default: DefinitionFactory)"
 };
+var returnProjectOpt = new Option<bool>("--return-project")
+{
+  Description = "Generate factory returning MsBuildProject instead of PackageDefinition (for individual .props/.targets files)"
+};
 
 scaffold.Options.Add(xmlFileOpt);
 scaffold.Options.Add(scaffoldOutOpt);
 scaffold.Options.Add(packageIdOpt);
 scaffold.Options.Add(classNameOpt);
+scaffold.Options.Add(returnProjectOpt);
 
 scaffold.SetAction(parseResult =>
 {
@@ -89,9 +94,10 @@ scaffold.SetAction(parseResult =>
   var outputFile = parseResult.GetValue(scaffoldOutOpt);
   var packageId = parseResult.GetValue(packageIdOpt);
   var className = parseResult.GetValue(classNameOpt);
+  var returnProject = parseResult.GetValue(returnProjectOpt);
 
   var scaffolder = new JD.MSBuild.Fluent.Cli.XmlToFluentScaffolder();
-  var code = scaffolder.Scaffold(xmlFile.FullName, packageId, className);
+  var code = scaffolder.Scaffold(xmlFile.FullName, packageId, className, returnProject);
 
   var outPath = outputFile?.FullName ?? Path.Combine(Directory.GetCurrentDirectory(), "DefinitionFactory.cs");
   File.WriteAllText(outPath, code);
