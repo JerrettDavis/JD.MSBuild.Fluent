@@ -1,5 +1,8 @@
 <Project>
   <PropertyGroup>
+    <!-- Mark that this project directly references JD.MSBuild.Fluent -->
+    <_JDMSBuildFluentDirectReference>true</_JDMSBuildFluentDirectReference>
+    
     <JDMSBuildFluentGenerateEnabled Condition="'$(JDMSBuildFluentGenerateEnabled)' == ''">true</JDMSBuildFluentGenerateEnabled>
     <JDMSBuildFluentOutputPath Condition="'$(JDMSBuildFluentOutputPath)' == ''">$(MSBuildProjectDirectory)</JDMSBuildFluentOutputPath>
     <JDMSBuildFluentDefinitionType Condition="'$(JDMSBuildFluentDefinitionType)' == ''"></JDMSBuildFluentDefinitionType>

@@ -36,11 +36,17 @@
   <UsingTask TaskName="JD.MSBuild.Fluent.Tasks.GenerateMSBuildAssets"
              AssemblyFile="$(_JDMSBuildFluentTaskAssembly)" />
 
-  <!-- Generate MSBuild assets after compilation using native task -->
+  <!-- 
+    Generate MSBuild assets after compilation using native task.
+    
+    CRITICAL: Only runs for projects that DIRECTLY reference JD.MSBuild.Fluent as a PackageReference.
+    Transitive consumers (projects that reference projects using JD.MSBuild.Fluent) will NOT trigger generation.
+    They will simply consume the generated MSBuild files like any normal .props/.targets package.
+  -->
   <Target Name="JDMSBuildFluentGenerate" 
           AfterTargets="AfterBuild" 
           BeforeTargets="PrepareForPublish;GenerateNuspec;_GetPackageFiles"
-          Condition="'$(JDMSBuildFluentGenerateEnabled)' == 'true' and '$(TargetFramework)' != '' and Exists('$(TargetPath)')">
+          Condition="'$(_JDMSBuildFluentDirectReference)' == 'true' and '$(JDMSBuildFluentGenerateEnabled)' == 'true' and '$(TargetFramework)' != '' and Exists('$(TargetPath)')">
     
     <PropertyGroup>
       <_JDMSBuildFluentAssembly>$(TargetPath)</_JDMSBuildFluentAssembly>
