@@ -71,7 +71,7 @@ public class XmlToFluentScaffolder
             GeneratePropsContent(root);
             _indent--;
             Append("}");
-            Append(hasTargets ? ")" : ")");
+            Append(")");
             AppendLine();
         }
 
@@ -82,7 +82,8 @@ public class XmlToFluentScaffolder
             _indent++;
             GenerateTargetsContent(root);
             _indent--;
-            AppendLine("})");
+            Append("})");
+            AppendLine();
         }
 
         AppendLine(".Build();");
