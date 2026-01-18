@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 #if !NET472
 using System.Runtime.Loader;
 #endif
@@ -224,25 +225,44 @@ public class GenerateMSBuildAssets : Task
         return null;
       }
 
-      // Try to cast to PackageDefinition
-      var packageDef = result as PackageDefinition;
-      if (packageDef == null)
+      // CRITICAL: Due to AssemblyLoadContext isolation, direct casting fails even when assemblies match.
+      // Use JSON serialization/deserialization to bridge the type identity gap.
+      try
       {
-        // Type identity mismatch - keep diagnostics for debugging
-        var resultType = result.GetType();
-        var expectedType = typeof(PackageDefinition);
-        Log.LogError($"Type identity mismatch!");
-        Log.LogError($"  Returned: {resultType.FullName} from {resultType.Assembly.Location}");
-        Log.LogError($"  Expected: {expectedType.FullName} from {expectedType.Assembly.Location}");
-        Log.LogError($"  Types equal: {resultType == expectedType}");
-        Log.LogError($"  Assemblies equal: {resultType.Assembly.FullName == expectedType.Assembly.FullName}");
+        // Serialize the result from the user's context
+        var json = JsonSerializer.Serialize(result, new JsonSerializerOptions 
+        { 
+          WriteIndented = false,
+          IncludeFields = true,
+          DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Never
+        });
+        
+        Log.LogMessage(MessageImportance.Low, "Serialized PackageDefinition to JSON");
+        
+        // Deserialize into our context
+        var packageDef = JsonSerializer.Deserialize<PackageDefinition>(json, new JsonSerializerOptions
+        {
+          IncludeFields = true,
+          PropertyNameCaseInsensitive = true
+        });
+        
+        if (packageDef == null)
+        {
+          Log.LogError("Failed to deserialize PackageDefinition from JSON");
+          return null;
+        }
+        
+        Log.LogMessage(MessageImportance.Normal, 
+          $"Loaded package definition: {packageDef.Id}");
+
+        return packageDef;
+      }
+      catch (JsonException jsonEx)
+      {
+        Log.LogError($"JSON serialization failed: {jsonEx.Message}");
+        Log.LogError("This likely means PackageDefinition or its properties are not JSON-serializable");
         return null;
       }
-
-      Log.LogMessage(MessageImportance.Normal, 
-        $"Loaded package definition: {packageDef.Id}");
-
-      return packageDef;
     }
     catch (ReflectionTypeLoadException ex)
     {

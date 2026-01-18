@@ -7,6 +7,8 @@
     <PackageVersion Include="System.CommandLine" Version="2.0.2" />
     <!-- Downlevel language polyfills -->
     <PackageVersion Include="PolySharp" Version="1.15.0" />
+    <!-- JSON serialization -->
+    <PackageVersion Include="System.Text.Json" Version="9.0.1" />
     <!-- MSBuild Tasks -->
     <PackageVersion Include="Microsoft.Build.Framework" Version="18.0.2" />
     <PackageVersion Include="Microsoft.Build.Utilities.Core" Version="18.0.2" />
