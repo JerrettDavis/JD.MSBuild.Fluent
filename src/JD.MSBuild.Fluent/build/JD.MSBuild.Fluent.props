@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <JDMSBuildFluentGenerateEnabled Condition="'$(JDMSBuildFluentGenerateEnabled)' == ''">true</JDMSBuildFluentGenerateEnabled>
+    <JDMSBuildFluentOutputPath Condition="'$(JDMSBuildFluentOutputPath)' == ''">$(MSBuildProjectDirectory)</JDMSBuildFluentOutputPath>
+    <JDMSBuildFluentDefinitionType Condition="'$(JDMSBuildFluentDefinitionType)' == ''"></JDMSBuildFluentDefinitionType>
+    <JDMSBuildFluentDefinitionMethod Condition="'$(JDMSBuildFluentDefinitionMethod)' == ''">Create</JDMSBuildFluentDefinitionMethod>
+    <JDMSBuildFluentAutoDetect Condition="'$(JDMSBuildFluentAutoDetect)' == '' and '$(JDMSBuildFluentDefinitionType)' == ''">true</JDMSBuildFluentAutoDetect>
+  </PropertyGroup>
+</Project>

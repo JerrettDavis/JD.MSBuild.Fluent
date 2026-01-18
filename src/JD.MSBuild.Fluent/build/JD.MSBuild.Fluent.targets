@@ -1,0 +1,47 @@
+<Project>
+  <Target Name="JDMSBuildFluentGenerate" AfterTargets="Build" Condition="'$(JDMSBuildFluentGenerateEnabled)' == 'true' and '$(TargetFramework)' != ''">
+    <PropertyGroup>
+      <_JDMSBuildFluentAssembly>$(TargetPath)</_JDMSBuildFluentAssembly>
+      <_JDMSBuildFluentTempOutput>$(MSBuildProjectDirectory)\obj\msbuild_fluent_generated</_JDMSBuildFluentTempOutput>
+      <_JDMSBuildFluentType Condition="'$(JDMSBuildFluentDefinitionType)' != ''">$(JDMSBuildFluentDefinitionType)</_JDMSBuildFluentType>
+      <_JDMSBuildFluentType Condition="'$(_JDMSBuildFluentType)' == '' and '$(JDMSBuildFluentAutoDetect)' == 'true'">$(RootNamespace).DefinitionFactory</_JDMSBuildFluentType>
+      <_JDMSBuildFluentType Condition="'$(_JDMSBuildFluentType)' == '' and '$(JDMSBuildFluentAutoDetect)' == 'true' and '$(RootNamespace)' == ''">$(AssemblyName).DefinitionFactory</_JDMSBuildFluentType>
+    </PropertyGroup>
+    
+    <!-- Skip if no type specified -->
+    <Warning Text="JD.MSBuild.Fluent: No definition type specified. Set JDMSBuildFluentDefinitionType property."
+             Condition="'$(_JDMSBuildFluentType)' == ''" />
+    
+    <!-- Generate MSBuild files -->
+    <Message Text="JD.MSBuild.Fluent: Generating MSBuild files from $(_JDMSBuildFluentType)..." 
+             Importance="high" 
+             Condition="'$(_JDMSBuildFluentType)' != ''" />
+    
+    <Exec Command="dotnet tool restore" 
+          WorkingDirectory="$(MSBuildProjectDirectory)\.." 
+          ContinueOnError="true" 
+          StandardOutputImportance="low"
+          Condition="'$(_JDMSBuildFluentType)' != ''" />
+    
+    <Exec Command="dotnet tool run jdmsbuild generate --assembly &quot;$(_JDMSBuildFluentAssembly)&quot; --type $(_JDMSBuildFluentType) --method $(JDMSBuildFluentDefinitionMethod) --output &quot;$(_JDMSBuildFluentTempOutput)&quot;" 
+          WorkingDirectory="$(MSBuildProjectDirectory)\.." 
+          Condition="'$(_JDMSBuildFluentType)' != ''" />
+    
+    <!-- Find and copy generated files -->
+    <ItemGroup Condition="'$(_JDMSBuildFluentType)' != ''">
+      <_GeneratedMSBuildFiles Include="$(_JDMSBuildFluentTempOutput)\**\*.props" />
+      <_GeneratedMSBuildFiles Include="$(_JDMSBuildFluentTempOutput)\**\*.targets" />
+    </ItemGroup>
+    
+    <Copy SourceFiles="@(_GeneratedMSBuildFiles)" 
+          DestinationFiles="@(_GeneratedMSBuildFiles->'$(JDMSBuildFluentOutputPath)\%(RecursiveDir)%(Filename)%(Extension)')" 
+          SkipUnchangedFiles="true"
+          Condition="'$(_JDMSBuildFluentType)' != ''" />
+    
+    <RemoveDir Directories="$(_JDMSBuildFluentTempOutput)" Condition="'$(_JDMSBuildFluentType)' != ''" />
+    
+    <Message Text="JD.MSBuild.Fluent: MSBuild files generated successfully to $(JDMSBuildFluentOutputPath)" 
+             Importance="high"
+             Condition="'$(_JDMSBuildFluentType)' != ''" />
+  </Target>
+</Project>
