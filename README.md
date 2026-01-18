@@ -1,15 +1,35 @@
 # JD.MSBuild.Fluent
 
-A strongly-typed, fluent DSL for authoring MSBuild `.props`, `.targets`, and SDK assets, then emitting them into the exact NuGet folder layout (`build/`, `buildTransitive/`, `Sdk/<id>/...`).
+**A strongly-typed, fluent DSL for authoring MSBuild packages in C#**
 
-The goal is to make authoring MSBuild packages feel like writing normal C# - DRY, SOLID, refactorable - while still producing **100% standard MSBuild XML**.
+[![NuGet](https://img.shields.io/nuget/v/JD.MSBuild.Fluent.svg)](https://www.nuget.org/packages/JD.MSBuild.Fluent/) 
+[![License](https://img.shields.io/github/license/jerrettdavis/JD.MSBuild.Fluent.svg)](LICENSE) 
+[![CI](https://github.com/JerrettDavis/JD.MSBuild.Fluent/actions/workflows/ci.yml/badge.svg)](https://github.com/JerrettDavis/JD.MSBuild.Fluent/actions/workflows/ci.yml) 
+[![codecov](https://codecov.io/gh/JerrettDavis/JD.MSBuild.Fluent/branch/main/graph/badge.svg)](https://codecov.io/gh/JerrettDavis/JD.MSBuild.Fluent) 
+[![Documentation](https://img.shields.io/badge/docs-online-blue)](https://jerrettdavis.github.io/JD.MSBuild.Fluent/)
 
-## Documentation
+Author MSBuild `.props`, `.targets`, and SDK assets using a strongly-typed fluent API in C#, then automatically generate **100% standard MSBuild XML** during build. No more hand-editing XML - write refactorable, testable, type-safe C# code instead.
 
-- [Full documentation](docs/)
-- API reference is generated from XML documentation comments.
+## 📚 Documentation
 
-## Quick start
+**[View Complete Documentation](https://jerrettdavis.github.io/JD.MSBuild.Fluent/)**
+
+- [Introduction](https://jerrettdavis.github.io/JD.MSBuild.Fluent/articles/introduction.html) - Project overview and core concepts
+- [Getting Started](https://jerrettdavis.github.io/JD.MSBuild.Fluent/articles/getting-started.html) - Installation and quick start guide
+- [User Guides](https://jerrettdavis.github.io/JD.MSBuild.Fluent/user-guides/overview.html) - Detailed tutorials and patterns
+- [API Reference](https://jerrettdavis.github.io/JD.MSBuild.Fluent/api/) - Complete API documentation
+- [Migration Guide](https://jerrettdavis.github.io/JD.MSBuild.Fluent/user-guides/migration/xml-to-fluent.html) - Convert existing XML to fluent API
+
+## ✨ Features
+
+- 🎯 **Strongly-typed fluent API** - IntelliSense, refactoring, compile-time validation
+- 🔄 **Automatic build integration** - Generate MSBuild assets during `dotnet build`, no CLI required
+- 📦 **Full NuGet layout support** - `build/`, `buildTransitive/`, and `Sdk/` folders
+- 🔧 **XML scaffolding** - Convert existing XML to fluent code with `jdmsbuild scaffold`
+- ✅ **Production-tested** - Validated against real-world MSBuild packages
+- 📝 **Deterministic output** - Consistent XML generation for meaningful diffs
+
+## Quick Start
 
 ### 1. Install the package
 
@@ -17,7 +37,7 @@ The goal is to make authoring MSBuild packages feel like writing normal C# - DRY
 <PackageReference Include="JD.MSBuild.Fluent" Version="*" />
 ```
 
-### 2. Define your MSBuild assets
+### 2. Define your MSBuild assets in C#
 
 ```csharp
 using JD.MSBuild.Fluent;
@@ -29,128 +49,177 @@ public static class DefinitionFactory
 {
   public static PackageDefinition Create() => Package.Define("MySdk")
     .Props(p => p
-      .Property("MySdkEnabled", "true"))
+      .Property("MySdkEnabled", "true")
+      .Property("MySdkVersion", "1.0.0"))
     .Targets(t => t
       .Target("MySdk_Hello", target => target
         .BeforeTargets("Build")
         .Condition("'$(MySdkEnabled)' == 'true'")
-        .Message("Hello from MySdk")))
-    .Pack(o => { o.BuildTransitive = true; o.EmitSdk = true; })
+        .Message("Hello from MySdk v$(MySdkVersion)!", "High")))
+    .Pack(o => { 
+      o.BuildTransitive = true; 
+      o.EmitSdk = true; 
+    })
     .Build();
 }
 ```
 
-### 3. Generate assets automatically
+### 3. Build your project
 
-**MSBuild automatically generates assets during build** - no CLI required!
+MSBuild assets are **automatically generated during build** and packaged correctly:
 
-Configure in your `.csproj`:
+- ✅ `build/MySdk.props`
+- ✅ `build/MySdk.targets`
+- ✅ `buildTransitive/MySdk.props` and `.targets` (if enabled)
+- ✅ `Sdk/MySdk/Sdk.props` and `Sdk.targets` (if SDK enabled)
+
+**No CLI required!** Just build and pack:
+
+```bash
+dotnet build
+dotnet pack
+```
+
+### Optional: Configure generation
 
 ```xml
 <PropertyGroup>
-  <!-- Enable generation (optional - defaults to true) -->
+  <!-- Enable/disable generation (default: true) -->
   <JDMSBuildFluentGenerateEnabled>true</JDMSBuildFluentGenerateEnabled>
   
-  <!-- Specify factory type (optional - auto-detects DefinitionFactory) -->
+  <!-- Specify factory type (default: auto-detect) -->
   <JDMSBuildFluentDefinitionType>MySdk.DefinitionFactory</JDMSBuildFluentDefinitionType>
   
-  <!-- Output directory (optional - defaults to obj/msbuild) -->
+  <!-- Output directory (default: obj/msbuild) -->
   <JDMSBuildFluentOutputDir>$(MSBuildProjectDirectory)\msbuild</JDMSBuildFluentOutputDir>
 </PropertyGroup>
 ```
 
-Generated files are included in the build and packaged automatically:
-- `build/<id>.props`
-- `build/<id>.targets`
-- `buildTransitive/<id>.props` and `.targets` (if enabled)
-- `Sdk/<id>/Sdk.props` and `Sdk.targets` (if enabled)
+## 🔄 Migrate from XML
 
-### Optional: CLI for manual generation
-
-Install the CLI tool globally:
+Convert existing MSBuild XML files to fluent API:
 
 ```bash
-dotnet tool install -g JD.MSBuild.Fluent.Cli
-```
-
-Generate manually:
-
-```bash
-jdmsbuild generate --assembly path/to/MySdk.dll --type MySdk.DefinitionFactory --method Create --output msbuild
-```
-
-Or generate the built-in example:
-
-```bash
-jdmsbuild generate --example --output artifacts/msbuild
-```
-
-### Convert existing XML to fluent (scaffolding)
-
-Migrate existing MSBuild XML files to fluent API:
-
-```bash
-# Install CLI if not already installed
+# Install CLI tool
 dotnet tool install -g JD.MSBuild.Fluent.Cli
 
 # Scaffold from existing XML
 jdmsbuild scaffold --xml MyPackage.targets --output DefinitionFactory.cs --package-id MyCompany.MyPackage
 ```
 
-This converts your XML into idiomatic fluent C# code that you can then customize and maintain.
-
-## Migration from XML
-
-The `scaffold` command helps you migrate existing MSBuild packages:
-
-1. **Start with your XML**: Any `.props` or `.targets` file
-2. **Generate fluent code**: `jdmsbuild scaffold --xml build/MyPackage.targets --output src/DefinitionFactory.cs`
-3. **Review and adjust**: The generated code is a starting point - refactor as needed
-4. **Build**: Generated assets are created automatically during build
-
-**Example**:
-
-Original XML (`MyPackage.targets`):
+**Before (XML)**:
 ```xml
 <Project>
+  <PropertyGroup>
+    <MyPackageVersion>1.0.0</MyPackageVersion>
+  </PropertyGroup>
   <Target Name="Hello" BeforeTargets="Build">
-    <Message Text="Hello from MyPackage!" Importance="High" />
+    <Message Text="Hello from MyPackage v$(MyPackageVersion)!" Importance="High" />
   </Target>
 </Project>
 ```
 
-Generated fluent code:
+**After (Fluent C#)**:
 ```csharp
-public static class DefinitionFactory
+public static PackageDefinition Create()
 {
-    public static PackageDefinition Create()
-    {
-        return Package.Define("MyPackage")
-            .Targets(t =>
+    return Package.Define("MyPackage")
+        .Targets(t =>
+        {
+            t.PropertyGroup(null, group =>
             {
-                t.Target("Hello", target =>
-                {
-                    target.BeforeTargets("Build");
-                    target.Message("Hello from MyPackage!", "High");
-                });
-            })
-            .Build();
-    }
+                group.Property("MyPackageVersion", "1.0.0");
+            });
+            t.Target("Hello", target =>
+            {
+                target.BeforeTargets("Build");
+                target.Message("Hello from MyPackage v$(MyPackageVersion)!", "High");
+            });
+        })
+        .Build();
 }
 ```
 
-## Samples
+Now you can refactor, test, and maintain your MSBuild logic like regular C# code!
 
-- `samples/MinimalSdkPackage` contains a minimal, end-to-end definition and output.
+## 🎯 Why JD.MSBuild.Fluent?
 
-## Output layout
+### Problem: Hand-editing MSBuild XML is painful
+- ❌ No IntelliSense or type safety
+- ❌ No refactoring support
+- ❌ Hard to test and validate
+- ❌ Copy-paste leads to duplication
+- ❌ Difficult to review diffs
 
-- `build/<id>.props`
-- `build/<id>.targets`
-- (optional) `buildTransitive/...`
-- (optional) `Sdk/<id>/Sdk.props`
-- (optional) `Sdk/<id>/Sdk.targets`
+### Solution: Write C# instead
+- ✅ **Strongly-typed API** with full IntelliSense
+- ✅ **Refactoring support** - rename, extract, move
+- ✅ **Unit testable** - validate logic before publishing
+- ✅ **DRY principle** - reuse patterns across targets
+- ✅ **Better diffs** - meaningful C# changes instead of XML noise
+- ✅ **Automatic generation** - integrated into build pipeline
 
-## Determinism
+## 📦 CLI Tool (Optional)
 
-The renderer canonicalizes common sources of MSBuild churn (property ordering, item metadata ordering, task parameter ordering) so that diffs remain meaningful.
+The CLI is optional for advanced scenarios. Most users don't need it since generation happens automatically during build.
+
+```bash
+# Install globally
+dotnet tool install -g JD.MSBuild.Fluent.Cli
+
+# Generate assets manually
+jdmsbuild generate --assembly path/to/MySdk.dll --type MySdk.DefinitionFactory --output msbuild
+
+# Generate built-in example
+jdmsbuild generate --example --output artifacts/msbuild
+
+# Scaffold from XML
+jdmsbuild scaffold --xml MyPackage.targets --output DefinitionFactory.cs
+```
+
+## 📁 Output Layout
+
+Generated files follow standard NuGet conventions:
+
+```
+build/
+  MySdk.props          ← Applied to direct consumers
+  MySdk.targets        ← Applied to direct consumers
+buildTransitive/       ← (optional)
+  MySdk.props          ← Applied transitively
+  MySdk.targets        ← Applied transitively
+Sdk/                   ← (optional)
+  MySdk/
+    Sdk.props          ← SDK-style project support
+    Sdk.targets        ← SDK-style project support
+```
+
+## 🧪 Samples
+
+- [`samples/MinimalSdkPackage`](samples/MinimalSdkPackage) - Complete end-to-end example
+- Integration tests validate against [JD.Efcpt.Build](https://github.com/JerrettDavis/JD.Efcpt.Build) (real-world production package)
+
+## 🔍 Deterministic Output
+
+The XML renderer produces **deterministic, canonical output**:
+- Consistent property ordering
+- Consistent item metadata ordering
+- Consistent task parameter ordering
+- Meaningful diffs across versions
+
+## 🤝 Contributing
+
+Contributions welcome! This project follows standard GitHub flow:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes with tests
+4. Submit a pull request
+
+## 📄 License
+
+[MIT License](LICENSE)
+
+## 🔗 Related Projects
+
+- [JD.Efcpt.Build](https://github.com/JerrettDavis/JD.Efcpt.Build) - EF Core Power Tools build integration (uses JD.MSBuild.Fluent)
+- [JD.MSBuild.Containers](https://github.com/JerrettDavis/JD.MSBuild.Containers) - Docker container build integration
