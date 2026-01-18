@@ -265,18 +265,33 @@ public class ScaffoldingRoundTripTests
         // Load the generated C# code and compile it in-memory
         var code = File.ReadAllText(csFilePath);
 
+        // Get all necessary assembly references
+        var references = new List<MetadataReference>
+        {
+            MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
+            MetadataReference.CreateFromFile(typeof(PackageDefinition).Assembly.Location),
+            MetadataReference.CreateFromFile(typeof(Console).Assembly.Location),
+            MetadataReference.CreateFromFile(Assembly.Load("System.Runtime").Location),
+            MetadataReference.CreateFromFile(Assembly.Load("System.Collections").Location),
+            MetadataReference.CreateFromFile(Assembly.Load("System.Linq").Location),
+            MetadataReference.CreateFromFile(Assembly.Load("netstandard").Location)
+        };
+
+        // Add reference to mscorlib for .NET Framework compatibility
+        try
+        {
+            references.Add(MetadataReference.CreateFromFile(Assembly.Load("mscorlib").Location));
+        }
+        catch
+        {
+            // mscorlib not available in .NET Core/5+, that's okay
+        }
+
         // Use Roslyn to compile the code
         var compilation = CSharpCompilation.Create(
             $"DynamicAssembly_{Guid.NewGuid():N}",
             new[] { CSharpSyntaxTree.ParseText(code) },
-            new[]
-            {
-                MetadataReference.CreateFromFile(typeof(object).Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(PackageDefinition).Assembly.Location),
-                MetadataReference.CreateFromFile(Assembly.Load("System.Runtime").Location),
-                MetadataReference.CreateFromFile(Assembly.Load("System.Collections").Location),
-                MetadataReference.CreateFromFile(Assembly.Load("netstandard").Location)
-            },
+            references,
             new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
 
         using var ms = new MemoryStream();
@@ -285,16 +300,21 @@ public class ScaffoldingRoundTripTests
         if (!result.Success)
         {
             var failures = result.Diagnostics.Where(d => d.Severity == DiagnosticSeverity.Error);
-            var errorMessages = string.Join("\n", failures.Select(f => $"{f.Id}: {f.GetMessage()}"));
-            throw new InvalidOperationException($"Compilation failed:\n{errorMessages}");
+            var errorMessages = string.Join("\n", failures.Select(f => $"{f.Id}: {f.GetMessage()} at {f.Location.GetLineSpan()}"));
+            
+            // Write the code to a temp file for debugging
+            var debugPath = Path.Combine(_tempDir, "failed-compilation.cs");
+            File.WriteAllText(debugPath, code);
+            
+            throw new InvalidOperationException($"Compilation failed. Code written to: {debugPath}\n\nErrors:\n{errorMessages}");
         }
 
         ms.Seek(0, SeekOrigin.Begin);
         var assembly = Assembly.Load(ms.ToArray());
 
-        var type = assembly.GetType(typeName) ?? throw new InvalidOperationException($"Type '{typeName}' not found");
+        var type = assembly.GetType(typeName) ?? throw new InvalidOperationException($"Type '{typeName}' not found in assembly. Available types: {string.Join(", ", assembly.GetTypes().Select(t => t.FullName))}");
         var method = type.GetMethod(methodName, BindingFlags.Public | BindingFlags.Static) 
-            ?? throw new InvalidOperationException($"Method '{methodName}' not found");
+            ?? throw new InvalidOperationException($"Method '{methodName}' not found on type '{typeName}'. Available methods: {string.Join(", ", type.GetMethods(BindingFlags.Public | BindingFlags.Static).Select(m => m.Name))}");
 
         var definition = method.Invoke(null, null) as PackageDefinition
             ?? throw new InvalidOperationException("Factory method did not return PackageDefinition");

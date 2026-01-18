@@ -85,6 +85,60 @@ Or generate the built-in example:
 jdmsbuild generate --example --output artifacts/msbuild
 ```
 
+### Convert existing XML to fluent (scaffolding)
+
+Migrate existing MSBuild XML files to fluent API:
+
+```bash
+# Install CLI if not already installed
+dotnet tool install -g JD.MSBuild.Fluent.Cli
+
+# Scaffold from existing XML
+jdmsbuild scaffold --xml MyPackage.targets --output DefinitionFactory.cs --package-id MyCompany.MyPackage
+```
+
+This converts your XML into idiomatic fluent C# code that you can then customize and maintain.
+
+## Migration from XML
+
+The `scaffold` command helps you migrate existing MSBuild packages:
+
+1. **Start with your XML**: Any `.props` or `.targets` file
+2. **Generate fluent code**: `jdmsbuild scaffold --xml build/MyPackage.targets --output src/DefinitionFactory.cs`
+3. **Review and adjust**: The generated code is a starting point - refactor as needed
+4. **Build**: Generated assets are created automatically during build
+
+**Example**:
+
+Original XML (`MyPackage.targets`):
+```xml
+<Project>
+  <Target Name="Hello" BeforeTargets="Build">
+    <Message Text="Hello from MyPackage!" Importance="High" />
+  </Target>
+</Project>
+```
+
+Generated fluent code:
+```csharp
+public static class DefinitionFactory
+{
+    public static PackageDefinition Create()
+    {
+        return Package.Define("MyPackage")
+            .Targets(t =>
+            {
+                t.Target("Hello", target =>
+                {
+                    target.BeforeTargets("Build");
+                    target.Message("Hello from MyPackage!", "High");
+                });
+            })
+            .Build();
+    }
+}
+```
+
 ## Samples
 
 - `samples/MinimalSdkPackage` contains a minimal, end-to-end definition and output.

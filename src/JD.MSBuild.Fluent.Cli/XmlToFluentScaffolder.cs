@@ -70,9 +70,7 @@ public class XmlToFluentScaffolder
             _indent++;
             GeneratePropsContent(root);
             _indent--;
-            Append("}");
-            Append(")");
-            AppendLine();
+            AppendLine("})");
         }
 
         if (hasTargets)
@@ -82,8 +80,7 @@ public class XmlToFluentScaffolder
             _indent++;
             GenerateTargetsContent(root);
             _indent--;
-            Append("})");
-            AppendLine();
+            AppendLine("})");
         }
 
         AppendLine(".Build();");
@@ -387,20 +384,14 @@ public class XmlToFluentScaffolder
 
         if (taskName == null) return;
 
-        if (assemblyFile != null)
-        {
-            if (condition != null)
-                AppendLine($"t.UsingTaskFromFile(\"{taskName}\", \"{EscapeString(assemblyFile)}\", \"{EscapeString(condition)}\");");
-            else
-                AppendLine($"t.UsingTaskFromFile(\"{taskName}\", \"{EscapeString(assemblyFile)}\");");
-        }
+        if (condition != null)
+            AppendLine($"t.UsingTask(\"{taskName}\", \"{EscapeString(assemblyFile ?? "")}\", \"{EscapeString(condition)}\", \"{EscapeString(assemblyName ?? "")}\");");
+        else if (assemblyFile != null && assemblyName != null)
+            AppendLine($"t.UsingTask(\"{taskName}\", \"{EscapeString(assemblyFile)}\", assemblyName: \"{EscapeString(assemblyName)}\");");
+        else if (assemblyFile != null)
+            AppendLine($"t.UsingTask(\"{taskName}\", \"{EscapeString(assemblyFile)}\");");
         else if (assemblyName != null)
-        {
-            if (condition != null)
-                AppendLine($"t.UsingTaskFromAssembly(\"{taskName}\", \"{assemblyName}\", \"{EscapeString(condition)}\");");
-            else
-                AppendLine($"t.UsingTaskFromAssembly(\"{taskName}\", \"{assemblyName}\");");
-        }
+            AppendLine($"t.UsingTask(\"{taskName}\", null, assemblyName: \"{EscapeString(assemblyName)}\");");
     }
 
     private void GenerateTarget(XElement target)
@@ -601,9 +592,9 @@ public class XmlToFluentScaffolder
             var itemName = output.Attribute("ItemName")?.Value;
 
             if (taskParam != null && propName != null)
-                AppendLine($"task.OutputToProperty(\"{taskParam}\", \"{propName}\");");
+                AppendLine($"task.OutputProperty(\"{taskParam}\", \"{propName}\");");
             else if (taskParam != null && itemName != null)
-                AppendLine($"task.OutputToItem(\"{taskParam}\", \"{itemName}\");");
+                AppendLine($"task.OutputItem(\"{taskParam}\", \"{itemName}\");");
         }
 
         _indent--;
