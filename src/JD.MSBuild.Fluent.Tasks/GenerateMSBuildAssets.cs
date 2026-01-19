@@ -1,8 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text.Json;
 #if !NET472
 using System.Runtime.Loader;
 #endif
@@ -122,21 +122,57 @@ public class GenerateMSBuildAssets : Task
       if (definition == null)
         return false;
 
-      // Generate MSBuild assets
-      var emitter = new MsBuildPackageEmitter();
-      emitter.Emit(definition, OutputPath);
+      // Generate MSBuild assets by writing XML directly
+      if (!Directory.Exists(OutputPath))
+        Directory.CreateDirectory(OutputPath);
+      
+      var generatedFiles = new List<string>();
+      
+      // Write build files
+      if (_renderedXml?.BuildProps != null)
+      {
+        var path = Path.Combine(OutputPath, $"{definition.Id}.props");
+        File.WriteAllText(path, _renderedXml.BuildProps);
+        generatedFiles.Add(path);
+        Log.LogMessage(MessageImportance.Low, $"Wrote {path}");
+      }
+      
+      if (_renderedXml?.BuildTargets != null)
+      {
+        var path = Path.Combine(OutputPath, $"{definition.Id}.targets");
+        File.WriteAllText(path, _renderedXml.BuildTargets);
+        generatedFiles.Add(path);
+        Log.LogMessage(MessageImportance.Low, $"Wrote {path}");
+      }
+      
+      // Write buildTransitive files if enabled
+      if (definition.Packaging.BuildTransitive)
+      {
+        var transitiveDir = Path.Combine(OutputPath, "buildTransitive");
+        if (!Directory.Exists(transitiveDir))
+          Directory.CreateDirectory(transitiveDir);
+        
+        if (_renderedXml?.BuildTransitiveProps != null)
+        {
+          var path = Path.Combine(transitiveDir, $"{definition.Id}.props");
+          File.WriteAllText(path, _renderedXml.BuildTransitiveProps);
+          generatedFiles.Add(path);
+          Log.LogMessage(MessageImportance.Low, $"Wrote {path}");
+        }
+        
+        if (_renderedXml?.BuildTransitiveTargets != null)
+        {
+          var path = Path.Combine(transitiveDir, $"{definition.Id}.targets");
+          File.WriteAllText(path, _renderedXml.BuildTransitiveTargets);
+          generatedFiles.Add(path);
+          Log.LogMessage(MessageImportance.Low, $"Wrote {path}");
+        }
+      }
 
-      // Collect generated files
-      var generatedFiles = Directory.GetFiles(OutputPath, "*.*", SearchOption.AllDirectories)
-        .Where(f => f.EndsWith(".props", StringComparison.OrdinalIgnoreCase) || 
-                    f.EndsWith(".targets", StringComparison.OrdinalIgnoreCase))
-        .Select(f => new TaskItem(f))
-        .ToArray();
-
-      GeneratedFiles = generatedFiles;
+      GeneratedFiles = generatedFiles.Select(f => new TaskItem(f)).ToArray();
 
       Log.LogMessage(MessageImportance.High,
-        $"JD.MSBuild.Fluent: Generated {generatedFiles.Length} file(s) to {OutputPath}");
+        $"JD.MSBuild.Fluent: Generated {generatedFiles.Count} file(s) to {OutputPath}");
 
       return true;
     }
@@ -226,56 +262,8 @@ public class GenerateMSBuildAssets : Task
       }
 
       // CRITICAL: Due to AssemblyLoadContext isolation, direct casting fails even when assemblies match.
-      // Use JSON serialization/deserialization to bridge the type identity gap.
-      try
-      {
-        // Serialize the result from the user's context
-        var json = JsonSerializer.Serialize(result, new JsonSerializerOptions 
-        { 
-          WriteIndented = false,
-          IncludeFields = true,
-          DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.Never
-        });
-        
-        Log.LogMessage(MessageImportance.Low, "Serialized PackageDefinition to JSON");
-        Log.LogMessage(MessageImportance.Low, $"JSON: {json}");
-        
-        // Deserialize into our context
-        var packageDef = JsonSerializer.Deserialize<PackageDefinition>(json, new JsonSerializerOptions
-        {
-          IncludeFields = true,
-          PropertyNameCaseInsensitive = true
-        });
-        
-        if (packageDef == null)
-        {
-          Log.LogError("Failed to deserialize PackageDefinition from JSON");
-          return null;
-        }
-        
-        Log.LogMessage(MessageImportance.Normal, 
-          $"Loaded package definition: {packageDef.Id}");
-        Log.LogMessage(MessageImportance.Normal, 
-          $"Packaging.BuildTransitive = {packageDef.Packaging.BuildTransitive}");
-
-        return packageDef;
-      }
-      catch (JsonException jsonEx)
-      {
-        Log.LogError($"JSON serialization failed: {jsonEx.Message}");
-        Log.LogError("This likely means PackageDefinition or its properties are not JSON-serializable");
-        return null;
-      }
-    }
-    catch (ReflectionTypeLoadException ex)
-    {
-      Log.LogError($"Failed to load types from assembly: {ex.Message}");
-      foreach (var loaderEx in ex.LoaderExceptions)
-      {
-        if (loaderEx != null)
-          Log.LogError($"  - {loaderEx.Message}");
-      }
-      return null;
+      // Solution: Use reflection to render XML directly from user's objects, avoiding serialization.
+      return ExtractPackageDefinitionViaReflection(result);
     }
     catch (Exception ex)
     {
@@ -290,4 +278,118 @@ public class GenerateMSBuildAssets : Task
 #endif
     }
   }
-}
+
+  /// <summary>
+  /// Extracts PackageDefinition data via reflection and renders projects to XML strings.
+  /// This avoids serialization issues with abstract types across AssemblyLoadContext boundaries.
+  /// </summary>
+  private PackageDefinition? ExtractPackageDefinitionViaReflection(object userPackageDef)
+  {
+    var userType = userPackageDef.GetType();
+    var userAssembly = userType.Assembly;
+      
+      Log.LogMessage(MessageImportance.Low, "Extracting PackageDefinition via reflection...");
+      
+      // Get Id property
+      var idProp = userType.GetProperty("Id");
+      var id = idProp?.GetValue(userPackageDef) as string;
+      if (string.IsNullOrEmpty(id))
+      {
+        Log.LogError("PackageDefinition.Id is null or empty");
+        return null;
+      }
+      
+      // Create renderer from user's assembly
+      var rendererType = userAssembly.GetType("JD.MSBuild.Fluent.Render.MsBuildXmlRenderer");
+      if (rendererType == null)
+      {
+        Log.LogError("Could not find MsBuildXmlRenderer in user assembly");
+        return null;
+      }
+      
+      var renderer = Activator.CreateInstance(rendererType, new object?[] { null });
+      var renderMethod = rendererType.GetMethod("RenderToString");
+      if (renderMethod == null)
+      {
+        Log.LogError("Could not find RenderToString method on MsBuildXmlRenderer");
+        return null;
+      }
+      
+      // Helper to render a project property
+      string? RenderProject(string propertyName)
+      {
+        try
+        {
+          var prop = userType.GetProperty(propertyName);
+          var project = prop?.GetValue(userPackageDef);
+          if (project == null)
+          {
+            Log.LogMessage(MessageImportance.Low, $"Property {propertyName} is null");
+            return null;
+          }
+          
+          var xml = renderMethod.Invoke(renderer, new[] { project }) as string;
+          Log.LogMessage(MessageImportance.Low, $"Rendered {propertyName}: {xml?.Length ?? 0} chars");
+          return xml;
+        }
+        catch (Exception ex)
+        {
+          Log.LogError($"Failed to render {propertyName}: {ex.Message}");
+          return null;
+        }
+      }
+      
+      // Render all projects to XML
+      var buildPropsXml = RenderProject("BuildProps");
+      var buildTargetsXml = RenderProject("BuildTargets");
+      var buildTransitivePropsXml = RenderProject("BuildTransitiveProps");
+      var buildTransitiveTargetsXml = RenderProject("BuildTransitiveTargets");
+      
+      // Extract packaging settings
+      var packagingProp = userType.GetProperty("Packaging");
+      var packaging = packagingProp?.GetValue(userPackageDef);
+      bool buildTransitive = false;
+      
+      if (packaging != null)
+      {
+        var buildTransitiveProp = packaging.GetType().GetProperty("BuildTransitive");
+        buildTransitive = (buildTransitiveProp?.GetValue(packaging) as bool?) ?? false;
+      }
+      
+      Log.LogMessage(MessageImportance.Low, 
+        $"Extracted: Id={id}, BuildTransitive={buildTransitive}, " +
+        $"Props={buildPropsXml != null}, Targets={buildTargetsXml != null}, " +
+        $"TransitiveProps={buildTransitivePropsXml != null}, TransitiveTargets={buildTransitiveTargetsXml != null}");
+      
+      // Create PackageDefinition with XML strings
+      // We'll store the XML in a custom structure that MsBuildPackageEmitter can use
+      var packageDef = new PackageDefinition 
+      { 
+        Id = id,
+      };
+      
+      packageDef.Packaging.BuildTransitive = buildTransitive;
+      
+      // Store XML strings in the package definition
+      // We need to modify MsBuildPackageEmitter to accept these strings
+      _renderedXml = new RenderedXml
+      {
+        BuildProps = buildPropsXml,
+        BuildTargets = buildTargetsXml,
+        BuildTransitiveProps = buildTransitivePropsXml,
+        BuildTransitiveTargets = buildTransitiveTargetsXml
+      };
+      
+      return packageDef;
+    }
+    
+    private RenderedXml? _renderedXml;
+    
+    private class RenderedXml
+    {
+      public string? BuildProps { get; set; }
+      public string? BuildTargets { get; set; }
+      public string? BuildTransitiveProps { get; set; }
+      public string? BuildTransitiveTargets { get; set; }
+    }
+  }
