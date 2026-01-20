@@ -6,6 +6,7 @@ using JD.MSBuild.Fluent.Packaging;
 using JD.MSBuild.Fluent.Tests.Tasks;
 using JD.MSBuild.Fluent.Tests.Tasks.Extensions.Copy;
 using JD.MSBuild.Fluent.Typed;
+using TinyBDD.Assertions;
 using TinyBDD.Xunit;
 using Xunit.Abstractions;
 using static JD.MSBuild.Fluent.Typed.MsBuildExpr;
@@ -31,22 +32,28 @@ public sealed class EfcptParityGenerationTests(ITestOutputHelper output) : TinyB
         return ctx.tempDir;
       })
       .Then("build.props matches expected", dir =>
-        File.ReadAllText(Path.Combine(dir, "build", "Efcpt.Parity.props")) == Normalize(ReadExpected("Efcpt.Parity.build.props")))
+        Expect.For(File.ReadAllText(Path.Combine(dir, "build", "Efcpt.Parity.props")), "build.props content")
+          .ToBe(Normalize(ReadExpected("Efcpt.Parity.build.props"))))
       .And("build.targets matches expected", dir =>
-        File.ReadAllText(Path.Combine(dir, "build", "Efcpt.Parity.targets")) == Normalize(ReadExpected("Efcpt.Parity.build.targets")))
+        Expect.For(File.ReadAllText(Path.Combine(dir, "build", "Efcpt.Parity.targets")), "build.targets content")
+          .ToBe(Normalize(ReadExpected("Efcpt.Parity.build.targets"))))
       .And("buildTransitive.props matches expected", dir =>
-        File.ReadAllText(Path.Combine(dir, "buildTransitive", "Efcpt.Parity.props")) == Normalize(ReadExpected("Efcpt.Parity.buildTransitive.props")))
+        Expect.For(File.ReadAllText(Path.Combine(dir, "buildTransitive", "Efcpt.Parity.props")), "buildTransitive.props content")
+          .ToBe(Normalize(ReadExpected("Efcpt.Parity.buildTransitive.props"))))
       .And("buildTransitive.targets matches expected", dir =>
-        File.ReadAllText(Path.Combine(dir, "buildTransitive", "Efcpt.Parity.targets")) == Normalize(ReadExpected("Efcpt.Parity.buildTransitive.targets")))
+        Expect.For(File.ReadAllText(Path.Combine(dir, "buildTransitive", "Efcpt.Parity.targets")), "buildTransitive.targets content")
+          .ToBe(Normalize(ReadExpected("Efcpt.Parity.buildTransitive.targets"))))
       .And("Sdk.props matches expected", dir =>
       {
         var def = BuildDefinition();
-        return File.ReadAllText(Path.Combine(dir, "Sdk", def.Id, "Sdk.props")) == Normalize(ReadExpected("Efcpt.Parity.Sdk.props"));
+        return Expect.For(File.ReadAllText(Path.Combine(dir, "Sdk", def.Id, "Sdk.props")), "Sdk.props content")
+          .ToBe(Normalize(ReadExpected("Efcpt.Parity.Sdk.props")));
       })
       .And("Sdk.targets matches expected", dir =>
       {
         var def = BuildDefinition();
-        return File.ReadAllText(Path.Combine(dir, "Sdk", def.Id, "Sdk.targets")) == Normalize(ReadExpected("Efcpt.Parity.Sdk.targets"));
+        return Expect.For(File.ReadAllText(Path.Combine(dir, "Sdk", def.Id, "Sdk.targets")), "Sdk.targets content")
+          .ToBe(Normalize(ReadExpected("Efcpt.Parity.Sdk.targets")));
       })
       .Finally(dir =>
       {

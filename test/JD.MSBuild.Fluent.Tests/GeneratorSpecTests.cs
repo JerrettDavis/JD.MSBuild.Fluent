@@ -2,6 +2,7 @@ using JD.MSBuild.Fluent.Generators;
 using JD.MSBuild.Fluent.Typed;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using TinyBDD.Assertions;
 using TinyBDD.Xunit;
 using Xunit.Abstractions;
 
@@ -100,7 +101,9 @@ namespace Demo.Tasks.Extensions.DoWork
 
     await Given("task source with parameters and outputs", () => source)
       .When("running source generator", src => RunGenerator(src, assemblyName: "Demo.Tasks"))
-      .Then("generated code matches expected", generated => Normalize(generated).TrimEnd() == Normalize(expected).TrimEnd())
+      .Then("generated code matches expected", generated =>
+        Expect.For(Normalize(generated).TrimEnd(), "generated code")
+          .ToBe(Normalize(expected).TrimEnd()))
       .AssertPassed();
   }
 
@@ -125,10 +128,14 @@ namespace Spec.Tasks
 
     await Given("task source with name style and ignore attribute", () => source)
       .When("running source generator", src => RunGenerator(src, assemblyName: "Spec.Assembly"))
-      .Then("uses short name", generated => Normalize(generated).Contains("public string Name => \"BuildJob\";"))
-      .And("includes assembly name", generated => Normalize(generated).Contains("assemblyName: \"Spec.Assembly\""))
-      .And("includes kept property", generated => Normalize(generated).Contains("struct Keep"))
-      .But("excludes ignored property", generated => !Normalize(generated).Contains("struct Skip"))
+      .Then("uses short name", generated =>
+        Expect.That(Normalize(generated), "generated code").ToSatisfy(code => code.Contains("public string Name => \"BuildJob\";"), "contain short name"))
+      .And("includes assembly name", generated =>
+        Expect.That(Normalize(generated), "generated code").ToSatisfy(code => code.Contains("assemblyName: \"Spec.Assembly\""), "contain assembly name"))
+      .And("includes kept property", generated =>
+        Expect.That(Normalize(generated), "generated code").ToSatisfy(code => code.Contains("struct Keep"), "contain kept property"))
+      .But("excludes ignored property", generated =>
+        Expect.That(Normalize(generated), "generated code").ToSatisfy(code => !code.Contains("struct Skip"), "not contain ignored property"))
       .AssertPassed();
   }
 

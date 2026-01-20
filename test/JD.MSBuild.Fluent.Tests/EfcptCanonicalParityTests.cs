@@ -5,6 +5,7 @@ using JD.MSBuild.Fluent.Parse;
 using JD.MSBuild.Fluent.Packaging;
 using JD.MSBuild.Fluent.Render;
 using JD.MSBuild.Fluent.Typed;
+using TinyBDD.Assertions;
 using TinyBDD.Xunit;
 using Xunit.Abstractions;
 
@@ -142,7 +143,7 @@ public sealed class EfcptCanonicalParityTests(ITestOutputHelper output) : TinyBd
     var renderer = new MsBuildXmlRenderer(ParityOptions);
     var expectedXml = renderer.RenderToString(expected);
     var actualXml = renderer.RenderToString(actual);
-    Assert.Equal(expectedXml, actualXml);
+    Expect.For(actualXml, "rendered project XML").ToBe(expectedXml).GetAwaiter().GetResult();
   }
 
   private static void AssertProjectEquivalent(MsBuildProject expected, string actualPath)
@@ -152,7 +153,12 @@ public sealed class EfcptCanonicalParityTests(ITestOutputHelper output) : TinyBd
   }
 
   private static void AssertTextParity(string expectedName, string actualPath)
-      => Assert.Equal(NormalizeForParity(ReadExpected(expectedName)), NormalizeForParity(File.ReadAllText(actualPath)));
+  {
+    var expected = NormalizeForParity(ReadExpected(expectedName));
+    var actual = NormalizeForParity(File.ReadAllText(actualPath));
+    Expect.For(actual, $"normalized content of {Path.GetFileName(actualPath)}")
+      .ToBe(expected).GetAwaiter().GetResult();
+  }
 
   private static string ReadExpected(string name)
     => File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Golden", "Expected", name));
