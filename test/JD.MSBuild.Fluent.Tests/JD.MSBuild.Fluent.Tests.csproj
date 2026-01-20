@@ -21,7 +21,6 @@
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio" />
     <PackageReference Include="Verify.Xunit" />
-    <PackageReference Include="FluentAssertions" />
     <PackageReference Include="coverlet.collector" />
   </ItemGroup>
 

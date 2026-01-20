@@ -1,4 +1,3 @@
-using FluentAssertions;
 using JD.MSBuild.Fluent.Generators;
 using JD.MSBuild.Fluent.Typed;
 using Microsoft.CodeAnalysis;
@@ -98,7 +97,7 @@ namespace Demo.Tasks.Extensions.DoWork
 }
 """;
 
-    Normalize(generated).TrimEnd().Should().Be(Normalize(expected).TrimEnd());
+    Assert.Equal(Normalize(expected).TrimEnd(), Normalize(generated).TrimEnd());
   }
 
   [Fact]
@@ -122,10 +121,10 @@ namespace Spec.Tasks
 
     var generated = RunGenerator(source, assemblyName: "Spec.Assembly");
 
-    Normalize(generated).Should().Contain("public string Name => \"BuildJob\";");
-    Normalize(generated).Should().Contain("assemblyName: \"Spec.Assembly\"");
-    Normalize(generated).Should().Contain("struct Keep");
-    Normalize(generated).Should().NotContain("struct Skip");
+    Assert.Contains("public string Name => \"BuildJob\";", Normalize(generated));
+    Assert.Contains("assemblyName: \"Spec.Assembly\"", Normalize(generated));
+    Assert.Contains("struct Keep", Normalize(generated));
+    Assert.DoesNotContain("struct Skip", Normalize(generated));
   }
 
   private static string RunGenerator(string source, string assemblyName)
@@ -150,10 +149,10 @@ namespace Spec.Tasks
     GeneratorDriver driver = CSharpGeneratorDriver.Create(generator);
     driver = driver.RunGeneratorsAndUpdateCompilation(compilation, out _, out var diagnostics);
 
-    diagnostics.Should().BeEmpty();
+    Assert.Empty(diagnostics);
 
     var runResult = driver.GetRunResult();
-    runResult.Diagnostics.Should().BeEmpty();
+    Assert.Empty(runResult.Diagnostics);
 
     var sources = runResult.Results.Single().GeneratedSources;
     return RenderSources(sources);

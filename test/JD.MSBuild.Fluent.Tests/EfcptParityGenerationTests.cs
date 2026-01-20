@@ -1,7 +1,6 @@
 using Contoso.Build.Tasks;
 using Contoso.Build.Tasks.Extensions.DetectSqlProject;
 using Contoso.Build.Tasks.Extensions.ResolveInputs;
-using FluentAssertions;
 using JD.MSBuild.Fluent.Fluent;
 using JD.MSBuild.Fluent.Packaging;
 using JD.MSBuild.Fluent.Tests.Tasks;
@@ -24,23 +23,17 @@ public sealed class EfcptParityGenerationTests
     {
       new MsBuildPackageEmitter().Emit(def, dir);
 
-      File.ReadAllText(Path.Combine(dir, "build", "Efcpt.Parity.props"))
-        .Should().Be(Normalize(ReadExpected("Efcpt.Parity.build.props")));
+      Assert.Equal(Normalize(ReadExpected("Efcpt.Parity.build.props")), File.ReadAllText(Path.Combine(dir, "build", "Efcpt.Parity.props")));
 
-      File.ReadAllText(Path.Combine(dir, "build", "Efcpt.Parity.targets"))
-        .Should().Be(Normalize(ReadExpected("Efcpt.Parity.build.targets")));
+      Assert.Equal(Normalize(ReadExpected("Efcpt.Parity.build.targets")), File.ReadAllText(Path.Combine(dir, "build", "Efcpt.Parity.targets")));
 
-      File.ReadAllText(Path.Combine(dir, "buildTransitive", "Efcpt.Parity.props"))
-        .Should().Be(Normalize(ReadExpected("Efcpt.Parity.buildTransitive.props")));
+      Assert.Equal(Normalize(ReadExpected("Efcpt.Parity.buildTransitive.props")), File.ReadAllText(Path.Combine(dir, "buildTransitive", "Efcpt.Parity.props")));
 
-      File.ReadAllText(Path.Combine(dir, "buildTransitive", "Efcpt.Parity.targets"))
-        .Should().Be(Normalize(ReadExpected("Efcpt.Parity.buildTransitive.targets")));
+      Assert.Equal(Normalize(ReadExpected("Efcpt.Parity.buildTransitive.targets")), File.ReadAllText(Path.Combine(dir, "buildTransitive", "Efcpt.Parity.targets")));
 
-      File.ReadAllText(Path.Combine(dir, "Sdk", def.Id, "Sdk.props"))
-        .Should().Be(Normalize(ReadExpected("Efcpt.Parity.Sdk.props")));
+      Assert.Equal(Normalize(ReadExpected("Efcpt.Parity.Sdk.props")), File.ReadAllText(Path.Combine(dir, "Sdk", def.Id, "Sdk.props")));
 
-      File.ReadAllText(Path.Combine(dir, "Sdk", def.Id, "Sdk.targets"))
-        .Should().Be(Normalize(ReadExpected("Efcpt.Parity.Sdk.targets")));
+      Assert.Equal(Normalize(ReadExpected("Efcpt.Parity.Sdk.targets")), File.ReadAllText(Path.Combine(dir, "Sdk", def.Id, "Sdk.targets")));
     }
     finally
     {

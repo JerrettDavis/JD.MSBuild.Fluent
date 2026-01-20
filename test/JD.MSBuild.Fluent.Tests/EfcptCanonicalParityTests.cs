@@ -1,4 +1,3 @@
-using FluentAssertions;
 using System.Xml.Linq;
 using JD.MSBuild.Fluent.Fluent;
 using JD.MSBuild.Fluent.IR;
@@ -112,17 +111,21 @@ public sealed class EfcptCanonicalParityTests
     => Parser.ParseFile(Path.Combine(AppContext.BaseDirectory, "Golden", "Expected", name));
 
   private static void AssertProjectEquivalent(MsBuildProject expected, MsBuildProject actual)
-    => actual.Should().BeEquivalentTo(expected, options => options.WithStrictOrdering());
+  {
+    var renderer = new MsBuildXmlRenderer(ParityOptions);
+    var expectedXml = renderer.RenderToString(expected);
+    var actualXml = renderer.RenderToString(actual);
+    Assert.Equal(expectedXml, actualXml);
+  }
 
   private static void AssertProjectEquivalent(MsBuildProject expected, string actualPath)
   {
     var actual = Parser.ParseFile(actualPath);
-    actual.Should().BeEquivalentTo(expected, options => options.WithStrictOrdering());
+    AssertProjectEquivalent(expected, actual);
   }
 
   private static void AssertTextParity(string expectedName, string actualPath)
-    => NormalizeForParity(File.ReadAllText(actualPath))
-      .Should().Be(NormalizeForParity(ReadExpected(expectedName)));
+      => Assert.Equal(NormalizeForParity(ReadExpected(expectedName)), NormalizeForParity(File.ReadAllText(actualPath)));
 
   private static string ReadExpected(string name)
     => File.ReadAllText(Path.Combine(AppContext.BaseDirectory, "Golden", "Expected", name));

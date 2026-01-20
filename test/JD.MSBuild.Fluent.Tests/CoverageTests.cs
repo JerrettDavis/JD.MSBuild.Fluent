@@ -1,4 +1,3 @@
-using FluentAssertions;
 using JD.MSBuild.Fluent.Fluent;
 using JD.MSBuild.Fluent.IR;
 using JD.MSBuild.Fluent.Parse;
@@ -133,7 +132,7 @@ public sealed class CoverageTests
     };
 
     var xml = new MsBuildXmlRenderer(options).RenderToString(project);
-    xml.Should().Contain("<Project>");
+    Assert.Contains("<Project>", xml);
   }
 
   [Fact]
@@ -159,8 +158,8 @@ public sealed class CoverageTests
 
     var renderer = new MsBuildXmlRenderer();
     var xml = renderer.RenderToString(project);
-    xml.Should().Contain("<A>1</A>");
-    xml.Should().Contain("<B>2</B>");
+    Assert.Contains("<A>1</A>", xml);
+    Assert.Contains("<B>2</B>", xml);
   }
 
   [Fact]
@@ -170,28 +169,28 @@ public sealed class CoverageTests
     project.Elements.Add(new UnknownProjectElement());
 
     Action act = () => new MsBuildXmlRenderer().RenderToString(project);
-    act.Should().Throw<MsBuildValidationException>();
+    Assert.Throws<MsBuildValidationException>(act);
 
     var badGroupProject = new MsBuildProject();
     var badGroup = new MsBuildPropertyGroup();
     badGroup.Entries.Add(new UnknownPropertyEntry());
     badGroupProject.Elements.Add(badGroup);
     Action badGroupAct = () => new MsBuildXmlRenderer().RenderToString(badGroupProject);
-    badGroupAct.Should().Throw<MsBuildValidationException>();
+    Assert.Throws<MsBuildValidationException>(badGroupAct);
 
     var badItemProject = new MsBuildProject();
     var badItemGroup = new MsBuildItemGroup();
     badItemGroup.Entries.Add(new UnknownItemEntry());
     badItemProject.Elements.Add(badItemGroup);
     Action badItemAct = () => new MsBuildXmlRenderer().RenderToString(badItemProject);
-    badItemAct.Should().Throw<MsBuildValidationException>();
+    Assert.Throws<MsBuildValidationException>(badItemAct);
 
     var badTargetProject = new MsBuildProject();
     var badTarget = new MsBuildTarget { Name = new TargetBad().Name };
     badTarget.Elements.Add(new UnknownTargetElement());
     badTargetProject.Elements.Add(badTarget);
     Action badTargetAct = () => new MsBuildXmlRenderer().RenderToString(badTargetProject);
-    badTargetAct.Should().Throw<MsBuildValidationException>();
+    Assert.Throws<MsBuildValidationException>(badTargetAct);
   }
 
   [Fact]
@@ -240,15 +239,15 @@ public sealed class CoverageTests
     var parser = new MsBuildXmlParser();
     var project = parser.Parse(xml);
 
-    project.Elements.OfType<MsBuildComment>().Should().NotBeEmpty();
-    project.Imports.Single().Sdk.Should().Be("Sdk.X");
-    project.PropertyGroups.Single().Entries.OfType<MsBuildComment>().Should().NotBeEmpty();
-    project.ItemGroups.Single().Entries.OfType<MsBuildComment>().Should().NotBeEmpty();
-    project.ItemGroups.Single().Items.Single().MetadataAttributes.Should().ContainKey("Custom");
+    Assert.NotEmpty(project.Elements.OfType<MsBuildComment>());
+    Assert.Equal("Sdk.X", project.Imports.Single().Sdk);
+    Assert.NotEmpty(project.PropertyGroups.Single().Entries.OfType<MsBuildComment>());
+    Assert.NotEmpty(project.ItemGroups.Single().Entries.OfType<MsBuildComment>());
+    Assert.True(project.ItemGroups.Single().Items.Single().MetadataAttributes.ContainsKey("Custom"));
 
     var target = project.Targets.Single();
-    target.Elements.OfType<MsBuildTargetComment>().Should().NotBeEmpty();
-    target.Elements.OfType<MsBuildWarningStep>().Should().NotBeEmpty();
+    Assert.NotEmpty(target.Elements.OfType<MsBuildTargetComment>());
+    Assert.NotEmpty(target.Elements.OfType<MsBuildWarningStep>());
   }
 
   [Fact]
@@ -257,16 +256,16 @@ public sealed class CoverageTests
     var parser = new MsBuildXmlParser();
 
     Action nullXml = () => parser.Parse(null!);
-    nullXml.Should().Throw<ArgumentNullException>();
+    Assert.Throws<ArgumentNullException>(nullXml);
 
     Action badRoot = () => parser.Parse("<Root />");
-    badRoot.Should().Throw<NotSupportedException>();
+    Assert.Throws<NotSupportedException>(badRoot);
 
     Action badElement = () => parser.Parse("<Project><Unknown /></Project>");
-    badElement.Should().Throw<NotSupportedException>();
+    Assert.Throws<NotSupportedException>(badElement);
 
     Action badItem = () => parser.Parse("<Project><ItemGroup><None /></ItemGroup></Project>");
-    badItem.Should().Throw<NotSupportedException>();
+    Assert.Throws<NotSupportedException>(badItem);
 
     Action badTaskChild = () => parser.Parse("""
 <Project>
@@ -277,10 +276,10 @@ public sealed class CoverageTests
   </Target>
 </Project>
 """);
-    badTaskChild.Should().Throw<NotSupportedException>();
+    Assert.Throws<NotSupportedException>(badTaskChild);
 
     Action badPath = () => parser.ParseFile(" ");
-    badPath.Should().Throw<ArgumentException>();
+    Assert.Throws<ArgumentException>(badPath);
   }
 
   [Fact]
@@ -347,7 +346,7 @@ public sealed class CoverageTests
     project.Chooses.Add(choose);
 
     var act = () => MsBuildValidator.ValidateProject(project);
-    act.Should().Throw<MsBuildValidationException>();
+    Assert.Throws<MsBuildValidationException>(act);
   }
 
   [Fact]
@@ -390,7 +389,7 @@ public sealed class CoverageTests
     project.Chooses.Add(choose);
 
     var act = () => MsBuildValidator.ValidateProject(project);
-    act.Should().Throw<MsBuildValidationException>();
+    Assert.Throws<MsBuildValidationException>(act);
   }
 
   [Fact]
@@ -431,9 +430,9 @@ public sealed class CoverageTests
     var renderer = new MsBuildXmlRenderer();
     var targetsXml = renderer.RenderToString(def.Targets);
     var propsXml = renderer.RenderToString(def.Props);
-    targetsXml.Should().Contain("UsingTask");
-    targetsXml.Should().Contain("CoreCompile");
-    propsXml.Should().Contain("CopyToOutputDirectory");
+    Assert.Contains("UsingTask", targetsXml);
+    Assert.Contains("CoreCompile", targetsXml);
+    Assert.Contains("CopyToOutputDirectory", propsXml);
   }
 
   private sealed class UnknownProjectElement : IMsBuildProjectElement
