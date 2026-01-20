@@ -1,4 +1,3 @@
-using FluentAssertions;
 using JD.MSBuild.Fluent.Fluent;
 using JD.MSBuild.Fluent.IR;
 using JD.MSBuild.Fluent.Typed;
@@ -117,7 +116,7 @@ public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBa
 
     private static bool VerifyPackageId(PackageDefinition def)
     {
-        def.Id.Should().Be("MyPackage");
+        Assert.Equal("MyPackage", def.Id);
         return true;
     }
 
@@ -127,7 +126,7 @@ public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBa
         var hasProperty = props.PropertyGroups.Any(pg => 
             pg.Properties.Any(p => p.Name == "TProp"));
         
-        hasProperty.Should().BeTrue("the TProp property should exist");
+        Assert.True(hasProperty, "the TProp property should exist");
         return true;
     }
 
@@ -137,7 +136,7 @@ public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBa
         var hasItem = props.ItemGroups.Any(ig => 
             ig.Items.Any(i => i.Spec == "file.txt"));
         
-        hasItem.Should().BeTrue("the file.txt item should exist");
+        Assert.True(hasItem, "the file.txt item should exist");
         return true;
     }
 
@@ -146,7 +145,7 @@ public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBa
         var targets = def.GetBuildTargets();
         var hasTarget = targets.Targets.Any(t => t.Name == "TTarget");
         
-        hasTarget.Should().BeTrue("the TTarget should exist");
+        Assert.True(hasTarget, "the TTarget should exist");
         return true;
     }
 
@@ -155,8 +154,8 @@ public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBa
         var hasProps = def.GetBuildProps().PropertyGroups.Any();
         var hasTargets = def.GetBuildTargets().Targets.Any();
         
-        hasProps.Should().BeTrue("properties should exist");
-        hasTargets.Should().BeTrue("targets should exist");
+        Assert.True(hasProps, "properties should exist");
+        Assert.True(hasTargets, "targets should exist");
         
         return hasProps && hasTargets;
     }
@@ -166,14 +165,14 @@ public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBa
         var prop = def.GetBuildProps().PropertyGroups.First().Properties.First();
         var containsProperty = prop.Condition?.Contains("TProp") == true;
         
-        containsProperty.Should().BeTrue("condition should reference TProp");
+        Assert.True(containsProperty, "condition should reference TProp");
         return true;
     }
 
     private static bool VerifyPackagingOptions(PackageDefinition def)
     {
-        def.Packaging.BuildTransitive.Should().BeTrue();
-        def.Packaging.EmitSdk.Should().BeTrue();
+        Assert.True(def.Packaging.BuildTransitive);
+        Assert.True(def.Packaging.EmitSdk);
         return true;
     }
 

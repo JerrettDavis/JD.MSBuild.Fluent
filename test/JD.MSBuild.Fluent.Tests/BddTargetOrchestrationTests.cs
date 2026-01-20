@@ -1,4 +1,3 @@
-using FluentAssertions;
 using JD.MSBuild.Fluent.Fluent;
 using JD.MSBuild.Fluent.Typed;
 using TinyBDD.Xunit;

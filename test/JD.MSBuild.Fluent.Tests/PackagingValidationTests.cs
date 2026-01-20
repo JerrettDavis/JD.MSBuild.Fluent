@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using System.IO.Compression;
-using FluentAssertions;
 using TinyBDD.Xunit;
 using Xunit.Abstractions;
 
@@ -48,7 +47,7 @@ public sealed class PackagingValidationTests(ITestOutputHelper output) : TinyBdd
 
     private static bool VerifyPackagesCreated((string repoRoot, string outputDir, string[] packages) ctx)
     {
-        ctx.packages.Should().NotBeEmpty("packages should be created");
+        Assert.NotEmpty(ctx.packages);
         return true;
     }
 
@@ -95,18 +94,18 @@ public sealed class PackagingValidationTests(ITestOutputHelper output) : TinyBdd
     private static void AssertPackageHasMetadata(string nupkgPath, bool expectXml)
     {
         using var archive = ZipFile.OpenRead(nupkgPath);
-        archive.Entries.Should().Contain(e => e.FullName.Equals("README.md", StringComparison.OrdinalIgnoreCase));
-        archive.Entries.Should().Contain(e => e.FullName.Equals("LICENSE", StringComparison.OrdinalIgnoreCase));
+        Assert.Contains(archive.Entries, e => e.FullName.Equals("README.md", StringComparison.OrdinalIgnoreCase));
+        Assert.Contains(archive.Entries, e => e.FullName.Equals("LICENSE", StringComparison.OrdinalIgnoreCase));
 
         var nuspec = archive.Entries.SingleOrDefault(e => e.FullName.EndsWith(".nuspec", StringComparison.OrdinalIgnoreCase));
-        nuspec.Should().NotBeNull();
+        Assert.NotNull(nuspec);
         using var nuspecStream = nuspec!.Open();
         using var reader = new StreamReader(nuspecStream);
         var nuspecContent = reader.ReadToEnd();
-        nuspecContent.Should().Contain("<readme>README.md</readme>");
+        Assert.Contains("<readme>README.md</readme>", nuspecContent);
 
         if (expectXml)
-            archive.Entries.Should().Contain(e => e.FullName.EndsWith(".xml", StringComparison.OrdinalIgnoreCase));
+            Assert.Contains(archive.Entries, e => e.FullName.EndsWith(".xml", StringComparison.OrdinalIgnoreCase));
     }
 
     private static void RunDotnet(string args)

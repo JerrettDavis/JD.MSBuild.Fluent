@@ -1,5 +1,4 @@
 using System.Xml.Linq;
-using FluentAssertions;
 using JD.MSBuild.Fluent.Fluent;
 using JD.MSBuild.Fluent.IR;
 using JD.MSBuild.Fluent.Packaging;
