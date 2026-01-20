@@ -6,10 +6,13 @@ using JD.MSBuild.Fluent.Tests.Tasks;
 using JD.MSBuild.Fluent.Tests.Tasks.Extensions.SampleTask;
 using JD.MSBuild.Fluent.Typed;
 using JD.MSBuild.Fluent.Validation;
+using TinyBDD.Xunit;
+using Xunit.Abstractions;
 
 namespace JD.MSBuild.Fluent.Tests;
 
-public sealed class CoverageTests
+/// <summary>Feature: APISurfaceCoverage</summary>
+public sealed class CoverageTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
   [Fact]
   public void Fluent_builders_and_renderer_cover_surface()

@@ -2,13 +2,16 @@ using JD.MSBuild.Fluent.Generators;
 using JD.MSBuild.Fluent.Typed;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using TinyBDD.Xunit;
+using Xunit.Abstractions;
 
 namespace JD.MSBuild.Fluent.Tests;
 
-public sealed class GeneratorSpecTests
+/// <summary>Feature: MsBuildTaskSourceGeneration</summary>
+public sealed class GeneratorSpecTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
   [Fact]
-  public void Given_task_with_parameters_and_outputs_When_generator_runs_Then_emits_reference_and_parameter_types()
+  public async Task Given_task_with_parameters_and_outputs_When_generator_runs_Then_emits_reference_and_parameter_types()
   {
     const string source = """
 using JD.MSBuild.Fluent.Typed;
@@ -33,8 +36,6 @@ namespace Microsoft.Build.Framework
   }
 }
 """;
-
-    var generated = RunGenerator(source, assemblyName: "Demo.Tasks");
 
     const string expected = """
 // MsBuildTask_DoWorkMsBuild.g.cs
@@ -97,11 +98,14 @@ namespace Demo.Tasks.Extensions.DoWork
 }
 """;
 
-    Assert.Equal(Normalize(expected).TrimEnd(), Normalize(generated).TrimEnd());
+    await Given("task source with parameters and outputs", () => source)
+      .When("running source generator", src => RunGenerator(src, assemblyName: "Demo.Tasks"))
+      .Then("generated code matches expected", generated => Normalize(generated).TrimEnd() == Normalize(expected).TrimEnd())
+      .AssertPassed();
   }
 
   [Fact]
-  public void Given_task_with_name_style_and_ignore_When_generator_runs_Then_uses_short_name_and_skips_ignored()
+  public async Task Given_task_with_name_style_and_ignore_When_generator_runs_Then_uses_short_name_and_skips_ignored()
   {
     const string source = """
 using JD.MSBuild.Fluent.Typed;
@@ -119,13 +123,16 @@ namespace Spec.Tasks
 }
 """;
 
-    var generated = RunGenerator(source, assemblyName: "Spec.Assembly");
-
-    Assert.Contains("public string Name => \"BuildJob\";", Normalize(generated));
-    Assert.Contains("assemblyName: \"Spec.Assembly\"", Normalize(generated));
-    Assert.Contains("struct Keep", Normalize(generated));
-    Assert.DoesNotContain("struct Skip", Normalize(generated));
+    await Given("task source with name style and ignore attribute", () => source)
+      .When("running source generator", src => RunGenerator(src, assemblyName: "Spec.Assembly"))
+      .Then("uses short name", generated => Normalize(generated).Contains("public string Name => \"BuildJob\";"))
+      .And("includes assembly name", generated => Normalize(generated).Contains("assemblyName: \"Spec.Assembly\""))
+      .And("includes kept property", generated => Normalize(generated).Contains("struct Keep"))
+      .But("excludes ignored property", generated => !Normalize(generated).Contains("struct Skip"))
+      .AssertPassed();
   }
+
+  #region Helpers
 
   private static string RunGenerator(string source, string assemblyName)
   {
@@ -168,4 +175,6 @@ namespace Spec.Tasks
   }
 
   private static string Normalize(string value) => value.Replace("\r\n", "\n");
+
+  #endregion
 }

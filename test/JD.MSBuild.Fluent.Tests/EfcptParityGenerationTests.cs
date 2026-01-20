@@ -6,40 +6,57 @@ using JD.MSBuild.Fluent.Packaging;
 using JD.MSBuild.Fluent.Tests.Tasks;
 using JD.MSBuild.Fluent.Tests.Tasks.Extensions.Copy;
 using JD.MSBuild.Fluent.Typed;
+using TinyBDD.Xunit;
+using Xunit.Abstractions;
 using static JD.MSBuild.Fluent.Typed.MsBuildExpr;
 
 namespace JD.MSBuild.Fluent.Tests;
 
-public sealed class EfcptParityGenerationTests
+/// <summary>Feature: EfcptParityGeneration</summary>
+public sealed class EfcptParityGenerationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
   [Fact]
-  public void Emits_complex_parity_assets()
+  public async Task Emits_complex_parity_assets()
   {
-    var def = BuildDefinition();
-    var dir = Path.Combine(Path.GetTempPath(), "JD.MSBuild.Fluent.Tests", Guid.NewGuid().ToString("n"));
-    Directory.CreateDirectory(dir);
-
-    try
-    {
-      new MsBuildPackageEmitter().Emit(def, dir);
-
-      Assert.Equal(Normalize(ReadExpected("Efcpt.Parity.build.props")), File.ReadAllText(Path.Combine(dir, "build", "Efcpt.Parity.props")));
-
-      Assert.Equal(Normalize(ReadExpected("Efcpt.Parity.build.targets")), File.ReadAllText(Path.Combine(dir, "build", "Efcpt.Parity.targets")));
-
-      Assert.Equal(Normalize(ReadExpected("Efcpt.Parity.buildTransitive.props")), File.ReadAllText(Path.Combine(dir, "buildTransitive", "Efcpt.Parity.props")));
-
-      Assert.Equal(Normalize(ReadExpected("Efcpt.Parity.buildTransitive.targets")), File.ReadAllText(Path.Combine(dir, "buildTransitive", "Efcpt.Parity.targets")));
-
-      Assert.Equal(Normalize(ReadExpected("Efcpt.Parity.Sdk.props")), File.ReadAllText(Path.Combine(dir, "Sdk", def.Id, "Sdk.props")));
-
-      Assert.Equal(Normalize(ReadExpected("Efcpt.Parity.Sdk.targets")), File.ReadAllText(Path.Combine(dir, "Sdk", def.Id, "Sdk.targets")));
-    }
-    finally
-    {
-      try { Directory.Delete(dir, recursive: true); } catch { }
-    }
+    await Given("complex package definition", () =>
+      {
+        var def = BuildDefinition();
+        var tempDir = Path.Combine(Path.GetTempPath(), "JD.MSBuild.Fluent.Tests", Guid.NewGuid().ToString("n"));
+        Directory.CreateDirectory(tempDir);
+        return (def, tempDir);
+      })
+      .When("emitting package", ctx =>
+      {
+        new MsBuildPackageEmitter().Emit(ctx.def, ctx.tempDir);
+        return ctx.tempDir;
+      })
+      .Then("build.props matches expected", dir =>
+        File.ReadAllText(Path.Combine(dir, "build", "Efcpt.Parity.props")) == Normalize(ReadExpected("Efcpt.Parity.build.props")))
+      .And("build.targets matches expected", dir =>
+        File.ReadAllText(Path.Combine(dir, "build", "Efcpt.Parity.targets")) == Normalize(ReadExpected("Efcpt.Parity.build.targets")))
+      .And("buildTransitive.props matches expected", dir =>
+        File.ReadAllText(Path.Combine(dir, "buildTransitive", "Efcpt.Parity.props")) == Normalize(ReadExpected("Efcpt.Parity.buildTransitive.props")))
+      .And("buildTransitive.targets matches expected", dir =>
+        File.ReadAllText(Path.Combine(dir, "buildTransitive", "Efcpt.Parity.targets")) == Normalize(ReadExpected("Efcpt.Parity.buildTransitive.targets")))
+      .And("Sdk.props matches expected", dir =>
+      {
+        var def = BuildDefinition();
+        return File.ReadAllText(Path.Combine(dir, "Sdk", def.Id, "Sdk.props")) == Normalize(ReadExpected("Efcpt.Parity.Sdk.props"));
+      })
+      .And("Sdk.targets matches expected", dir =>
+      {
+        var def = BuildDefinition();
+        return File.ReadAllText(Path.Combine(dir, "Sdk", def.Id, "Sdk.targets")) == Normalize(ReadExpected("Efcpt.Parity.Sdk.targets"));
+      })
+      .Finally(dir =>
+      {
+        if (dir != null && Directory.Exists(dir))
+          try { Directory.Delete(dir, recursive: true); } catch { }
+      })
+      .AssertPassed();
   }
+
+  #region Helpers
 
   private static PackageDefinition BuildDefinition()
     => Package.Define("Efcpt.Parity")
@@ -265,4 +282,6 @@ public sealed class EfcptParityGenerationTests
   {
     public string Name => "Visible";
   }
+
+  #endregion
 }

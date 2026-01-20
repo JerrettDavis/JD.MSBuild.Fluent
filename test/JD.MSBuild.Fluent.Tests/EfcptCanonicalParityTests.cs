@@ -5,10 +5,13 @@ using JD.MSBuild.Fluent.Parse;
 using JD.MSBuild.Fluent.Packaging;
 using JD.MSBuild.Fluent.Render;
 using JD.MSBuild.Fluent.Typed;
+using TinyBDD.Xunit;
+using Xunit.Abstractions;
 
 namespace JD.MSBuild.Fluent.Tests;
 
-public sealed class EfcptCanonicalParityTests
+/// <summary>Feature: EfcptCanonicalParity</summary>
+public sealed class EfcptCanonicalParityTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
   private static readonly MsBuildXmlParser Parser = new();
   private static readonly MsBuildXmlRenderOptions ParityOptions = new()
@@ -22,90 +25,114 @@ public sealed class EfcptCanonicalParityTests
   };
 
   [Fact]
-  public void Emits_JD_Efcpt_Build_assets_with_parity()
+  public async Task Emits_JD_Efcpt_Build_assets_with_parity()
   {
-    var def = new PackageDefinition { Id = "JD.Efcpt.Build" };
-    var buildProps = ParseExpected("JD.Efcpt.Build.build.props");
-    var buildTargets = ParseExpected("JD.Efcpt.Build.build.targets");
-    var buildTransitiveProps = ParseExpected("JD.Efcpt.Build.buildTransitive.props");
-    var buildTransitiveTargets = ParseExpected("JD.Efcpt.Build.buildTransitive.targets");
+    await Given("expected JD.Efcpt.Build assets parsed from golden files", () =>
+      {
+        var buildProps = ParseExpected("JD.Efcpt.Build.build.props");
+        var buildTargets = ParseExpected("JD.Efcpt.Build.build.targets");
+        var buildTransitiveProps = ParseExpected("JD.Efcpt.Build.buildTransitive.props");
+        var buildTransitiveTargets = ParseExpected("JD.Efcpt.Build.buildTransitive.targets");
+        return (buildProps, buildTargets, buildTransitiveProps, buildTransitiveTargets);
+      })
+      .When("creating package definition and rewriting assets", ctx =>
+      {
+        var def = new PackageDefinition { Id = "JD.Efcpt.Build" };
+        def.BuildProps = RewriteProps(ctx.buildProps);
+        def.BuildTargets = RewriteTargets(ctx.buildTargets);
+        def.BuildTransitiveProps = RewriteProps(ctx.buildTransitiveProps);
+        def.BuildTransitiveTargets = RewriteTargets(ctx.buildTransitiveTargets);
+        def.Packaging.BuildTransitive = true;
+        return (def, ctx.buildProps, ctx.buildTargets, ctx.buildTransitiveProps, ctx.buildTransitiveTargets);
+      })
+      .Then("rewritten props match expected", ctx => AssertProjectsMatch(ctx.buildProps, ctx.def.BuildProps!))
+      .And("rewritten targets match expected", ctx => AssertProjectsMatch(ctx.buildTargets, ctx.def.BuildTargets!))
+      .And("rewritten buildTransitive props match expected", ctx => AssertProjectsMatch(ctx.buildTransitiveProps, ctx.def.BuildTransitiveProps!))
+      .And("rewritten buildTransitive targets match expected", ctx => AssertProjectsMatch(ctx.buildTransitiveTargets, ctx.def.BuildTransitiveTargets!))
+      .And("emitted files match golden files", ctx =>
+      {
+        var dir = Path.Combine(Path.GetTempPath(), "JD.MSBuild.Fluent.Tests", Guid.NewGuid().ToString("n"));
+        Directory.CreateDirectory(dir);
 
-    def.BuildProps = RewriteProps(buildProps);
-    def.BuildTargets = RewriteTargets(buildTargets);
-    def.BuildTransitiveProps = RewriteProps(buildTransitiveProps);
-    def.BuildTransitiveTargets = RewriteTargets(buildTransitiveTargets);
-    def.Packaging.BuildTransitive = true;
+        try
+        {
+          var emitter = new MsBuildPackageEmitter(new MsBuildXmlRenderer(ParityOptions));
+          emitter.Emit(ctx.def, dir);
 
-    AssertProjectEquivalent(buildProps, def.BuildProps);
-    AssertProjectEquivalent(buildTargets, def.BuildTargets);
-    AssertProjectEquivalent(buildTransitiveProps, def.BuildTransitiveProps);
-    AssertProjectEquivalent(buildTransitiveTargets, def.BuildTransitiveTargets);
-
-    var dir = Path.Combine(Path.GetTempPath(), "JD.MSBuild.Fluent.Tests", Guid.NewGuid().ToString("n"));
-    Directory.CreateDirectory(dir);
-
-    try
-    {
-      var emitter = new MsBuildPackageEmitter(new MsBuildXmlRenderer(ParityOptions));
-      emitter.Emit(def, dir);
-
-      AssertProjectEquivalent(buildProps, Path.Combine(dir, "build", "JD.Efcpt.Build.props"));
-      AssertProjectEquivalent(buildTargets, Path.Combine(dir, "build", "JD.Efcpt.Build.targets"));
-      AssertProjectEquivalent(buildTransitiveProps, Path.Combine(dir, "buildTransitive", "JD.Efcpt.Build.props"));
-      AssertProjectEquivalent(buildTransitiveTargets, Path.Combine(dir, "buildTransitive", "JD.Efcpt.Build.targets"));
-      AssertTextParity("JD.Efcpt.Build.build.props", Path.Combine(dir, "build", "JD.Efcpt.Build.props"));
-      AssertTextParity("JD.Efcpt.Build.build.targets", Path.Combine(dir, "build", "JD.Efcpt.Build.targets"));
-      AssertTextParity("JD.Efcpt.Build.buildTransitive.props", Path.Combine(dir, "buildTransitive", "JD.Efcpt.Build.props"));
-      AssertTextParity("JD.Efcpt.Build.buildTransitive.targets", Path.Combine(dir, "buildTransitive", "JD.Efcpt.Build.targets"));
-    }
-    finally
-    {
-      try { Directory.Delete(dir, recursive: true); } catch { }
-    }
+          AssertProjectEquivalent(ctx.buildProps, Path.Combine(dir, "build", "JD.Efcpt.Build.props"));
+          AssertProjectEquivalent(ctx.buildTargets, Path.Combine(dir, "build", "JD.Efcpt.Build.targets"));
+          AssertProjectEquivalent(ctx.buildTransitiveProps, Path.Combine(dir, "buildTransitive", "JD.Efcpt.Build.props"));
+          AssertProjectEquivalent(ctx.buildTransitiveTargets, Path.Combine(dir, "buildTransitive", "JD.Efcpt.Build.targets"));
+          AssertTextParity("JD.Efcpt.Build.build.props", Path.Combine(dir, "build", "JD.Efcpt.Build.props"));
+          AssertTextParity("JD.Efcpt.Build.build.targets", Path.Combine(dir, "build", "JD.Efcpt.Build.targets"));
+          AssertTextParity("JD.Efcpt.Build.buildTransitive.props", Path.Combine(dir, "buildTransitive", "JD.Efcpt.Build.props"));
+          AssertTextParity("JD.Efcpt.Build.buildTransitive.targets", Path.Combine(dir, "buildTransitive", "JD.Efcpt.Build.targets"));
+          
+          return true;
+        }
+        finally
+        {
+          try { Directory.Delete(dir, recursive: true); } catch { }
+        }
+      })
+      .AssertPassed();
   }
 
   [Fact]
-  public void Emits_JD_Efcpt_Sdk_assets_with_parity()
+  public async Task Emits_JD_Efcpt_Sdk_assets_with_parity()
   {
-    var def = new PackageDefinition { Id = "JD.Efcpt.Sdk" };
-    var buildProps = ParseExpected("JD.Efcpt.Sdk.build.props");
-    var buildTargets = ParseExpected("JD.Efcpt.Sdk.build.targets");
-    var sdkProps = ParseExpected("JD.Efcpt.Sdk.Sdk.props");
-    var sdkTargets = ParseExpected("JD.Efcpt.Sdk.Sdk.targets");
+    await Given("expected JD.Efcpt.Sdk assets parsed from golden files", () =>
+      {
+        var buildProps = ParseExpected("JD.Efcpt.Sdk.build.props");
+        var buildTargets = ParseExpected("JD.Efcpt.Sdk.build.targets");
+        var sdkProps = ParseExpected("JD.Efcpt.Sdk.Sdk.props");
+        var sdkTargets = ParseExpected("JD.Efcpt.Sdk.Sdk.targets");
+        return (buildProps, buildTargets, sdkProps, sdkTargets);
+      })
+      .When("creating SDK package definition and rewriting assets", ctx =>
+      {
+        var def = new PackageDefinition { Id = "JD.Efcpt.Sdk" };
+        def.BuildProps = RewriteProps(ctx.buildProps);
+        def.BuildTargets = RewriteTargets(ctx.buildTargets);
+        def.SdkProps = RewriteProps(ctx.sdkProps);
+        def.SdkTargets = RewriteTargets(ctx.sdkTargets);
+        def.Packaging.EmitSdk = true;
+        return (def, ctx.buildProps, ctx.buildTargets, ctx.sdkProps, ctx.sdkTargets);
+      })
+      .Then("rewritten props match expected", ctx => AssertProjectsMatch(ctx.buildProps, ctx.def.BuildProps!))
+      .And("rewritten targets match expected", ctx => AssertProjectsMatch(ctx.buildTargets, ctx.def.BuildTargets!))
+      .And("rewritten SDK props match expected", ctx => AssertProjectsMatch(ctx.sdkProps, ctx.def.SdkProps!))
+      .And("rewritten SDK targets match expected", ctx => AssertProjectsMatch(ctx.sdkTargets, ctx.def.SdkTargets!))
+      .And("emitted files match golden files", ctx =>
+      {
+        var dir = Path.Combine(Path.GetTempPath(), "JD.MSBuild.Fluent.Tests", Guid.NewGuid().ToString("n"));
+        Directory.CreateDirectory(dir);
 
-    def.BuildProps = RewriteProps(buildProps);
-    def.BuildTargets = RewriteTargets(buildTargets);
-    def.SdkProps = RewriteProps(sdkProps);
-    def.SdkTargets = RewriteTargets(sdkTargets);
-    def.Packaging.EmitSdk = true;
+        try
+        {
+          var emitter = new MsBuildPackageEmitter(new MsBuildXmlRenderer(ParityOptions));
+          emitter.Emit(ctx.def, dir);
 
-    AssertProjectEquivalent(buildProps, def.BuildProps);
-    AssertProjectEquivalent(buildTargets, def.BuildTargets);
-    AssertProjectEquivalent(sdkProps, def.SdkProps);
-    AssertProjectEquivalent(sdkTargets, def.SdkTargets);
-
-    var dir = Path.Combine(Path.GetTempPath(), "JD.MSBuild.Fluent.Tests", Guid.NewGuid().ToString("n"));
-    Directory.CreateDirectory(dir);
-
-    try
-    {
-      var emitter = new MsBuildPackageEmitter(new MsBuildXmlRenderer(ParityOptions));
-      emitter.Emit(def, dir);
-
-      AssertProjectEquivalent(buildProps, Path.Combine(dir, "build", "JD.Efcpt.Sdk.props"));
-      AssertProjectEquivalent(buildTargets, Path.Combine(dir, "build", "JD.Efcpt.Sdk.targets"));
-      AssertProjectEquivalent(sdkProps, Path.Combine(dir, "Sdk", def.Id, "Sdk.props"));
-      AssertProjectEquivalent(sdkTargets, Path.Combine(dir, "Sdk", def.Id, "Sdk.targets"));
-      AssertTextParity("JD.Efcpt.Sdk.build.props", Path.Combine(dir, "build", "JD.Efcpt.Sdk.props"));
-      AssertTextParity("JD.Efcpt.Sdk.build.targets", Path.Combine(dir, "build", "JD.Efcpt.Sdk.targets"));
-      AssertTextParity("JD.Efcpt.Sdk.Sdk.props", Path.Combine(dir, "Sdk", def.Id, "Sdk.props"));
-      AssertTextParity("JD.Efcpt.Sdk.Sdk.targets", Path.Combine(dir, "Sdk", def.Id, "Sdk.targets"));
-    }
-    finally
-    {
-      try { Directory.Delete(dir, recursive: true); } catch { }
-    }
+          AssertProjectEquivalent(ctx.buildProps, Path.Combine(dir, "build", "JD.Efcpt.Sdk.props"));
+          AssertProjectEquivalent(ctx.buildTargets, Path.Combine(dir, "build", "JD.Efcpt.Sdk.targets"));
+          AssertProjectEquivalent(ctx.sdkProps, Path.Combine(dir, "Sdk", ctx.def.Id, "Sdk.props"));
+          AssertProjectEquivalent(ctx.sdkTargets, Path.Combine(dir, "Sdk", ctx.def.Id, "Sdk.targets"));
+          AssertTextParity("JD.Efcpt.Sdk.build.props", Path.Combine(dir, "build", "JD.Efcpt.Sdk.props"));
+          AssertTextParity("JD.Efcpt.Sdk.build.targets", Path.Combine(dir, "build", "JD.Efcpt.Sdk.targets"));
+          AssertTextParity("JD.Efcpt.Sdk.Sdk.props", Path.Combine(dir, "Sdk", ctx.def.Id, "Sdk.props"));
+          AssertTextParity("JD.Efcpt.Sdk.Sdk.targets", Path.Combine(dir, "Sdk", ctx.def.Id, "Sdk.targets"));
+          
+          return true;
+        }
+        finally
+        {
+          try { Directory.Delete(dir, recursive: true); } catch { }
+        }
+      })
+      .AssertPassed();
   }
+
+  #region Helpers
 
   private static MsBuildProject ParseExpected(string name)
     => Parser.ParseFile(Path.Combine(AppContext.BaseDirectory, "Golden", "Expected", name));
@@ -401,4 +428,12 @@ public sealed class EfcptCanonicalParityTests
       .Select(name => (IMsBuildTargetName)new MsBuildTargetName(name.Trim()))
       .ToArray();
   }
+
+  private static bool AssertProjectsMatch(MsBuildProject expected, MsBuildProject actual)
+  {
+    AssertProjectEquivalent(expected, actual);
+    return true;
+  }
+
+  #endregion
 }
