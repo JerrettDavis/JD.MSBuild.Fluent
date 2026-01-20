@@ -56,8 +56,8 @@ public sealed class CoverageTests(ITestOutputHelper output) : TinyBddXunitBase(o
           .Comment("inside-target")
           .Message("hello", "Low", "'m'=='1'")
           .Exec("echo hi", "C:\\", "'e'=='1'")
-          .Error("err", "E1", "'er'=='1'")
-          .Warning("warn", "W1", "'w'=='1'")
+          .Error("err", "'er'=='1'", "E1")
+          .Warning("warn", "'w'=='1'", "W1")
           .PropertyGroup("'p'=='1'", g => g.Property<PropertyPG>("V"), label: "Tpg")
           .ItemGroup("'i'=='1'", g => g.Include<MsBuildItemTypes.None>("x.txt"), label: "Tig")
           .Task(new DoStuffTaskName(), task => task

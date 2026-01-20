@@ -400,10 +400,10 @@ public sealed class EfcptCanonicalParityTests(ITestOutputHelper output) : TinyBd
         builder.Exec(exec.Command, exec.WorkingDirectory, exec.Condition);
         break;
       case MsBuildErrorStep err:
-        builder.Error(err.Text, err.Code, err.Condition);
+        builder.Error(err.Text, err.Condition, err.Code);
         break;
       case MsBuildWarningStep warn:
-        builder.Warning(warn.Text, warn.Code, warn.Condition);
+        builder.Warning(warn.Text, warn.Condition, warn.Code);
         break;
       case MsBuildTaskStep task:
         builder.Task(new MsBuildTaskReference(task.TaskName), t => RewriteTask(t, task), task.Condition);
