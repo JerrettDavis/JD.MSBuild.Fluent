@@ -8,102 +8,176 @@ using static JD.MSBuild.Fluent.Typed.MsBuildExpr;
 
 namespace JD.MSBuild.Fluent.Tests;
 
-/// <summary>Feature: Fluent API - Package Definition</summary>
 public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
-    public async Task Scenario_Define_basic_package()
+    public async Task DefineBasicPackage()
     {
-        await Given("a package ID", () => "MyPackage")
-            .When("defining with Package.Define", id => Package.Define(id).Build())
-            .Then("package ID should be set", def => def.Id == "MyPackage")
+        await Given("a package ID", CreatePackageId)
+            .When("defining with Package.Define", DefinePackageFromId)
+            .Then("package ID should be set", VerifyPackageId)
             .AssertPassed();
     }
 
     [Fact]
-    public async Task Scenario_Add_properties_to_package()
+    public async Task AddPropertiesToPackage()
     {
-        await Given("a package builder", () => Package.Define("Test"))
-            .When("adding properties", b => b.Props(p => p.Property<TProp>("Val")).Build())
-            .Then("property exists in build props", d =>
-            {
-                var props = d.GetBuildProps();
-                return props.PropertyGroups.Any(pg => pg.Properties.Any(p => p.Name == "TProp"));
-            })
+        await Given("a package builder", CreateTestPackageBuilder)
+            .When("adding properties", AddProperty)
+            .Then("property exists in build props", VerifyPropertyExists)
             .AssertPassed();
     }
 
     [Fact]
-    public async Task Scenario_Add_items_to_package()
+    public async Task AddItemsToPackage()
     {
-        await Given("a package builder", () => Package.Define("Test"))
-            .When("adding items", b => b.Props(p => p.Item<MsBuildItemTypes.None>(MsBuildItemOperation.Include, "file.txt")).Build())
-            .Then("item exists in build props", d =>
-            {
-                var props = d.GetBuildProps();
-                return props.ItemGroups.Any(ig => ig.Items.Any(i => i.Spec == "file.txt"));
-            })
+        await Given("a package builder", CreateTestPackageBuilder)
+            .When("adding items", AddNoneItem)
+            .Then("item exists in build props", VerifyItemExists)
             .AssertPassed();
     }
 
     [Fact]
-    public async Task Scenario_Add_targets_with_Message_task()
+    public async Task AddTargetsWithMessageTask()
     {
-        await Given("a package builder", () => Package.Define("Test"))
-            .When("adding target with Message", b => b.Targets(t => t.Target<TTarget>(tgt => tgt.Message("Hi"))).Build())
-            .Then("target exists in build targets", d =>
-            {
-                var targets = d.GetBuildTargets();
-                return targets.Targets.Any(t => t.Name == "TTarget");
-            })
+        await Given("a package builder", CreateTestPackageBuilder)
+            .When("adding target with Message", AddMessageTarget)
+            .Then("target exists in build targets", VerifyTargetExists)
             .AssertPassed();
     }
 
     [Fact]
-    public async Task Scenario_Chain_Props_and_Targets()
+    public async Task ChainPropsAndTargets()
     {
-        await Given("package definition", () => Package.Define("Test"))
-            .When("chaining Props and Targets", b => b
-                .Props(p => p.Property<TProp>("V"))
-                .Targets(t => t.Target<TTarget>(tgt => tgt.Message("M")))
-                .Build())
-            .Then("has both props and targets", d =>
-            {
-                var hasProps = d.GetBuildProps().PropertyGroups.Any();
-                var hasTargets = d.GetBuildTargets().Targets.Any();
-                return hasProps && hasTargets;
-            })
+        await Given("package definition", CreateTestPackageBuilder)
+            .When("chaining Props and Targets", ChainPropsAndTargetsBuilder)
+            .Then("has both props and targets", VerifyBothPropsAndTargets)
             .AssertPassed();
     }
 
     [Fact]
-    public async Task Scenario_Use_MsBuildExpr_conditionals()
+    public async Task UseMsBuildExprConditionals()
     {
-        await Given("condition helper", () => IsTrue<TProp>())
-            .When("applied to property", cond => Package.Define("Test")
-                .Props(p => p.Property<TProp>("V", cond))
-                .Build())
-            .Then("condition contains property name", d =>
-            {
-                var prop = d.GetBuildProps().PropertyGroups.First().Properties.First();
-                return prop.Condition?.Contains("TProp") == true;
-            })
+        await Given("condition helper", CreateCondition)
+            .When("applied to property", ApplyConditionToProperty)
+            .Then("condition contains property name", VerifyConditionContainsProperty)
             .AssertPassed();
     }
 
     [Fact]
-    public async Task Scenario_Configure_packaging_options()
+    public async Task ConfigurePackagingOptions()
     {
-        await Given("package builder", () => Package.Define("Test"))
-            .When("setting PackagingOptions", b => b
-                .Pack(o => { o.BuildTransitive = true; o.EmitSdk = true; })
-                .Build())
-            .Then("options are set", d =>
-            {
-                return d.Packaging.BuildTransitive && d.Packaging.EmitSdk;
-            })
+        await Given("package builder", CreateTestPackageBuilder)
+            .When("setting PackagingOptions", ConfigurePackaging)
+            .Then("options are set", VerifyPackagingOptions)
             .AssertPassed();
     }
+
+    #region Helper Methods - Given
+
+    private static string CreatePackageId() => "MyPackage";
+    private static PackageBuilder CreateTestPackageBuilder() => Package.Define("Test");
+    private static string CreateCondition() => IsTrue<TProp>();
+
+    #endregion
+
+    #region Helper Methods - When
+
+    private static PackageDefinition DefinePackageFromId(string id) => 
+        Package.Define(id).Build();
+
+    private static PackageDefinition AddProperty(PackageBuilder builder) => 
+        builder.Props(p => p.Property<TProp>("Val")).Build();
+
+    private static PackageDefinition AddNoneItem(PackageBuilder builder) =>
+        builder.Props(p => p.Item<MsBuildItemTypes.None>(MsBuildItemOperation.Include, "file.txt")).Build();
+
+    private static PackageDefinition AddMessageTarget(PackageBuilder builder) =>
+        builder.Targets(t => t.Target<TTarget>(tgt => tgt.Message("Hi"))).Build();
+
+    private static PackageDefinition ChainPropsAndTargetsBuilder(PackageBuilder builder) =>
+        builder
+            .Props(p => p.Property<TProp>("V"))
+            .Targets(t => t.Target<TTarget>(tgt => tgt.Message("M")))
+            .Build();
+
+    private static PackageDefinition ApplyConditionToProperty(string condition) =>
+        Package.Define("Test")
+            .Props(p => p.Property<TProp>("V", condition))
+            .Build();
+
+    private static PackageDefinition ConfigurePackaging(PackageBuilder builder) =>
+        builder
+            .Pack(o => { o.BuildTransitive = true; o.EmitSdk = true; })
+            .Build();
+
+    #endregion
+
+    #region Helper Methods - Then
+
+    private static bool VerifyPackageId(PackageDefinition def)
+    {
+        def.Id.Should().Be("MyPackage");
+        return true;
+    }
+
+    private static bool VerifyPropertyExists(PackageDefinition def)
+    {
+        var props = def.GetBuildProps();
+        var hasProperty = props.PropertyGroups.Any(pg => 
+            pg.Properties.Any(p => p.Name == "TProp"));
+        
+        hasProperty.Should().BeTrue("the TProp property should exist");
+        return true;
+    }
+
+    private static bool VerifyItemExists(PackageDefinition def)
+    {
+        var props = def.GetBuildProps();
+        var hasItem = props.ItemGroups.Any(ig => 
+            ig.Items.Any(i => i.Spec == "file.txt"));
+        
+        hasItem.Should().BeTrue("the file.txt item should exist");
+        return true;
+    }
+
+    private static bool VerifyTargetExists(PackageDefinition def)
+    {
+        var targets = def.GetBuildTargets();
+        var hasTarget = targets.Targets.Any(t => t.Name == "TTarget");
+        
+        hasTarget.Should().BeTrue("the TTarget should exist");
+        return true;
+    }
+
+    private static bool VerifyBothPropsAndTargets(PackageDefinition def)
+    {
+        var hasProps = def.GetBuildProps().PropertyGroups.Any();
+        var hasTargets = def.GetBuildTargets().Targets.Any();
+        
+        hasProps.Should().BeTrue("properties should exist");
+        hasTargets.Should().BeTrue("targets should exist");
+        
+        return hasProps && hasTargets;
+    }
+
+    private static bool VerifyConditionContainsProperty(PackageDefinition def)
+    {
+        var prop = def.GetBuildProps().PropertyGroups.First().Properties.First();
+        var containsProperty = prop.Condition?.Contains("TProp") == true;
+        
+        containsProperty.Should().BeTrue("condition should reference TProp");
+        return true;
+    }
+
+    private static bool VerifyPackagingOptions(PackageDefinition def)
+    {
+        def.Packaging.BuildTransitive.Should().BeTrue();
+        def.Packaging.EmitSdk.Should().BeTrue();
+        return true;
+    }
+
+    #endregion
 
     private readonly struct TProp : IMsBuildPropertyName { public string Name => "TProp"; }
     private readonly struct TTarget : IMsBuildTargetName { public string Name => "TTarget"; }
