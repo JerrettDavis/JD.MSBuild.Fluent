@@ -747,7 +747,7 @@ public sealed class TargetBuilder
   /// <summary>
   /// Adds an Error task to the target.
   /// </summary>
-  public TargetBuilder Error(string text, string? code = null, string? condition = null)
+  public TargetBuilder Error(string text, string? condition = null, string? code = null)
   {
     _target.Elements.Add(new MsBuildErrorStep { Text = text, Code = code, Condition = condition });
     return this;
@@ -756,7 +756,7 @@ public sealed class TargetBuilder
   /// <summary>
   /// Adds a Warning task to the target.
   /// </summary>
-  public TargetBuilder Warning(string text, string? code = null, string? condition = null)
+  public TargetBuilder Warning(string text, string? condition = null, string? code = null)
   {
     _target.Elements.Add(new MsBuildWarningStep { Text = text, Code = code, Condition = condition });
     return this;
