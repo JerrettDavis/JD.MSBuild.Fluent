@@ -16,6 +16,12 @@ public sealed class PackagePackagingOptions
   public bool EmitSdk { get; set; }
 
   /// <summary>
+  /// If true, emit SDK files as Sdk/Sdk.props instead of Sdk/&lt;PackageId&gt;/Sdk.props.
+  /// This is required for packages that extend base SDKs (e.g., extending Microsoft.NET.Sdk).
+  /// </summary>
+  public bool SdkFlatLayout { get; set; }
+
+  /// <summary>
   /// Base file name used for build/*.props and build/*.targets.
   /// Defaults to the package ID.
   /// </summary>

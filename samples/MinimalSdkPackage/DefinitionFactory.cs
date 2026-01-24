@@ -21,7 +21,7 @@ public static class DefinitionFactory
           .Task("WriteLinesToFile", task => task
             .Param("File", "$(BaseIntermediateOutputPath)MinimalSdkPackage.txt")
             .Param("Lines", "Hello from MinimalSdkPackage"))))
-      .Pack(o => { o.EmitSdk = true; o.BuildTransitive = true; })
+      .Pack(o => { o.EmitSdk = true; o.SdkFlatLayout = true; o.BuildTransitive = true; })
       .Build();
   }
 }

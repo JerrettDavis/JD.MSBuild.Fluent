@@ -41,10 +41,12 @@ public sealed class MsBuildPackageEmitter
     if (def.Packaging.BuildTransitive)
       EmitBuildAssets(Path.Combine(outputDirectory, "buildTransitive"), basename, def.GetBuildTransitiveProps(), def.GetBuildTransitiveTargets());
 
-    // Sdk/<id>/Sdk.props & Sdk.targets
+    // Sdk/<id>/Sdk.props & Sdk.targets (or Sdk/Sdk.props if SdkFlatLayout=true)
     if (def.Packaging.EmitSdk)
     {
-      var sdkDir = Path.Combine(outputDirectory, "Sdk", def.Id);
+      var sdkDir = def.Packaging.SdkFlatLayout 
+        ? Path.Combine(outputDirectory, "Sdk")
+        : Path.Combine(outputDirectory, "Sdk", def.Id);
       Directory.CreateDirectory(sdkDir);
       File.WriteAllText(Path.Combine(sdkDir, "Sdk.props"), _renderer.RenderToString(def.GetSdkProps()));
       File.WriteAllText(Path.Combine(sdkDir, "Sdk.targets"), _renderer.RenderToString(def.GetSdkTargets()));
