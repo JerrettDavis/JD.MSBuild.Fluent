@@ -168,6 +168,32 @@ public class GenerateMSBuildAssets : Task
           Log.LogMessage(MessageImportance.Low, $"Wrote {path}");
         }
       }
+      
+      // Write SDK files if enabled
+      if (definition.Packaging.EmitSdk)
+      {
+        var sdkDir = definition.Packaging.SdkFlatLayout 
+          ? Path.Combine(OutputPath, "Sdk")
+          : Path.Combine(OutputPath, "Sdk", definition.Id);
+        if (!Directory.Exists(sdkDir))
+          Directory.CreateDirectory(sdkDir);
+        
+        if (_renderedXml?.SdkProps != null)
+        {
+          var path = Path.Combine(sdkDir, "Sdk.props");
+          File.WriteAllText(path, _renderedXml.SdkProps);
+          generatedFiles.Add(path);
+          Log.LogMessage(MessageImportance.Low, $"Wrote {path}");
+        }
+        
+        if (_renderedXml?.SdkTargets != null)
+        {
+          var path = Path.Combine(sdkDir, "Sdk.targets");
+          File.WriteAllText(path, _renderedXml.SdkTargets);
+          generatedFiles.Add(path);
+          Log.LogMessage(MessageImportance.Low, $"Wrote {path}");
+        }
+      }
 
       GeneratedFiles = generatedFiles.Select(f => new TaskItem(f)).ToArray();
 
@@ -344,22 +370,33 @@ public class GenerateMSBuildAssets : Task
       var buildTargetsXml = RenderProject("BuildTargets");
       var buildTransitivePropsXml = RenderProject("BuildTransitiveProps");
       var buildTransitiveTargetsXml = RenderProject("BuildTransitiveTargets");
+      var sdkPropsXml = RenderProject("SdkProps");
+      var sdkTargetsXml = RenderProject("SdkTargets");
       
       // Extract packaging settings
       var packagingProp = userType.GetProperty("Packaging");
       var packaging = packagingProp?.GetValue(userPackageDef);
       bool buildTransitive = false;
+      bool emitSdk = false;
+      bool sdkFlatLayout = false;
       
       if (packaging != null)
       {
         var buildTransitiveProp = packaging.GetType().GetProperty("BuildTransitive");
         buildTransitive = (buildTransitiveProp?.GetValue(packaging) as bool?) ?? false;
+        
+        var emitSdkProp = packaging.GetType().GetProperty("EmitSdk");
+        emitSdk = (emitSdkProp?.GetValue(packaging) as bool?) ?? false;
+        
+        var sdkFlatLayoutProp = packaging.GetType().GetProperty("SdkFlatLayout");
+        sdkFlatLayout = (sdkFlatLayoutProp?.GetValue(packaging) as bool?) ?? false;
       }
       
       Log.LogMessage(MessageImportance.Low, 
-        $"Extracted: Id={id}, BuildTransitive={buildTransitive}, " +
+        $"Extracted: Id={id}, BuildTransitive={buildTransitive}, EmitSdk={emitSdk}, SdkFlatLayout={sdkFlatLayout}, " +
         $"Props={buildPropsXml != null}, Targets={buildTargetsXml != null}, " +
-        $"TransitiveProps={buildTransitivePropsXml != null}, TransitiveTargets={buildTransitiveTargetsXml != null}");
+        $"TransitiveProps={buildTransitivePropsXml != null}, TransitiveTargets={buildTransitiveTargetsXml != null}, " +
+        $"SdkProps={sdkPropsXml != null}, SdkTargets={sdkTargetsXml != null}");
       
       // Create PackageDefinition with XML strings
       // We'll store the XML in a custom structure that MsBuildPackageEmitter can use
@@ -369,6 +406,8 @@ public class GenerateMSBuildAssets : Task
       };
       
       packageDef.Packaging.BuildTransitive = buildTransitive;
+      packageDef.Packaging.EmitSdk = emitSdk;
+      packageDef.Packaging.SdkFlatLayout = sdkFlatLayout;
       
       // Store XML strings in the package definition
       // We need to modify MsBuildPackageEmitter to accept these strings
@@ -377,7 +416,9 @@ public class GenerateMSBuildAssets : Task
         BuildProps = buildPropsXml,
         BuildTargets = buildTargetsXml,
         BuildTransitiveProps = buildTransitivePropsXml,
-        BuildTransitiveTargets = buildTransitiveTargetsXml
+        BuildTransitiveTargets = buildTransitiveTargetsXml,
+        SdkProps = sdkPropsXml,
+        SdkTargets = sdkTargetsXml
       };
       
       return packageDef;
@@ -391,5 +432,7 @@ public class GenerateMSBuildAssets : Task
       public string? BuildTargets { get; set; }
       public string? BuildTransitiveProps { get; set; }
       public string? BuildTransitiveTargets { get; set; }
+      public string? SdkProps { get; set; }
+      public string? SdkTargets { get; set; }
     }
   }
