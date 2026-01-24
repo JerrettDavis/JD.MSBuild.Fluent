@@ -306,6 +306,22 @@ public static class MsBuildTargets
     /// <inheritdoc />
     public string Name => "ResolveAssemblyReferences";
   }
+  /// <summary>
+  /// BeforeBuild target.
+  /// </summary>
+  public readonly struct BeforeBuild : IMsBuildTargetName
+  {
+    /// <inheritdoc />
+    public string Name => "BeforeBuild";
+  }
+  /// <summary>
+  /// BeforeRebuild target.
+  /// </summary>
+  public readonly struct BeforeRebuild : IMsBuildTargetName
+  {
+    /// <inheritdoc />
+    public string Name => "BeforeRebuild";
+  }
 }
 
 /// <summary>
@@ -432,6 +448,165 @@ public static class MsBuildProperties
   {
     /// <inheritdoc />
     public string Name => "PackageVersion";
+  }
+  /// <summary>
+  /// MSBuildRuntimeType property.
+  /// </summary>
+  public readonly struct MSBuildRuntimeType : IMsBuildPropertyName
+  {
+    /// <inheritdoc />
+    public string Name => "MSBuildRuntimeType";
+  }
+  /// <summary>
+  /// MSBuildVersion property.
+  /// </summary>
+  public readonly struct MSBuildVersion : IMsBuildPropertyName
+  {
+    /// <inheritdoc />
+    public string Name => "MSBuildVersion";
+  }
+  /// <summary>
+  /// MSBuildProjectFile property.
+  /// </summary>
+  public readonly struct MSBuildProjectFile : IMsBuildPropertyName
+  {
+    /// <inheritdoc />
+    public string Name => "MSBuildProjectFile";
+  }
+  /// <summary>
+  /// MSBuildThisFile property.
+  /// </summary>
+  public readonly struct MSBuildThisFile : IMsBuildPropertyName
+  {
+    /// <inheritdoc />
+    public string Name => "MSBuildThisFile";
+  }
+  /// <summary>
+  /// SolutionDir property.
+  /// </summary>
+  public readonly struct SolutionDir : IMsBuildPropertyName
+  {
+    /// <inheritdoc />
+    public string Name => "SolutionDir";
+  }
+  /// <summary>
+  /// SolutionPath property.
+  /// </summary>
+  public readonly struct SolutionPath : IMsBuildPropertyName
+  {
+    /// <inheritdoc />
+    public string Name => "SolutionPath";
+  }
+  /// <summary>
+  /// Nullable property.
+  /// </summary>
+  public readonly struct Nullable : IMsBuildPropertyName
+  {
+    /// <inheritdoc />
+    public string Name => "Nullable";
+  }
+  /// <summary>
+  /// SqlServerVersion property (MSBuild.Sdk.SqlProj, Microsoft.Build.Sql).
+  /// </summary>
+  public readonly struct SqlServerVersion : IMsBuildPropertyName
+  {
+    /// <inheritdoc />
+    public string Name => "SqlServerVersion";
+  }
+  /// <summary>
+  /// DSP property (SQL project).
+  /// </summary>
+  public readonly struct DSP : IMsBuildPropertyName
+  {
+    /// <inheritdoc />
+    public string Name => "DSP";
+  }
+}
+
+/// <summary>
+/// Common MSBuild task names.
+/// </summary>
+public static class MsBuildTasks
+{
+  /// <summary>
+  /// Message task.
+  /// </summary>
+  public readonly struct Message : IMsBuildTaskName
+  {
+    /// <inheritdoc />
+    public string Name => "Message";
+  }
+  /// <summary>
+  /// Error task.
+  /// </summary>
+  public readonly struct Error : IMsBuildTaskName
+  {
+    /// <inheritdoc />
+    public string Name => "Error";
+  }
+  /// <summary>
+  /// Warning task.
+  /// </summary>
+  public readonly struct Warning : IMsBuildTaskName
+  {
+    /// <inheritdoc />
+    public string Name => "Warning";
+  }
+  /// <summary>
+  /// Copy task.
+  /// </summary>
+  public readonly struct Copy : IMsBuildTaskName
+  {
+    /// <inheritdoc />
+    public string Name => "Copy";
+  }
+  /// <summary>
+  /// MakeDir task.
+  /// </summary>
+  public readonly struct MakeDir : IMsBuildTaskName
+  {
+    /// <inheritdoc />
+    public string Name => "MakeDir";
+  }
+  /// <summary>
+  /// Delete task.
+  /// </summary>
+  public readonly struct Delete : IMsBuildTaskName
+  {
+    /// <inheritdoc />
+    public string Name => "Delete";
+  }
+  /// <summary>
+  /// Touch task.
+  /// </summary>
+  public readonly struct Touch : IMsBuildTaskName
+  {
+    /// <inheritdoc />
+    public string Name => "Touch";
+  }
+  /// <summary>
+  /// Exec task.
+  /// </summary>
+  public readonly struct Exec : IMsBuildTaskName
+  {
+    /// <inheritdoc />
+    public string Name => "Exec";
+  }
+  /// <summary>
+  /// MSBuild task.
+  /// </summary>
+  public readonly struct MSBuild : IMsBuildTaskName
+  {
+    /// <inheritdoc />
+    public string Name => "MSBuild";
+  }
+  /// <summary>
+  /// CallTarget task.
+  /// </summary>
+  public readonly struct CallTarget : IMsBuildTaskName
+  {
+    /// <inheritdoc />
+    public string Name => "CallTarget";
   }
 }
 
