@@ -129,9 +129,13 @@ public class GenerateMSBuildAssets : Task
       var generatedFiles = new List<string>();
       
       // Write build files
+      var buildDir = Path.Combine(OutputPath, "build");
+      if (!Directory.Exists(buildDir))
+        Directory.CreateDirectory(buildDir);
+      
       if (_renderedXml?.BuildProps != null)
       {
-        var path = Path.Combine(OutputPath, $"{definition.Id}.props");
+        var path = Path.Combine(buildDir, $"{definition.Id}.props");
         File.WriteAllText(path, _renderedXml.BuildProps);
         generatedFiles.Add(path);
         Log.LogMessage(MessageImportance.Low, $"Wrote {path}");
@@ -139,7 +143,7 @@ public class GenerateMSBuildAssets : Task
       
       if (_renderedXml?.BuildTargets != null)
       {
-        var path = Path.Combine(OutputPath, $"{definition.Id}.targets");
+        var path = Path.Combine(buildDir, $"{definition.Id}.targets");
         File.WriteAllText(path, _renderedXml.BuildTargets);
         generatedFiles.Add(path);
         Log.LogMessage(MessageImportance.Low, $"Wrote {path}");
