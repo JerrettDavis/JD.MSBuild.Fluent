@@ -12,7 +12,7 @@ using Xunit.Abstractions;
 namespace JD.MSBuild.Fluent.Tests;
 
 /// <summary>Feature: EfcptCanonicalParity</summary>
-public sealed class EfcptCanonicalParityTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class EfcptCanonicalParityTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
   private static readonly MsBuildXmlParser Parser = new();
   private static readonly MsBuildXmlRenderOptions ParityOptions = new()
@@ -26,6 +26,7 @@ public sealed class EfcptCanonicalParityTests(ITestOutputHelper output) : TinyBd
   };
 
   [Fact]
+  [TinyBDD.DisableOptimization]
   public async Task Emits_JD_Efcpt_Build_assets_with_parity()
   {
     await Given("expected JD.Efcpt.Build assets parsed from golden files", () =>
@@ -80,6 +81,7 @@ public sealed class EfcptCanonicalParityTests(ITestOutputHelper output) : TinyBd
   }
 
   [Fact]
+  [TinyBDD.DisableOptimization]
   public async Task Emits_JD_Efcpt_Sdk_assets_with_parity()
   {
     await Given("expected JD.Efcpt.Sdk assets parsed from golden files", () =>

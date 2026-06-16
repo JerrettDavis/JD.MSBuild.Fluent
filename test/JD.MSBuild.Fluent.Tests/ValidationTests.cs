@@ -7,9 +7,10 @@ using Xunit.Abstractions;
 
 namespace JD.MSBuild.Fluent.Tests;
 
-public sealed class ValidationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class ValidationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task RendererThrowsOnInvalidTarget()
     {
         await Given("a project with invalid target", CreateInvalidTargetProject)
@@ -20,6 +21,7 @@ public sealed class ValidationTests(ITestOutputHelper output) : TinyBddXunitBase
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task EmitterThrowsOnMissingPackageId()
     {
         await Given("a package with empty ID", CreateEmptyIdPackageContext)
@@ -31,6 +33,7 @@ public sealed class ValidationTests(ITestOutputHelper output) : TinyBddXunitBase
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task ValidationRequiresProjectElementsToIncludeLists()
     {
         await Given("a project with mismatched elements", CreateMismatchedElementsProject)

@@ -11,9 +11,10 @@ using Xunit.Abstractions;
 namespace JD.MSBuild.Fluent.Tests;
 
 /// <summary>Feature: EndToEndPackageGeneration</summary>
-public sealed class BddEndToEndTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class BddEndToEndTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Generate_complete_package()
     {
         string? tempDir = null;
@@ -51,6 +52,7 @@ public sealed class BddEndToEndTests(ITestOutputHelper output) : TinyBddXunitBas
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Render_deterministic_XML()
     {
         await Given("a simple package", () => Package.Define("DeterministicPkg")
@@ -75,6 +77,7 @@ public sealed class BddEndToEndTests(ITestOutputHelper output) : TinyBddXunitBas
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Validate_XML_structure()
     {
         await Given("a package with properties and targets", () => Package.Define("ValidPkg")
@@ -107,6 +110,7 @@ public sealed class BddEndToEndTests(ITestOutputHelper output) : TinyBddXunitBas
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Handle_validation_errors()
     {
         await Given("a package definition", () => Package.Define("TestPkg")
@@ -129,6 +133,7 @@ public sealed class BddEndToEndTests(ITestOutputHelper output) : TinyBddXunitBas
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Clean_temp_directories()
     {
         string? tempDir = null;
@@ -157,6 +162,7 @@ public sealed class BddEndToEndTests(ITestOutputHelper output) : TinyBddXunitBas
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Round_trip_through_parser()
     {
         await Given("a package with complex structure", () => Package.Define("RoundTripPkg")
@@ -194,6 +200,7 @@ public sealed class BddEndToEndTests(ITestOutputHelper output) : TinyBddXunitBas
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Generate_with_custom_basename()
     {
         string? tempDir = null;

@@ -7,9 +7,10 @@ using Xunit.Abstractions;
 namespace JD.MSBuild.Fluent.Tests;
 
 /// <summary>Feature: MSBuildTaskInvocation</summary>
-public sealed class BddTaskInvocationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class BddTaskInvocationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Declare_UsingTask()
     {
         await Given("a targets builder", () => Package.Define("Test"))
@@ -27,6 +28,7 @@ public sealed class BddTaskInvocationTests(ITestOutputHelper output) : TinyBddXu
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Invoke_custom_task()
     {
         await Given("a target with UsingTask", () => Package.Define("Test"))
@@ -45,6 +47,7 @@ public sealed class BddTaskInvocationTests(ITestOutputHelper output) : TinyBddXu
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Set_task_parameters()
     {
         await Given("a target builder", () => Package.Define("Test"))
@@ -65,6 +68,7 @@ public sealed class BddTaskInvocationTests(ITestOutputHelper output) : TinyBddXu
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Capture_task_output_to_property()
     {
         await Given("a target builder", () => Package.Define("Test"))
@@ -87,6 +91,7 @@ public sealed class BddTaskInvocationTests(ITestOutputHelper output) : TinyBddXu
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Capture_task_output_to_item()
     {
         await Given("a target builder", () => Package.Define("Test"))
@@ -109,6 +114,7 @@ public sealed class BddTaskInvocationTests(ITestOutputHelper output) : TinyBddXu
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Chain_multiple_tasks()
     {
         await Given("a target builder", () => Package.Define("Test"))
@@ -131,6 +137,7 @@ public sealed class BddTaskInvocationTests(ITestOutputHelper output) : TinyBddXu
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Use_strongly_typed_task_parameters()
     {
         await Given("a target builder", () => Package.Define("Test"))
@@ -152,6 +159,7 @@ public sealed class BddTaskInvocationTests(ITestOutputHelper output) : TinyBddXu
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Add_task_with_condition()
     {
         await Given("a target builder", () => Package.Define("Test"))
@@ -169,6 +177,7 @@ public sealed class BddTaskInvocationTests(ITestOutputHelper output) : TinyBddXu
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Use_task_reference_from_type()
     {
         await Given("a CLR task type", () => typeof(Contoso.Build.Tasks.ResolveInputs))

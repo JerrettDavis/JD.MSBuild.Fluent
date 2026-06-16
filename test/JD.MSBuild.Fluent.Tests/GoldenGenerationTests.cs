@@ -9,9 +9,10 @@ using static JD.MSBuild.Fluent.Typed.MsBuildExpr;
 
 namespace JD.MSBuild.Fluent.Tests;
 
-public sealed class GoldenGenerationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class GoldenGenerationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task EmitsExpectedBuildAssets()
     {
         await Given("package definition with all build assets", CreatePackageWithAllAssets)
@@ -27,6 +28,7 @@ public sealed class GoldenGenerationTests(ITestOutputHelper output) : TinyBddXun
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task RenderingIsDeterministic()
     {
         await Given("package definition", CreateDeterminismPackage)

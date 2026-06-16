@@ -7,9 +7,10 @@ using static JD.MSBuild.Fluent.Typed.MsBuildExpr;
 
 namespace JD.MSBuild.Fluent.Tests;
 
-public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task DefineBasicPackage()
     {
         await Given("a package ID", CreatePackageId)
@@ -19,6 +20,7 @@ public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBa
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task AddPropertiesToPackage()
     {
         await Given("a package builder", CreateTestPackageBuilder)
@@ -28,6 +30,7 @@ public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBa
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task AddItemsToPackage()
     {
         await Given("a package builder", CreateTestPackageBuilder)
@@ -37,6 +40,7 @@ public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBa
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task AddTargetsWithMessageTask()
     {
         await Given("a package builder", CreateTestPackageBuilder)
@@ -46,6 +50,7 @@ public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBa
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task ChainPropsAndTargets()
     {
         await Given("package definition", CreateTestPackageBuilder)
@@ -55,6 +60,7 @@ public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBa
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task UseMsBuildExprConditionals()
     {
         await Given("condition helper", CreateCondition)
@@ -64,6 +70,7 @@ public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBa
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task ConfigurePackagingOptions()
     {
         await Given("package builder", CreateTestPackageBuilder)
