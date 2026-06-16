@@ -11,6 +11,7 @@ namespace JD.MSBuild.Fluent.Tests;
 public sealed partial class BddRealWorldPatternsTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Multi_TFM_assembly_resolution()
     {
         await Given("a multi-TFM package", () => Package.Define("MultiTfmPkg"))
@@ -41,6 +42,7 @@ public sealed partial class BddRealWorldPatternsTests(ITestOutputHelper output) 
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Complex_conditional_logic()
     {
         await Given("a package with complex conditions", () => Package.Define("ConditionalPkg"))
@@ -62,6 +64,7 @@ public sealed partial class BddRealWorldPatternsTests(ITestOutputHelper output) 
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Lifecycle_hooks_pattern()
     {
         await Given("a package with lifecycle hooks", () => Package.Define("LifecyclePkg"))
@@ -98,6 +101,7 @@ public sealed partial class BddRealWorldPatternsTests(ITestOutputHelper output) 
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Task_output_chaining()
     {
         await Given("a package with task output chaining", () => Package.Define("ChainingPkg"))
@@ -133,6 +137,7 @@ public sealed partial class BddRealWorldPatternsTests(ITestOutputHelper output) 
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Choose_When_Otherwise_constructs()
     {
         await Given("a package with nested conditions", () => Package.Define("ChoosePkg"))
@@ -166,6 +171,7 @@ public sealed partial class BddRealWorldPatternsTests(ITestOutputHelper output) 
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Dynamic_property_evaluation()
     {
         await Given("a package with dynamic properties", () => Package.Define("DynamicPkg"))
@@ -197,6 +203,7 @@ public sealed partial class BddRealWorldPatternsTests(ITestOutputHelper output) 
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Item_metadata_transformation()
     {
         await Given("a package with item transformations", () => Package.Define("TransformPkg"))

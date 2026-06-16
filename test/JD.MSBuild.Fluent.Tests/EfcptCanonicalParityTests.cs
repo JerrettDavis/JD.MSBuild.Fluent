@@ -26,6 +26,7 @@ public sealed partial class EfcptCanonicalParityTests(ITestOutputHelper output) 
   };
 
   [Fact]
+  [TinyBDD.DisableOptimization]
   public async Task Emits_JD_Efcpt_Build_assets_with_parity()
   {
     await Given("expected JD.Efcpt.Build assets parsed from golden files", () =>
@@ -80,6 +81,7 @@ public sealed partial class EfcptCanonicalParityTests(ITestOutputHelper output) 
   }
 
   [Fact]
+  [TinyBDD.DisableOptimization]
   public async Task Emits_JD_Efcpt_Sdk_assets_with_parity()
   {
     await Given("expected JD.Efcpt.Sdk assets parsed from golden files", () =>

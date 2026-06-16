@@ -17,6 +17,7 @@ namespace JD.MSBuild.Fluent.Tests;
 public sealed partial class EfcptParityGenerationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
   [Fact]
+  [TinyBDD.DisableOptimization]
   public async Task Emits_complex_parity_assets()
   {
     await Given("complex package definition", () =>

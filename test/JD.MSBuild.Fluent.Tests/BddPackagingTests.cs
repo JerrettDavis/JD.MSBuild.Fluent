@@ -9,6 +9,7 @@ namespace JD.MSBuild.Fluent.Tests;
 public sealed partial class BddPackagingTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Emit_to_build_folder()
     {
         await Given("a package with build folder configuration", () => Package.Define("MyPkg"))
@@ -26,6 +27,7 @@ public sealed partial class BddPackagingTests(ITestOutputHelper output) : TinyBd
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Emit_to_buildTransitive_folder()
     {
         await Given("a package with buildTransitive configuration", () => Package.Define("MyPkg"))
@@ -43,6 +45,7 @@ public sealed partial class BddPackagingTests(ITestOutputHelper output) : TinyBd
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Emit_to_Sdk_folder()
     {
         await Given("a package with SDK configuration", () => Package.Define("MyPkg"))
@@ -60,6 +63,7 @@ public sealed partial class BddPackagingTests(ITestOutputHelper output) : TinyBd
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Configure_packaging_options()
     {
         await Given("a package builder", () => Package.Define("MyPkg"))
@@ -78,6 +82,7 @@ public sealed partial class BddPackagingTests(ITestOutputHelper output) : TinyBd
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Validate_folder_structure()
     {
         await Given("a complete package definition", () => Package.Define("MyPkg"))
@@ -108,6 +113,7 @@ public sealed partial class BddPackagingTests(ITestOutputHelper output) : TinyBd
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Skip_empty_sections()
     {
         await Given("a minimal package", () => Package.Define("MinimalPkg"))

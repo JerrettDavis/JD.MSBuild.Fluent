@@ -12,6 +12,7 @@ namespace JD.MSBuild.Fluent.Tests;
 public sealed partial class GeneratorSpecTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
   [Fact]
+  [TinyBDD.DisableOptimization]
   public async Task Given_task_with_parameters_and_outputs_When_generator_runs_Then_emits_reference_and_parameter_types()
   {
     const string source = """
@@ -108,6 +109,7 @@ namespace Demo.Tasks.Extensions.DoWork
   }
 
   [Fact]
+  [TinyBDD.DisableOptimization]
   public async Task Given_task_with_name_style_and_ignore_When_generator_runs_Then_uses_short_name_and_skips_ignored()
   {
     const string source = """

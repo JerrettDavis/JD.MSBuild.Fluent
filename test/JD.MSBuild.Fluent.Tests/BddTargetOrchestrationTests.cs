@@ -9,6 +9,7 @@ namespace JD.MSBuild.Fluent.Tests;
 public sealed partial class BddTargetOrchestrationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Set_BeforeTargets()
     {
         await Given("a target builder", () => Package.Define("Test"))
@@ -26,6 +27,7 @@ public sealed partial class BddTargetOrchestrationTests(ITestOutputHelper output
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Set_AfterTargets()
     {
         await Given("a target builder", () => Package.Define("Test"))
@@ -43,6 +45,7 @@ public sealed partial class BddTargetOrchestrationTests(ITestOutputHelper output
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Set_DependsOnTargets()
     {
         await Given("a target builder", () => Package.Define("Test"))
@@ -60,6 +63,7 @@ public sealed partial class BddTargetOrchestrationTests(ITestOutputHelper output
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Combine_orchestration_attributes()
     {
         await Given("a target builder", () => Package.Define("Test"))
@@ -81,6 +85,7 @@ public sealed partial class BddTargetOrchestrationTests(ITestOutputHelper output
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Set_Inputs_and_Outputs()
     {
         await Given("a target builder", () => Package.Define("Test"))
@@ -100,6 +105,7 @@ public sealed partial class BddTargetOrchestrationTests(ITestOutputHelper output
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Add_target_condition()
     {
         await Given("a target builder", () => Package.Define("Test"))
@@ -117,6 +123,7 @@ public sealed partial class BddTargetOrchestrationTests(ITestOutputHelper output
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Use_strongly_typed_target_orchestration()
     {
         await Given("target names", () => (new TBeforeTarget(), new TAfterTarget(), new TDependsTarget()))
@@ -138,6 +145,7 @@ public sealed partial class BddTargetOrchestrationTests(ITestOutputHelper output
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task Scenario_Set_target_label()
     {
         await Given("a target builder", () => Package.Define("Test"))

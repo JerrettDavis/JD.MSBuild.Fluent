@@ -8,6 +8,7 @@ namespace JD.MSBuild.Fluent.Tests;
 public sealed partial class PackagingValidationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task PackOutputsIncludeReadmeAndLicense()
     {
         await Given("repository root and output directory", CreatePackagingContext)

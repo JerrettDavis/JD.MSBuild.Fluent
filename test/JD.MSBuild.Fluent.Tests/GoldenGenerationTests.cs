@@ -12,6 +12,7 @@ namespace JD.MSBuild.Fluent.Tests;
 public sealed partial class GoldenGenerationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task EmitsExpectedBuildAssets()
     {
         await Given("package definition with all build assets", CreatePackageWithAllAssets)
@@ -27,6 +28,7 @@ public sealed partial class GoldenGenerationTests(ITestOutputHelper output) : Ti
     }
 
     [Fact]
+    [TinyBDD.DisableOptimization]
     public async Task RenderingIsDeterministic()
     {
         await Given("package definition", CreateDeterminismPackage)
