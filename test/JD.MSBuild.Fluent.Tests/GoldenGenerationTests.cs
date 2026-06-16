@@ -9,7 +9,7 @@ using static JD.MSBuild.Fluent.Typed.MsBuildExpr;
 
 namespace JD.MSBuild.Fluent.Tests;
 
-public sealed class GoldenGenerationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class GoldenGenerationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
     public async Task EmitsExpectedBuildAssets()

@@ -7,7 +7,7 @@ using Xunit.Abstractions;
 namespace JD.MSBuild.Fluent.Tests;
 
 /// <summary>Feature: MSBuildTaskInvocation</summary>
-public sealed class BddTaskInvocationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class BddTaskInvocationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
     public async Task Scenario_Declare_UsingTask()

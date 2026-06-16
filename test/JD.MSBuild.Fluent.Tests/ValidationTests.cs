@@ -7,7 +7,7 @@ using Xunit.Abstractions;
 
 namespace JD.MSBuild.Fluent.Tests;
 
-public sealed class ValidationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class ValidationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
     public async Task RendererThrowsOnInvalidTarget()

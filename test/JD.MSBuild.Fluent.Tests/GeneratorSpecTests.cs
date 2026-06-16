@@ -9,7 +9,7 @@ using Xunit.Abstractions;
 namespace JD.MSBuild.Fluent.Tests;
 
 /// <summary>Feature: MsBuildTaskSourceGeneration</summary>
-public sealed class GeneratorSpecTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class GeneratorSpecTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
   [Fact]
   public async Task Given_task_with_parameters_and_outputs_When_generator_runs_Then_emits_reference_and_parameter_types()
@@ -20,7 +20,7 @@ using JD.MSBuild.Fluent.Typed;
 namespace Demo.Tasks
 {
   [MsBuildTask(AssemblyFile = "$(_Tasks)")]
-  public sealed class DoWork
+  public sealed partial class DoWork
   {
     public string Input { get; set; } = string.Empty;
 
@@ -32,7 +32,7 @@ namespace Demo.Tasks
 namespace Microsoft.Build.Framework
 {
   [System.AttributeUsage(System.AttributeTargets.Property)]
-  public sealed class OutputAttribute : System.Attribute
+  public sealed partial class OutputAttribute : System.Attribute
   {
   }
 }
@@ -116,7 +116,7 @@ using JD.MSBuild.Fluent.Typed;
 namespace Spec.Tasks
 {
   [MsBuildTask(NameStyle = MsBuildTaskNameStyle.Name, UseAssemblyName = true)]
-  public sealed class BuildJob
+  public sealed partial class BuildJob
   {
     public string Keep { get; set; } = string.Empty;
 

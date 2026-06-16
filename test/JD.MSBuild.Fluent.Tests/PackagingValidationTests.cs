@@ -5,7 +5,7 @@ using Xunit.Abstractions;
 
 namespace JD.MSBuild.Fluent.Tests;
 
-public sealed class PackagingValidationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class PackagingValidationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
     public async Task PackOutputsIncludeReadmeAndLicense()

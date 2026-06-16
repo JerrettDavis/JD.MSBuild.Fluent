@@ -14,7 +14,7 @@ using static JD.MSBuild.Fluent.Typed.MsBuildExpr;
 namespace JD.MSBuild.Fluent.Tests;
 
 /// <summary>Feature: EfcptParityGeneration</summary>
-public sealed class EfcptParityGenerationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class EfcptParityGenerationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
   [Fact]
   public async Task Emits_complex_parity_assets()

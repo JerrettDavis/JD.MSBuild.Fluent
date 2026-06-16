@@ -6,7 +6,7 @@ using Xunit.Abstractions;
 namespace JD.MSBuild.Fluent.Tests;
 
 /// <summary>Feature: TargetOrchestration</summary>
-public sealed class BddTargetOrchestrationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class BddTargetOrchestrationTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
     public async Task Scenario_Set_BeforeTargets()

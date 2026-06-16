@@ -12,7 +12,7 @@ using Xunit.Abstractions;
 namespace JD.MSBuild.Fluent.Tests;
 
 /// <summary>Feature: EfcptCanonicalParity</summary>
-public sealed class EfcptCanonicalParityTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class EfcptCanonicalParityTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
   private static readonly MsBuildXmlParser Parser = new();
   private static readonly MsBuildXmlRenderOptions ParityOptions = new()

@@ -6,7 +6,7 @@ using Xunit.Abstractions;
 namespace JD.MSBuild.Fluent.Tests;
 
 /// <summary>Feature: MSBuildPackageStructure</summary>
-public sealed class BddPackagingTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class BddPackagingTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
     public async Task Scenario_Emit_to_build_folder()

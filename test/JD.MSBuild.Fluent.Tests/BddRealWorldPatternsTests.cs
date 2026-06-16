@@ -8,7 +8,7 @@ using static JD.MSBuild.Fluent.Typed.MsBuildExpr;
 namespace JD.MSBuild.Fluent.Tests;
 
 /// <summary>Feature: RealWorldPatterns</summary>
-public sealed class BddRealWorldPatternsTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class BddRealWorldPatternsTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
     public async Task Scenario_Multi_TFM_assembly_resolution()

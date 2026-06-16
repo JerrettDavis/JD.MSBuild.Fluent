@@ -7,7 +7,7 @@ using static JD.MSBuild.Fluent.Typed.MsBuildExpr;
 
 namespace JD.MSBuild.Fluent.Tests;
 
-public sealed class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class BddFluentApiTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
     public async Task DefineBasicPackage()

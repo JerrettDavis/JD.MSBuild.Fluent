@@ -11,7 +11,7 @@ using Xunit.Abstractions;
 namespace JD.MSBuild.Fluent.Tests;
 
 /// <summary>Feature: EndToEndPackageGeneration</summary>
-public sealed class BddEndToEndTests(ITestOutputHelper output) : TinyBddXunitBase(output)
+public sealed partial class BddEndToEndTests(ITestOutputHelper output) : TinyBddXunitBase(output)
 {
     [Fact]
     public async Task Scenario_Generate_complete_package()
