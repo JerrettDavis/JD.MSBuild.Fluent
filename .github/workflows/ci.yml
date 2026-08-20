@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  pr-checks:
+  build:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     env:
