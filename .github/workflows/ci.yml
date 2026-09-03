@@ -56,9 +56,11 @@ jobs:
     env:
       DOTNET_NOLOGO: true
       INCLUDE_SYMBOLS: true
+    environment: production
     permissions:
       contents: write
       packages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v7
         with:
@@ -147,9 +149,15 @@ jobs:
             artifacts/nuget/*.snupkg
           generate_release_notes: true
 
+      - name: NuGet login
+        id: nuget-login
+        uses: NuGet/login@v1
+        with:
+          user: JerrettDavis
+
       - name: Push to NuGet.org
         env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+          NUGET_API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
         run: |
           if [ -n "$NUGET_API_KEY" ]; then
             dotnet nuget push "artifacts/nuget/*.nupkg" \
