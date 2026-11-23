@@ -23,6 +23,6 @@
     <PackageVersion Include="Verify.Xunit" Version="31.12.5" />
     <!-- Pinned to last Apache 2.0 release line; v8+ changes license terms -->
     <PackageVersion Include="FluentAssertions" Version="8.11.0" />
-    <PackageVersion Include="coverlet.collector" Version="10.1.0" />
+    <PackageVersion Include="coverlet.collector" Version="10.1.1" />
   </ItemGroup>
 </Project>
